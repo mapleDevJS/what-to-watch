@@ -2,10 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app.jsx";
 
+const MOVIES_TITLES = [
+  `Fantastic Beasts`,
+  `Bohemian Rhapsody`,
+  `Macbeth`,
+  `The Grand Budapest Hotel`
+];
+
+const getRandomElement = function (array) {
+  return array[Math.floor(Math.random() * array.length)];
+};
+
 const movie = {
-  title: `The Grand Budapest Hotel`,
+  title: getRandomElement(MOVIES_TITLES),
   genre: `Drama`,
-  releaseDate: `2014`
+  releaseDate: 2014
 };
 
 ReactDOM.render(

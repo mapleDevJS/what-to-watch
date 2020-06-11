@@ -1,7 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Main = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {title, genre, releaseDate} = props;
 
   return (
@@ -334,6 +334,12 @@ const Main = (props) => {
       </div>
     </div>
   );
+};
+
+Main.propTypes = {
+  title: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  releaseDate: PropTypes.number.isRequired
 };
 
 export default Main;
