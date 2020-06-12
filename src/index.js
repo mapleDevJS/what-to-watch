@@ -3,18 +3,30 @@ import ReactDOM from "react-dom";
 import App from "./components/app.jsx";
 
 const MOVIES_TITLES = [
-  `Fantastic Beasts`,
+  `Fantastic Beasts: The Crimes of Grindelwald`,
   `Bohemian Rhapsody`,
   `Macbeth`,
-  `The Grand Budapest Hotel`
+  `Aviator`,
+  `We need to talk about Kevin`,
+  `What We Do in the Shadows`,
+  `Revenant`,
+  `Johnny English`,
+  `Shutter Island`,
+  `Pulp Fiction`,
+  `No Country for Old Men`,
+  `Snatch`,
+  `Moonrise Kingdom`,
+  `Seven Years in Tibet`,
+  `Midnight Special`,
+  `War of the Worlds`,
+  `Dardjeeling Limited`,
+  `Orlando`,
+  `Mindhunter`,
+  `Midnight Special`
 ];
 
-const getRandomElement = function (array) {
-  return array[Math.floor(Math.random() * array.length)];
-};
-
 const movie = {
-  title: getRandomElement(MOVIES_TITLES),
+  title: `The Grand Budapest Hotel`,
   genre: `Drama`,
   releaseDate: 2014
 };
@@ -24,6 +36,7 @@ ReactDOM.render(
       title = {movie.title}
       genre = {movie.genre}
       releaseDate = {movie.releaseDate}
+      moviesTitles = {MOVIES_TITLES}
     />,
     document.querySelector(`#root`)
 );
