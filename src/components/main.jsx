@@ -3,14 +3,19 @@ import PropTypes from "prop-types";
 
 import Movie from "./movie.jsx";
 
-const Main = (props) => {
-  const {title, genre, releaseDate, moviesTitles} = props;
+const renderMovies = (titles) => {
+  return titles.map((title) => {
+    return (
+      <Movie
+        key = {title}
+        title = {title}
+      />
+    );
+  });
+};
 
-  const renderMovies = () => {
-    return moviesTitles.map((movieTitle, i) => {
-      return <Movie key = {movieTitle + i} movieTitle = {movieTitle}/>;
-    });
-  };
+const Main = (props) => {
+  const {movie, moviesTitles} = props;
 
   return (
     <React.Fragment>
@@ -72,10 +77,10 @@ const Main = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{movie.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{releaseDate}</span>
+                <span className="movie-card__genre">{movie.genre}</span>
+                <span className="movie-card__year">{movie.releaseDate}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -135,7 +140,7 @@ const Main = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {renderMovies()}
+            {renderMovies(moviesTitles)}
           </div>
 
           <div className="catalog__more">
@@ -162,9 +167,11 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.number.isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string.isRequired
+  }),
   moviesTitles: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
