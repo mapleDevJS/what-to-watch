@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Личный проект «Что посмотреть» от HTML Academy",
+  "type": "module",
   "scripts": {
     "eslint": "eslint --ext .jsx --ext .js src/",
     "test": "npm run eslint",
@@ -25,6 +26,7 @@
     "node": "10"
   },
   "dependencies": {
+    "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   }
