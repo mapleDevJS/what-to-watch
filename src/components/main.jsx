@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import Movie from "./movie.jsx";
 
 const renderMovies = (titles) => {
-  return titles.map((title) => {
+  return titles.map((title, i) => {
     return (
       <Movie
-        key = {title}
+        key = {title + i}
         title = {title}
       />
     );
