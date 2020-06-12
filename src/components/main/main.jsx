@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Movie from "./movie.jsx";
+import Movie from "../movie/movie.jsx";
 
 const renderMovies = (titles) => {
   return titles.map((title, i) => {
