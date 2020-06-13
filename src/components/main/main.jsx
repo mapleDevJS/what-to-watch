@@ -3,12 +3,15 @@ import PropTypes from "prop-types";
 
 import Movie from "../movie/movie.jsx";
 
+const onTitleClickHandler = () => {};
+
 const renderMovies = (titles) => {
   return titles.map((title, i) => {
     return (
       <Movie
         key = {title + i}
         title = {title}
+        onTitleClickHandler ={onTitleClickHandler}
       />
     );
   });
@@ -143,7 +146,7 @@ const Main = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {renderMovies(moviesTitles)}
+            {renderMovies(moviesTitles, onTitleClickHandler)}
           </div>
 
           <div className="catalog__more">

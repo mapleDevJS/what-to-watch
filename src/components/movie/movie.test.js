@@ -6,6 +6,7 @@ it(`Render Movie`, () => {
   const tree = renderer
     .create(<Movie
       title = {`Tenet`}
+      onTitleClickHandler = {() => {}}
     />)
     .toJSON();
 
