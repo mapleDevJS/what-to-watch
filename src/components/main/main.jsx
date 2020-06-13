@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Movie from "./movie.jsx";
+import Movie from "../movie/movie.jsx";
+
+const onTitleClickHandler = () => {};
 
 const renderMovies = (titles) => {
-  return titles.map((title) => {
+  return titles.map((title, i) => {
     return (
       <Movie
-        key = {title}
+        key = {title + i}
         title = {title}
+        onTitleClickHandler ={onTitleClickHandler}
       />
     );
   });
@@ -42,6 +45,9 @@ const Main = (props) => {
               <polygon points="0 -1.1191e-13 4 -1.1191e-13 4 21 0 21" fillRule="nonzero"/>
               <polygon points="10 -1.1191e-13 14 -1.1191e-13 14 21 10 21" fillRule="nonzero"/>
             </g>
+          </symbol>
+          <symbol id="play-s" viewBox="0 0 19 19">
+            <path fillRule="evenodd" clipRule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5"/>
           </symbol>
         </svg>
 
@@ -140,7 +146,7 @@ const Main = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {renderMovies(moviesTitles)}
+            {renderMovies(moviesTitles, onTitleClickHandler)}
           </div>
 
           <div className="catalog__more">
@@ -170,7 +176,7 @@ Main.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired
+    releaseDate: PropTypes.number.isRequired
   }),
   moviesTitles: PropTypes.arrayOf(PropTypes.string).isRequired
 };
