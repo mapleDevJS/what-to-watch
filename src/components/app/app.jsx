@@ -3,23 +3,30 @@ import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 
 const App = (props) => {
-  const {movie, moviesTitles} = props;
+  const {topFilm, films} = props;
 
   return (
     <Main
-      movie={movie}
-      moviesTitles = {moviesTitles}
+      topFilm = {topFilm}
+      films = {films}
     />
   );
 };
 
 App.propTypes = {
-  movie: PropTypes.shape({
+  topFilm: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired
   }),
-  moviesTitles: PropTypes.arrayOf(PropTypes.string).isRequired
+  films: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired
+      })
+  ).isRequired
 };
 
 export default App;

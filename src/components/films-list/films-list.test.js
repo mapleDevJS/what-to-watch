@@ -1,13 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import FilmsList from "./films-list.jsx";
 
-const topFilm = {
-  title: `The Grand Budapest Hotel`,
-  poster: `bg-the-grand-budapest-hotel.jpg`,
-  genre: `Drama`,
-  releaseDate: 2014
-};
 
 const films = [
   {
@@ -29,12 +23,11 @@ const films = [
   }
 ];
 
-
-it(`Render App`, () => {
+it(`Render FilmsList`, () => {
   const tree = renderer
-    .create(<App
-      topFilm = {topFilm}
+    .create(<FilmsList
       films = {films}
+      onTitleClick = {() => {}}
     />)
     .toJSON();
 
