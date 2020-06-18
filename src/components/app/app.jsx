@@ -1,15 +1,27 @@
 import React from "react";
-import Main from "../main/main.jsx";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PropTypes from "prop-types";
+
+import Main from "../main/main.jsx";
+import FilmDetails from "../film-details/film-details.jsx";
 
 const App = (props) => {
   const {TOP_FILM, films} = props;
 
   return (
-    <Main
-      TOP_FILM = {TOP_FILM}
-      films = {films}
-    />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Main
+            TOP_FILM = {TOP_FILM}
+            films = {films}
+          />
+        </Route>
+        <Route exact path="/details">
+          <FilmDetails />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
