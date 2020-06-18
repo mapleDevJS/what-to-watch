@@ -55,6 +55,24 @@ export const TOP_FILM = {
   releaseDate: 2014
 };
 
+export const FILM_DETAILS = {
+  bigPoster: `bg-the-grand-budapest-hotel.jpg`,
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  releaseDate: 2014,
+  poster: `the-grand-budapest-hotel-poster.jpg`,
+  rating: 8.9,
+  level: `Very Good`,
+  totalRatings: 240,
+  director: `Wes Andreson`,
+  starring: [
+    `Bill Murray`,
+    `Edward Norton`,
+    `Jude Law`,
+    `Willem Dafoe`
+  ]
+};
+
 export const createFilms = () => {
   let films = [];
   for (let i = 0; i < FILMS_NUMBER; i++) {

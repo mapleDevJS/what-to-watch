@@ -6,7 +6,7 @@ import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 
 const App = (props) => {
-  const {TOP_FILM, films} = props;
+  const {TOP_FILM, FILM_DETAILS, films} = props;
 
   return (
     <BrowserRouter>
@@ -18,7 +18,9 @@ const App = (props) => {
           />
         </Route>
         <Route exact path="/details">
-          <FilmDetails />
+          <FilmDetails
+            FILM_DETAILS = {FILM_DETAILS}
+          />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -31,6 +33,18 @@ App.propTypes = {
     poster: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired
+  }),
+  FILM_DETAILS: PropTypes.shape({
+    bigPoster: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    poster: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    level: PropTypes.string.isRequired,
+    totalRatings: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired
   }),
   films: PropTypes.arrayOf(
       PropTypes.shape({
