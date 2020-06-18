@@ -1,24 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import FilmsList from "../films-list/films-list.jsx";
 
-import Movie from "../movie/movie.jsx";
-
-const onTitleClickHandler = () => {};
-
-const renderMovies = (titles) => {
-  return titles.map((title, i) => {
-    return (
-      <Movie
-        key = {title + i}
-        title = {title}
-        onTitleClickHandler ={onTitleClickHandler}
-      />
-    );
-  });
-};
+const handleTitleClick = () => {};
 
 const Main = (props) => {
-  const {movie, moviesTitles} = props;
+  const {topFilm, films} = props;
 
   return (
     <React.Fragment>
@@ -79,14 +66,19 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img
+                src="img\the-grand-budapest-hotel-poster.jpg"
+                alt={topFilm.title}
+                width="218"
+                height="327"
+              />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{movie.title}</h2>
+              <h2 className="movie-card__title">{topFilm.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{movie.genre}</span>
-                <span className="movie-card__year">{movie.releaseDate}</span>
+                <span className="movie-card__genre">{topFilm.genre}</span>
+                <span className="movie-card__year">{topFilm.releaseDate}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -145,9 +137,10 @@ const Main = (props) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-            {renderMovies(moviesTitles, onTitleClickHandler)}
-          </div>
+          <FilmsList
+            films = {films}
+            onTitleClick = {handleTitleClick}
+          />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -173,12 +166,19 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  movie: PropTypes.shape({
+  topFilm: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired
   }),
-  moviesTitles: PropTypes.arrayOf(PropTypes.string).isRequired
+  films: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired
+      })
+  ).isRequired
 };
 
 export default Main;

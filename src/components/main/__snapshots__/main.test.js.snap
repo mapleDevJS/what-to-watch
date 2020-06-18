@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render App 1`] = `
+exports[`Render Main 1`] = `
 Array [
   <div
     className="visually-hidden"
@@ -163,9 +163,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="The Grand Budapest Hotel"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="img\\\\the-grand-budapest-hotel-poster.jpg"
             width="218"
           />
         </div>
@@ -175,7 +175,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Bad Boys for Life
+            The Grand Budapest Hotel
           </h2>
           <p
             className="movie-card__meta"
@@ -183,12 +183,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Crime
+              Drama
             </span>
             <span
               className="movie-card__year"
             >
-              2020
+              2014
             </span>
           </p>
           <div
@@ -353,6 +353,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -371,20 +372,21 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Emma
+              Fantastic Beasts: The Crimes of Grindelwald
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt=""
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/bohemian-rhapsody.jpg"
               width="280"
             />
           </div>
@@ -395,18 +397,44 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              No Time to Die
+              
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              alt="Macbeth"
+              height="175"
+              src="img/"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              Macbeth
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onMouseOver={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Macbeth"
               height="175"
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
@@ -419,7 +447,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Wonder Woman 1984
+              Macbeth
             </a>
           </h3>
         </article>
