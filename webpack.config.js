@@ -15,7 +15,8 @@ module.exports = {
     watchOptions: {
       aggregateTimeout: 100,
       ignored: /node_modules/
-    }
+    },
+    historyApiFallback: true
   },
   module: {
     rules: [
