@@ -3,7 +3,7 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
-const topFilm = {
+const TOP_FILM = {
   title: `The Grand Budapest Hotel`,
   poster: `bg-the-grand-budapest-hotel.jpg`,
   genre: `Drama`,
@@ -41,7 +41,7 @@ describe(`Main e2e tests`, () => {
 
     const main = mount(
         <Main
-          topFilm = {topFilm}
+          TOP_FILM = {TOP_FILM}
           films = {films}
           onTitleClick={titleClickHandler} />
     );

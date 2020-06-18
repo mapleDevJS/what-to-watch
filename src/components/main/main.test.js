@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
-const topFilm = {
+const TOP_FILM = {
   title: `The Grand Budapest Hotel`,
   poster: `bg-the-grand-budapest-hotel.jpg`,
   genre: `Drama`,
@@ -32,7 +32,7 @@ const films = [
 it(`Render Main`, () => {
   const tree = renderer
     .create(<Main
-      topFilm = {topFilm}
+      TOP_FILM = {TOP_FILM}
       films = {films}
     />)
     .toJSON();

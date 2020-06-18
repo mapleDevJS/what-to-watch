@@ -1,4 +1,4 @@
-import {generateUniqueId} from "../utils/utils.js";
+import {getRandomElement, generateUniqueId} from "../utils/utils.js";
 
 const FILMS_NUMBER = 8;
 
@@ -48,29 +48,21 @@ const POSTERS = [
   `midnight-special.jpg`
 ];
 
-export const topFilm = {
+export const TOP_FILM = {
   title: `The Grand Budapest Hotel`,
   poster: `the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
   releaseDate: 2014
 };
 
-const getRandomElement = (array) => {
-  return array[Math.floor(Math.random() * array.length)];
-};
-
-const createFilm = () => {
-  return ({
-    id: generateUniqueId(),
-    title: getRandomElement(TITLES),
-    poster: getRandomElement(POSTERS),
-  });
-};
-
 export const createFilms = () => {
   let films = [];
   for (let i = 0; i < FILMS_NUMBER; i++) {
-    films.push(createFilm());
+    films.push({
+      id: generateUniqueId(),
+      title: getRandomElement(TITLES),
+      poster: getRandomElement(POSTERS),
+    });
   }
   return films;
 };

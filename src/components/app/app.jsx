@@ -3,18 +3,18 @@ import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 
 const App = (props) => {
-  const {topFilm, films} = props;
+  const {TOP_FILM, films} = props;
 
   return (
     <Main
-      topFilm = {topFilm}
+      TOP_FILM = {TOP_FILM}
       films = {films}
     />
   );
 };
 
 App.propTypes = {
-  topFilm: PropTypes.shape({
+  TOP_FILM: PropTypes.shape({
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,

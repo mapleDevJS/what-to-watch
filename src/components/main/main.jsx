@@ -5,7 +5,7 @@ import FilmsList from "../films-list/films-list.jsx";
 const handleTitleClick = () => {};
 
 const Main = (props) => {
-  const {topFilm, films} = props;
+  const {TOP_FILM, films} = props;
 
   return (
     <React.Fragment>
@@ -68,17 +68,17 @@ const Main = (props) => {
             <div className="movie-card__poster">
               <img
                 src="img\the-grand-budapest-hotel-poster.jpg"
-                alt={topFilm.title}
+                alt={TOP_FILM.title}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{topFilm.title}</h2>
+              <h2 className="movie-card__title">{TOP_FILM.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{topFilm.genre}</span>
-                <span className="movie-card__year">{topFilm.releaseDate}</span>
+                <span className="movie-card__genre">{TOP_FILM.genre}</span>
+                <span className="movie-card__year">{TOP_FILM.releaseDate}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -166,7 +166,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  topFilm: PropTypes.shape({
+  TOP_FILM: PropTypes.shape({
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
