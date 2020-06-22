@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const FilmDetails = (props) => {
-  const {FILM_DETAILS} = props;
+  const {film} = props;
 
   const {
-    bigPoster,
+    background,
     title,
     genre,
     releaseDate,
@@ -15,7 +15,7 @@ const FilmDetails = (props) => {
     totalRatings,
     director,
     starring
-  } = FILM_DETAILS;
+  } = film;
 
   return (
     <React.Fragment>
@@ -53,7 +53,7 @@ const FilmDetails = (props) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={`img/${bigPoster}`} alt={title} />
+            <img src={`img/${background}`} alt={title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -206,8 +206,8 @@ const FilmDetails = (props) => {
 };
 
 FilmDetails.propTypes = {
-  FILM_DETAILS: PropTypes.shape({
-    bigPoster: PropTypes.string.isRequired,
+  film: PropTypes.shape({
+    background: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,

@@ -3,9 +3,8 @@ import renderer from "react-test-renderer";
 import FilmCard from "./film-card.jsx";
 
 const film = {
-  id: `JH6DHkbdmc`,
   title: `Tenet`,
-  poster: `orlando.jpg`
+  preview: `orlando.jpg`
 };
 
 it(`Render FilmCard`, () => {
@@ -14,6 +13,7 @@ it(`Render FilmCard`, () => {
       film = {film}
       onFilmCardHover = {() => {}}
       onTitleClick = {() => {}}
+      onPosterClick = {() => {}}
     />)
     .toJSON();
 

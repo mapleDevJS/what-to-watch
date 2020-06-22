@@ -2,10 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 
-const handleTitleClick = () => {};
-
 const Main = (props) => {
-  const {TOP_FILM, films} = props;
+  const {TOP_FILM, films, onTitleClick, onPosterClick} = props;
 
   return (
     <React.Fragment>
@@ -139,7 +137,8 @@ const Main = (props) => {
 
           <FilmsList
             films = {films}
-            onTitleClick = {handleTitleClick}
+            onTitleClick = {onTitleClick}
+            onPosterClick = {onPosterClick}
           />
 
           <div className="catalog__more">
@@ -178,7 +177,9 @@ Main.propTypes = {
         title: PropTypes.string.isRequired,
         poster: PropTypes.string.isRequired
       })
-  ).isRequired
+  ).isRequired,
+  onTitleClick: PropTypes.func.isRequired,
+  onPosterClick: PropTypes.func.isRequired
 };
 
 export default Main;
