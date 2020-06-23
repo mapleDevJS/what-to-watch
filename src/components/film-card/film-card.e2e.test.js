@@ -6,7 +6,7 @@ import FilmCard from "./film-card.jsx";
 const film = {
   id: `lKFDHkhaeud`,
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`
+  preview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`
 };
 
 Enzyme.configure({
@@ -15,19 +15,21 @@ Enzyme.configure({
 
 describe(`FilmCard e2e tests`, () => {
   it(`FilmCard be hovered`, () => {
-    const onFilmCardHover = jest.fn((args) => args);
+    const testHandler = jest.fn((args) => args);
 
     const filmCard = shallow(
         <FilmCard
           film = {film}
-          onTitleClick = {() => {}}
-          onFilmCardHover = {onFilmCardHover} />
+          onFilmCardHover = {testHandler}
+          onTitleClick = {testHandler}
+          onPosterClick = {testHandler}
+        />
     );
 
     const filmCardElement = filmCard.find(`.small-movie-card`);
-    filmCardElement.simulate(`mouseover`, film);
+    filmCardElement.simulate(`mouseenter`, film);
 
-    expect(onFilmCardHover).toHaveBeenCalledTimes(1);
-    expect(onFilmCardHover.mock.calls[0][0]).toMatchObject(film);
+    expect(testHandler).toHaveBeenCalledTimes(1);
+    expect(testHandler.mock.calls[0][0]).toMatchObject(film);
   });
 });

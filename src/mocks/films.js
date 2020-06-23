@@ -1,6 +1,16 @@
-import {generateUniqueId} from "../utils/utils.js";
+import {getRandomElement, generateUniqueId} from "../utils/utils.js";
 
 const FILMS_NUMBER = 8;
+
+const RELEASE_DATE = {
+  FIRST: 1895,
+  LAST: 2020
+};
+
+const FILM_RATING = {
+  MIN: 0,
+  MAX: 10
+};
 
 const TITLES = [
   `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -48,29 +58,74 @@ const POSTERS = [
   `midnight-special.jpg`
 ];
 
-export const topFilm = {
+const GENRES = [
+  `Sci-fi`,
+  `Horror`,
+  `Action`,
+  `Drama`,
+  `Comedy`,
+  `Thriller`,
+  `Fantasy`,
+  `Adventure`,
+  `War`,
+  `Mystery`
+];
+
+export const TOP_FILM = {
   title: `The Grand Budapest Hotel`,
   poster: `the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
   releaseDate: 2014
 };
 
-const getRandomElement = (array) => {
-  return array[Math.floor(Math.random() * array.length)];
+
+const getRandomRating = (min, max) => {
+  return (Math.random() * (max - min) + min).toFixed(1);
 };
 
-const createFilm = () => {
-  return ({
-    id: generateUniqueId(),
-    title: getRandomElement(TITLES),
-    poster: getRandomElement(POSTERS),
-  });
+const getRandomYear = (min, max) => {
+  return (Math.random() * (max - min) + min).toFixed(0);
+};
+
+const getLevel = (rating) => {
+  switch (true) {
+    case (rating < 3):
+      return `Bad`;
+    case (rating >= 3 && rating < 5):
+      return `Normal`;
+    case (rating >= 5 && rating < 8):
+      return `Good`;
+    case (rating >= 8 && rating < 10):
+      return `Very Good`;
+  }
+  return `Awesome`;
 };
 
 export const createFilms = () => {
   let films = [];
+
   for (let i = 0; i < FILMS_NUMBER; i++) {
-    films.push(createFilm());
+    let rating = parseFloat(getRandomRating(FILM_RATING.MIN, FILM_RATING.MAX), 10);
+
+    films.push({
+      id: generateUniqueId(),
+      background: `bg-the-grand-budapest-hotel.jpg`,
+      title: getRandomElement(TITLES),
+      genre: getRandomElement(GENRES),
+      releaseDate: parseInt(getRandomYear(RELEASE_DATE.FIRST, RELEASE_DATE.LAST), 10),
+      poster: `the-grand-budapest-hotel-poster.jpg`,
+      preview: getRandomElement(POSTERS),
+      rating,
+      level: getLevel(rating),
+      totalRatings: 240,
+      director: `Wes Andreson`,
+      starring: [
+        `Bill Murray`,
+        `Edward Norton`,
+        `Jude Law`,
+        `Willem Dafoe`
+      ]
+    });
   }
   return films;
 };

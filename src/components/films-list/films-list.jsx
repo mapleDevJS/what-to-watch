@@ -3,10 +3,8 @@ import PropTypes from "prop-types";
 import {generateUniqueId} from "../../utils/utils.js";
 import FilmCard from "../film-card/film-card.jsx";
 
-const handleFilmCardHover = () => {};
-
 const FilmsList = (props) => {
-  const {films, onTitleClick} = props;
+  const {films, onTitleClick, onPosterClick} = props;
 
   return (
     <div className="catalog__movies-list">
@@ -15,8 +13,9 @@ const FilmsList = (props) => {
           <FilmCard
             key = {generateUniqueId()}
             film = {film}
-            onFilmCardHover = {handleFilmCardHover}
+            onFilmCardHover = {() => {}}
             onTitleClick = {onTitleClick}
+            onPosterClick = {onPosterClick}
           />);
       })}
     </div>
@@ -31,7 +30,8 @@ FilmsList.propTypes = {
         poster: PropTypes.string.isRequired
       })
   ).isRequired,
-  onTitleClick: PropTypes.func.isRequired
+  onTitleClick: PropTypes.func.isRequired,
+  onPosterClick: PropTypes.func.isRequired
 };
 
 export default FilmsList;
