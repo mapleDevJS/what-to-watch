@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 
-const VIEW = {
+const View = {
   LIST: `list`,
   DETAILS: `details`
 };
@@ -14,68 +14,41 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      view: VIEW.LIST,
-      activeFilm: false
+      view: View.LIST,
+      activeFilm: null
     };
 
-    this._onCardElementClickHandler = this._onCardElementClickHandler.bind(this);
+    this._onCardClick = this._onCardClick.bind(this);
   }
 
-  _onCardElementClickHandler(film) {
+  _onCardClick(film) {
     this.setState({
-      view: VIEW.DETAILS,
+      view: View.DETAILS,
       activeFilm: film
     });
-  }
-
-  _renderApp() {
-    const {TOP_FILM, films} = this.props;
-
-    switch (this.state.view) {
-      case VIEW.LIST:
-        return (
-          <Main
-            TOP_FILM = {TOP_FILM}
-            films = {films}
-            onTitleClick = {this._onCardElementClickHandler}
-            onPosterClick = {this._onCardElementClickHandler}
-          />
-        );
-
-      case VIEW.DETAILS:
-        return (
-          <FilmDetails
-            film = {this.state.activeFilm}
-          />
-        );
-    }
-
-    return null;
   }
 
   render() {
     const {TOP_FILM, films} = this.props;
 
     switch (this.state.view) {
-      case VIEW.LIST:
-        return (
-          <Main
-            TOP_FILM = {TOP_FILM}
-            films = {films}
-            onTitleClick = {this._onCardElementClickHandler}
-            onPosterClick = {this._onCardElementClickHandler}
-          />
-        );
-
-      case VIEW.DETAILS:
+      case View.DETAILS:
         return (
           <FilmDetails
             film = {this.state.activeFilm}
           />
         );
-    }
 
-    return null;
+      default:
+        return (
+          <Main
+            TOP_FILM = {TOP_FILM}
+            films = {films}
+            onTitleClick = {this._onCardClick}
+            onPosterClick = {this._onCardClick}
+          />
+        );
+    }
   }
 }
 
