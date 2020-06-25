@@ -10,6 +10,7 @@ const FilmDetails = (props) => {
     genre,
     releaseDate,
     poster,
+    bigPoster,
     rating,
     level,
     totalRatings,
@@ -104,7 +105,7 @@ const FilmDetails = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={`img/${poster}`} alt={`${poster} poster`} width="218" height="327" />
+              <img src={`img/${bigPoster}`} alt={`${poster} poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -207,11 +208,14 @@ const FilmDetails = (props) => {
 
 FilmDetails.propTypes = {
   film: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     background: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
+    bigPoster: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     level: PropTypes.string.isRequired,
     totalRatings: PropTypes.number.isRequired,
