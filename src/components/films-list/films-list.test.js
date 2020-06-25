@@ -10,8 +10,9 @@ const films = [
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     genre: `Drama`,
     releaseDate: 2020,
-    poster: `the-grand-budapest-hotel-poster.jpg`,
-    preview: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    bigPoster: `the-grand-budapest-hotel-poster.jpg`,
+    poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: 8.9,
     level: `Very Good`,
     totalRatings: 240,
@@ -31,8 +32,11 @@ it(`Render FilmsList`, () => {
       films = {films}
       onTitleClick = {() => {}}
       onPosterClick = {() => {}}
-    />)
-    .toJSON();
+    />, {
+      createNodeMock: () => {
+        return {};
+      }
+    }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

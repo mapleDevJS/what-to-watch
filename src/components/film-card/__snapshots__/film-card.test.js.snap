@@ -10,11 +10,10 @@ exports[`Render FilmCard 1`] = `
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Tenet"
-      height="175"
-      src="img/orlando.jpg"
-      width="280"
+    <video
+      className="player__video"
+      muted={true}
+      poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
     />
   </div>
   <h3
@@ -25,7 +24,7 @@ exports[`Render FilmCard 1`] = `
       href="movie-page.html"
       onClick={[Function]}
     >
-      Tenet
+      Fantastic Beasts: The Crimes of Grindelwald
     </a>
   </h3>
 </article>

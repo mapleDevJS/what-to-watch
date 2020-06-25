@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import FilmCard from "./film-card.jsx";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import VideoPlayer from "./video-player.jsx";
 
 const film = {
   id: `lKFDHkhaeud`,
@@ -23,18 +23,16 @@ const film = {
   ]
 };
 
-it(`Render FilmCard`, () => {
-  const tree = renderer
-    .create(<FilmCard
-      film = {film}
-      onTitleClick = {() => {}}
-      onPosterClick = {() => {}}
-      onCardHover = {() => {}}
-    />, {
-      createNodeMock: () => {
-        return {};
-      }
-    }).toJSON();
+it(`VideoPlayer is rendered correctly`, () => {
+  const tree = renderer.create(<VideoPlayer
+    isPlaying = {true}
+    film = {film}
+    isMuted = {true}
+  />, {
+    createNodeMock: () => {
+      return {};
+    }
+  }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
