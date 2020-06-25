@@ -7,9 +7,6 @@ class FilmsList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      hoveredFilm: null
-    };
   }
 
   render() {
@@ -24,11 +21,7 @@ class FilmsList extends PureComponent {
               film = {film}
               onTitleClick = {onTitleClick}
               onPosterClick = {onPosterClick}
-              onCardHover = {(hoveredFilm) => {
-                this.setState({
-                  hoveredFilm
-                });
-              }}
+              onCardHover = {() => {}}
             />);
         })}
       </div>
