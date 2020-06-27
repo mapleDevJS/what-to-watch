@@ -71,6 +71,11 @@ const GENRES = [
   `Mystery`
 ];
 
+const VIDEOS = [
+  `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+];
+
 export const TOP_FILM = {
   title: `The Grand Budapest Hotel`,
   poster: `the-grand-budapest-hotel-poster.jpg`,
@@ -113,8 +118,9 @@ export const createFilms = () => {
       title: getRandomElement(TITLES),
       genre: getRandomElement(GENRES),
       releaseDate: parseInt(getRandomYear(RELEASE_DATE.FIRST, RELEASE_DATE.LAST), 10),
-      poster: `the-grand-budapest-hotel-poster.jpg`,
-      preview: getRandomElement(POSTERS),
+      bigPoster: `the-grand-budapest-hotel-poster.jpg`,
+      poster: getRandomElement(POSTERS),
+      preview: getRandomElement(VIDEOS),
       rating,
       level: getLevel(rating),
       totalRatings: 240,

@@ -174,8 +174,18 @@ Main.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
+        background: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired
+        genre: PropTypes.string.isRequired,
+        releaseDate: PropTypes.number.isRequired,
+        bigPoster: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        level: PropTypes.string.isRequired,
+        totalRatings: PropTypes.number.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.array.isRequired
       })
   ).isRequired,
   onTitleClick: PropTypes.func.isRequired,
