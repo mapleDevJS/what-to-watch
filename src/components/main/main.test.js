@@ -34,16 +34,19 @@ const films = [
 
 it(`Should Main render correctly`, () => {
   const tree = renderer
-    .create(<Main
-      TOP_FILM = {TOP_FILM}
-      films = {films}
-      onTitleClick = {() => {}}
-      onPosterClick = {() => {}}
-    />, {
-      createNodeMock: () => {
-        return {};
-      }
-    }).toJSON();
+    .create(
+        <Main
+          TOP_FILM = {TOP_FILM}
+          films = {films}
+          onTitleClick = {() => {}}
+          onPosterClick = {() => {}}
+          activeFilter = {`All genres`}
+          onFilterChange = {() => {}}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
