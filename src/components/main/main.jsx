@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Filters from "../filters/filters.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 
+
 const Main = (props) => {
-  const {TOP_FILM, films, onTitleClick, onPosterClick} = props;
+  const {TOP_FILM, films, onTitleClick, onPosterClick, activeFilter, onFilterChange} = props;
 
   return (
     <React.Fragment>
@@ -102,38 +104,10 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          <Filters
+            activeFilter = {activeFilter}
+            onFilterChange = {onFilterChange}
+          />
 
           <FilmsList
             films = {films}
@@ -189,7 +163,9 @@ Main.propTypes = {
       })
   ).isRequired,
   onTitleClick: PropTypes.func.isRequired,
-  onPosterClick: PropTypes.func.isRequired
+  onPosterClick: PropTypes.func.isRequired,
+  activeFilter: PropTypes.string.isRequired,
+  onFilterChange: PropTypes.func.isRequired
 };
 
 export default Main;

@@ -51,4 +51,5 @@ FilmsList.propTypes = {
   onPosterClick: PropTypes.func.isRequired
 };
 
+
 export default FilmsList;
