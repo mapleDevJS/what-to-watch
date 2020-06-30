@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Filters from "../filters/filters.jsx";
 import FilmsList from "../films-list/films-list.jsx";
+import ShowMore from "../show-more/show-more.jsx";
 
 
 const Main = (props) => {
-  const {TOP_FILM, films, onTitleClick, onPosterClick, activeFilter, onFilterChange} = props;
+  const {TOP_FILM, shownFilms, films, onTitleClick, onPosterClick, activeFilter, onFilterChange, onShowMoreClick} = props;
 
   return (
     <React.Fragment>
@@ -110,14 +111,19 @@ const Main = (props) => {
           />
 
           <FilmsList
-            films = {films}
+            films = {films.slice(0, shownFilms)}
             onTitleClick = {onTitleClick}
             onPosterClick = {onPosterClick}
           />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {
+            shownFilms >= films.length ?
+              `` :
+              <ShowMore
+                onShowMoreClick = {onShowMoreClick}
+              />
+          }
+
         </section>
 
         <footer className="page-footer">
@@ -145,6 +151,7 @@ Main.propTypes = {
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired
   }),
+  shownFilms: PropTypes.number.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -165,7 +172,8 @@ Main.propTypes = {
   onTitleClick: PropTypes.func.isRequired,
   onPosterClick: PropTypes.func.isRequired,
   activeFilter: PropTypes.string.isRequired,
-  onFilterChange: PropTypes.func.isRequired
+  onFilterChange: PropTypes.func.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired,
 };
 
 export default Main;

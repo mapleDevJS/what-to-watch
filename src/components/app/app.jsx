@@ -5,7 +5,7 @@ import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 
 import {connect} from "react-redux";
-import {changeView, filterFilms} from "../../redux/actions.js";
+import {changeView, filterFilms, renderFilms} from "../../redux/actions.js";
 
 export const View = {
   LIST: `list`,
@@ -32,11 +32,14 @@ class App extends PureComponent {
         return (
           <Main
             TOP_FILM = {TOP_FILM}
+            // films = {this.props.films.slice(0, this.props.shownFilms)}
+            shownFilms = {this.props.shownFilms}
             films = {this.props.films}
             onTitleClick = {this.props.onCardClick}
             onPosterClick = {this.props.onCardClick}
             activeFilter = {this.props.activeFilter}
             onFilterChange = {this.props.onFilterChange}
+            onShowMoreClick = {this.props.onShowMoreClick}
           />
         );
     }
@@ -70,6 +73,7 @@ App.propTypes = {
   onCardClick: PropTypes.func.isRequired,
   activeFilter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired,
   view: PropTypes.string.isRequired,
   activeFilm: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -85,7 +89,8 @@ App.propTypes = {
     totalRatings: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired
-  })
+  }),
+  shownFilms: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -93,7 +98,8 @@ const mapStateToProps = (state) => {
     view: state.view,
     activeFilm: state.activeFilm,
     activeFilter: state.activeFilter,
-    films: state.films
+    films: state.films,
+    shownFilms: state.shownFilms
   };
 };
 
@@ -101,6 +107,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onCardClick: (film) => dispatch(changeView(film)),
     onFilterChange: (filter) => dispatch(filterFilms(filter)),
+    onShowMoreClick: () => dispatch(renderFilms())
   };
 };
 

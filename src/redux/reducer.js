@@ -7,7 +7,7 @@ const initialState = {
   view: View.LIST,
   activeFilter: `All genres`,
   activeFilm: null,
-  show: 8,
+  shownFilms: 8,
   films
 };
 
@@ -35,6 +35,12 @@ const reducer = (state = initialState, action) => {
         view: View.DETAILS,
         activeFilm: action.payload
       });
+
+    case Action.RENDER_FILMS:
+      return Object.assign({}, state, {
+        shownFilms: state.shownFilms + 8
+      });
+
 
     default:
       return state;
