@@ -72,7 +72,7 @@ const initialState = {
   view: `list`,
   activeFilter: `All genres`,
   activeFilm: null,
-  show: 8,
+  shownFilms: 8,
   films
 };
 
@@ -81,7 +81,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     view: `list`,
     activeFilter: `All genres`,
     activeFilm: null,
-    show: 8,
+    shownFilms: 8,
     films
   });
 });
@@ -94,7 +94,7 @@ it(`Reducer should change view and add activeFIlm`, () => {
     view: `details`,
     activeFilter: `All genres`,
     activeFilm: film,
-    show: 8,
+    shownFilms: 8,
     films
   });
 });
@@ -107,7 +107,7 @@ it(`Reducer should change filter`, () => {
     view: `list`,
     activeFilter: `Comedy`,
     activeFilm: null,
-    show: 8,
+    shownFilms: 8,
     films: getFilmsByFilter(`Comedy`)
   });
 });
@@ -120,7 +120,7 @@ it(`Reducer should change filter`, () => {
     view: `list`,
     activeFilter: `Comedy`,
     activeFilm: null,
-    show: 8,
+    shownFilms: 8,
     films: getFilmsByFilter(`Comedy`)
   });
 });

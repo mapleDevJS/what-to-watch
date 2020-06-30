@@ -41,7 +41,8 @@ it(`Render App`, () => {
     view: `list`,
     activeFilm: null,
     activeFilter: `All genres`,
-    films
+    films,
+    shownFilms: 8
   });
 
   const tree = renderer
