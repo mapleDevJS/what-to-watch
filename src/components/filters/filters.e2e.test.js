@@ -40,6 +40,7 @@ Enzyme.configure({
 describe(`Filters e2e tests`, () => {
   it(`Should filter be clciked`, () => {
     const onFilterChangeHandler = jest.fn();
+    const preventDefault = jest.fn();
 
     const filters = shallow(
         <Filters
@@ -49,7 +50,7 @@ describe(`Filters e2e tests`, () => {
     );
 
     const filtersElements = filters.find(`.catalog__genres-list`);
-    filtersElements.forEach((filter) => filter.simulate(`click`));
+    filtersElements.forEach((filter) => filter.simulate(`click`, {preventDefault, target: {textContent: `All genres`}}));
     expect(onFilterChangeHandler).toHaveBeenCalledTimes(filtersElements.length);
     expect(onFilterChangeHandler.mock.calls[0][0]).toBe(`All genres`);
   });
