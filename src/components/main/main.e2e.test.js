@@ -37,34 +37,10 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-// describe(`Main e2e tests`, () => {
-//   it(`Should title & poster be clicked`, () => {
-//     const onTitleClickHandler = jest.fn();
-//     const onPosterClickHandler = jest.fn();
-
-//     const main = shallow(
-//         <Main
-//           TOP_FILM = {TOP_FILM}
-//           films = {films}
-//           onTitleClick={onTitleClickHandler}
-//           onPosterClick={onPosterClickHandler}
-//         />
-//     );
-
-//     const previews = main.find(`.small-movie-card`);
-//     const titles = main.find(`.small-movie-card__link`);
-
-//     previews.forEach((preview) => preview.props().onClick());
-//     titles.forEach((title) => title.props().onClick());
-
-//     expect(onTitleClickHandler.mock.calls.length).toBe(titles.length);
-//     expect(onPosterClickHandler.mock.calls.length).toBe(previews.length);
-//   });
-// });
-
 describe(`Main e2e tests`, () => {
-  it(`Should film title be pressed`, () => {
+  it(`Should film title be clciked`, () => {
     const onTitleClickHandler = jest.fn();
+    // const onFilterCHangeHandler = jest.fn();
 
     const main = shallow(
         <Main
@@ -72,6 +48,10 @@ describe(`Main e2e tests`, () => {
           films = {films}
           onTitleClick={onTitleClickHandler}
           onPosterClick={() => {}}
+          activeFilter = {`All genres`}
+          onFilterChange={() => {}}
+          onShowMoreClick = {() => {}}
+          shownFilms = {8}
         />
     );
 
@@ -89,6 +69,10 @@ describe(`Main e2e tests`, () => {
           films = {films}
           onTitleClick={() => {}}
           onPosterClick={onPosterClickHandler}
+          activeFilter = {`All genres`}
+          onFilterChange={() => {}}
+          onShowMoreClick = {() => {}}
+          shownFilms = {8}
         />
     );
 

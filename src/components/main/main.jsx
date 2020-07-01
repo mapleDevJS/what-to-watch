@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Filters from "../filters/filters.jsx";
 import FilmsList from "../films-list/films-list.jsx";
+import ShowMore from "../show-more/show-more.jsx";
+
 
 const Main = (props) => {
-  const {TOP_FILM, films, onTitleClick, onPosterClick} = props;
+  const {TOP_FILM, shownFilms, films, onTitleClick, onPosterClick, activeFilter, onFilterChange, onShowMoreClick} = props;
 
   return (
     <React.Fragment>
@@ -102,48 +105,25 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          <Filters
+            activeFilter = {activeFilter}
+            onFilterChange = {onFilterChange}
+          />
 
           <FilmsList
-            films = {films}
+            films = {films.slice(0, shownFilms)}
             onTitleClick = {onTitleClick}
             onPosterClick = {onPosterClick}
           />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {
+            shownFilms >= films.length ?
+              `` :
+              <ShowMore
+                onShowMoreClick = {onShowMoreClick}
+              />
+          }
+
         </section>
 
         <footer className="page-footer">
@@ -171,6 +151,7 @@ Main.propTypes = {
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired
   }),
+  shownFilms: PropTypes.number.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -189,7 +170,10 @@ Main.propTypes = {
       })
   ).isRequired,
   onTitleClick: PropTypes.func.isRequired,
-  onPosterClick: PropTypes.func.isRequired
+  onPosterClick: PropTypes.func.isRequired,
+  activeFilter: PropTypes.string.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired,
 };
 
 export default Main;

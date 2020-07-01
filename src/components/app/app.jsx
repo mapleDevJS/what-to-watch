@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 
-const View = {
+import {connect} from "react-redux";
+import {changeView, filterFilms, renderFilms} from "../../redux/actions.js";
+
+export const View = {
   LIST: `list`,
   DETAILS: `details`
 };
@@ -12,30 +15,16 @@ const View = {
 class App extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      view: View.LIST,
-      activeFilm: null
-    };
-
-    this._onCardClick = this._onCardClick.bind(this);
-  }
-
-  _onCardClick(film) {
-    this.setState({
-      view: View.DETAILS,
-      activeFilm: film
-    });
   }
 
   render() {
-    const {TOP_FILM, films} = this.props;
+    const {TOP_FILM} = this.props;
 
-    switch (this.state.view) {
+    switch (this.props.view) {
       case View.DETAILS:
         return (
           <FilmDetails
-            film = {this.state.activeFilm}
+            film = {this.props.activeFilm}
           />
         );
 
@@ -43,9 +32,14 @@ class App extends PureComponent {
         return (
           <Main
             TOP_FILM = {TOP_FILM}
-            films = {films}
-            onTitleClick = {this._onCardClick}
-            onPosterClick = {this._onCardClick}
+            // films = {this.props.films.slice(0, this.props.shownFilms)}
+            shownFilms = {this.props.shownFilms}
+            films = {this.props.films}
+            onTitleClick = {this.props.onCardClick}
+            onPosterClick = {this.props.onCardClick}
+            activeFilter = {this.props.activeFilter}
+            onFilterChange = {this.props.onFilterChange}
+            onShowMoreClick = {this.props.onShowMoreClick}
           />
         );
     }
@@ -75,7 +69,46 @@ App.propTypes = {
         director: PropTypes.string.isRequired,
         starring: PropTypes.array.isRequired
       })
-  ).isRequired
+  ).isRequired,
+  onCardClick: PropTypes.func.isRequired,
+  activeFilter: PropTypes.string.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired,
+  view: PropTypes.string.isRequired,
+  activeFilm: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    background: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    bigPoster: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    level: PropTypes.string.isRequired,
+    totalRatings: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired
+  }),
+  shownFilms: PropTypes.number.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    view: state.view,
+    activeFilm: state.activeFilm,
+    activeFilter: state.activeFilter,
+    films: state.films,
+    shownFilms: state.shownFilms
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCardClick: (film) => dispatch(changeView(film)),
+    onFilterChange: (filter) => dispatch(filterFilms(filter)),
+    onShowMoreClick: () => dispatch(renderFilms())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

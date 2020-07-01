@@ -1,6 +1,6 @@
 import {getRandomElement, generateUniqueId} from "../utils/utils.js";
 
-const FILMS_NUMBER = 8;
+const FILMS_NUMBER = 20;
 
 const RELEASE_DATE = {
   FIRST: 1895,
@@ -68,7 +68,17 @@ const GENRES = [
   `Fantasy`,
   `Adventure`,
   `War`,
-  `Mystery`
+  `Mystery`,
+  `Documentary`,
+  `Crime`,
+  `Sci-fi`,
+  `Horror`,
+  `Action`,
+  `Drama`,
+  `Comedy`,
+  `Thriller`,
+  `Fantasy`,
+  `Adventure`
 ];
 
 const VIDEOS = [
@@ -116,7 +126,7 @@ export const createFilms = () => {
       id: generateUniqueId(),
       background: `bg-the-grand-budapest-hotel.jpg`,
       title: getRandomElement(TITLES),
-      genre: getRandomElement(GENRES),
+      genre: GENRES[i],
       releaseDate: parseInt(getRandomYear(RELEASE_DATE.FIRST, RELEASE_DATE.LAST), 10),
       bigPoster: `the-grand-budapest-hotel-poster.jpg`,
       poster: getRandomElement(POSTERS),
@@ -135,3 +145,5 @@ export const createFilms = () => {
   }
   return films;
 };
+
+export default createFilms();
