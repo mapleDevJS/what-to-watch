@@ -32,9 +32,9 @@ class App extends PureComponent {
         return (
           <Main
             TOP_FILM = {TOP_FILM}
-            // films = {this.props.films.slice(0, this.props.shownFilms)}
             shownFilms = {this.props.shownFilms}
             films = {this.props.films}
+            filters = {this.props.filters}
             onTitleClick = {this.props.onCardClick}
             onPosterClick = {this.props.onCardClick}
             activeFilter = {this.props.activeFilter}
@@ -90,7 +90,8 @@ App.propTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired
   }),
-  shownFilms: PropTypes.number.isRequired
+  shownFilms: PropTypes.number.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -99,7 +100,8 @@ const mapStateToProps = (state) => {
     activeFilm: state.activeFilm,
     activeFilter: state.activeFilter,
     films: state.films,
-    shownFilms: state.shownFilms
+    shownFilms: state.shownFilms,
+    filters: state.filters
   };
 };
 
