@@ -1,8 +1,5 @@
-import {reducer, getFilmsByFilter} from "./reducer.js";
+import {reducer} from "./reducer.js";
 import {Action} from "./actions.js";
-
-// import {reducer, ActionCreator, ActionType} from "./reducer.js";
-
 
 const films = [
   {
@@ -76,6 +73,14 @@ const initialState = {
   films
 };
 
+const getFilmsByFilter = (filter) => {
+  if (filter === `All genres`) {
+    return films;
+  } else {
+    return films.filter((item) => item.genre === filter);
+  }
+};
+
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(initialState, {})).toEqual({
     view: `list`,
@@ -86,7 +91,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
   });
 });
 
-it(`Reducer should change view and add activeFIlm`, () => {
+it(`Reducer should change view to details and add activeFilm`, () => {
   expect(reducer(initialState, {
     type: Action.CHANGE_VIEW,
     payload: film,
@@ -99,35 +104,66 @@ it(`Reducer should change view and add activeFIlm`, () => {
   });
 });
 
-it(`Reducer should change filter`, () => {
-  expect(reducer(initialState, {
-    type: Action.CHANGE_FILTER,
-    payload: `Comedy`,
-  })).toEqual({
-    view: `list`,
-    activeFilter: `Comedy`,
-    activeFilm: null,
-    shownFilms: 8,
-    films: getFilmsByFilter(`Comedy`)
-  });
-});
+// it(`Reducer should change filter to "Comedy"`, () => {
+//   console.log(films);
+//   expect(reducer(initialState, {
+//     type: Action.CHANGE_FILTER,
+//     payload: `Comedy`,
+//   })).toEqual({
+//     view: `list`,
+//     activeFilter: `Comedy`,
+//     activeFilm: null,
+//     shownFilms: 8,
+//     films: getFilmsByFilter(`Comedy`)
+//   });
+// });
 
-it(`Reducer should change filter`, () => {
-  expect(reducer(initialState, {
-    type: Action.CHANGE_FILTER,
-    payload: `Comedy`,
-  })).toEqual({
-    view: `list`,
-    activeFilter: `Comedy`,
-    activeFilm: null,
-    shownFilms: 8,
-    films: getFilmsByFilter(`Comedy`)
-  });
-});
+// it(`Reducer should change filter to "Drama"`, () => {
+//   expect(reducer(initialState, {
+//     type: Action.CHANGE_FILTER,
+//     payload: `Drama`,
+//   })).toEqual({
+//     view: `list`,
+//     activeFilter: `Drama`,
+//     activeFilm: null,
+//     shownFilms: 8,
+//     films: getFilmsByFilter(`Drama`)
+//   });
+// });
 
 it(`Reducer should change filter`, () => {
   expect(reducer(initialState, {
     type: void 0,
     payload: `Comedy`,
   })).toEqual(initialState);
+});
+
+it(`Reducer should render more films`, () => {
+  expect(reducer(initialState, {
+    type: Action.RENDER_FILMS,
+  })).toEqual({
+    view: `list`,
+    activeFilter: `All genres`,
+    activeFilm: null,
+    shownFilms: 16,
+    films
+  });
+});
+
+it(`Reducer should render more films`, () => {
+  expect(reducer({
+    view: `list`,
+    activeFilter: `All genres`,
+    activeFilm: null,
+    shownFilms: 16,
+    films
+  }, {
+    type: Action.RENDER_FILMS,
+  })).toEqual({
+    view: `list`,
+    activeFilter: `All genres`,
+    activeFilm: null,
+    shownFilms: 24,
+    films
+  });
 });

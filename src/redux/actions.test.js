@@ -1,4 +1,4 @@
-import {Action, changeView, filterFilms} from "./actions.js";
+import {Action, changeView, filterFilms, renderFilms} from "./actions.js";
 
 const film = {
   id: `lKFDHkhaeud`,
@@ -22,17 +22,22 @@ const film = {
 };
 
 describe(`Action creators work correctly`, () => {
-  it(`Action creator for change view`, () => {
+  it(`Action creator for "change view" should work properly`, () => {
     expect(changeView(film)).toEqual({
       type: Action.CHANGE_VIEW,
       payload: film,
     });
   });
 
-  it(`Action creator for ...`, () => {
+  it(`Action creator for "filterFilms" shoul work properly`, () => {
     expect(filterFilms(`Comedy`)).toEqual({
       type: Action.CHANGE_FILTER,
       payload: `Comedy`,
+    });
+  });
+  it(`Action creator for "renderFilms" should work properly`, () => {
+    expect(renderFilms()).toEqual({
+      type: Action.RENDER_FILMS
     });
   });
 });

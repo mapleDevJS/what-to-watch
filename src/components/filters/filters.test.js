@@ -7,6 +7,7 @@ it(`Render Filters`, () => {
     .create(<Filters
       activeFilter = {``}
       onFilterChange = {() => {}}
+      filters = {[`All genres`, `Drama`, `Comedy`]}
     />, {
       createNodeMock: () => {
         return {};

@@ -22,36 +22,6 @@ exports[`Render Filters 1`] = `
       className="catalog__genres-link"
       href="#"
     >
-      Sci-fi
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      Horror
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      Action
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
       Drama
     </a>
   </li>
@@ -63,46 +33,6 @@ exports[`Render Filters 1`] = `
       href="#"
     >
       Comedy
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      Thriller
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      Fantasy
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      Adventure
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      War
     </a>
   </li>
 </ul>

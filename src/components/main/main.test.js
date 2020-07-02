@@ -44,6 +44,7 @@ it(`Should Main render correctly`, () => {
           onFilterChange = {() => {}}
           onShowMoreClick = {() => {}}
           shownFilms = {8}
+          filters = {[`All genres`, `Drama`]}
         />, {
           createNodeMock: () => {
             return {};
