@@ -33,7 +33,7 @@ class App extends PureComponent {
           <Main
             TOP_FILM = {TOP_FILM}
             shownFilms = {this.props.shownFilms}
-            films = {this.props.films}
+            films = {this.props.filteredFilms}
             filters = {this.props.filters}
             onTitleClick = {this.props.onCardClick}
             onPosterClick = {this.props.onCardClick}
@@ -54,6 +54,23 @@ App.propTypes = {
     releaseDate: PropTypes.number.isRequired
   }),
   films: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        background: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        releaseDate: PropTypes.number.isRequired,
+        bigPoster: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        level: PropTypes.string.isRequired,
+        totalRatings: PropTypes.number.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.array.isRequired
+      })
+  ).isRequired,
+  filteredFilms: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         background: PropTypes.string.isRequired,
@@ -100,6 +117,7 @@ const mapStateToProps = (state) => {
     activeFilm: state.activeFilm,
     activeFilter: state.activeFilter,
     films: state.films,
+    filteredFilms: state.filteredFilms,
     shownFilms: state.shownFilms,
     filters: state.filters
   };

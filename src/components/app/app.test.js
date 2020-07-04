@@ -42,6 +42,7 @@ it(`Render App`, () => {
     activeFilm: null,
     activeFilter: `All genres`,
     films,
+    filteredFilms: films,
     shownFilms: 8,
     filters: [`All genres`, `Drama`]
   });

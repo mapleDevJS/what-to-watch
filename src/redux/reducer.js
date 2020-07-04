@@ -6,11 +6,11 @@ const FILTER = {
   ALL: `All genres`
 };
 
-const getFilmsByFilter = (filter) => {
+const getFilmsByFilter = (filmsToFilter = [], filter) => {
   if (filter === FILTER.ALL) {
-    return films;
+    return filmsToFilter;
   } else {
-    return films.filter((film) => film.genre === filter);
+    return filmsToFilter.filter((film) => film.genre === filter);
   }
 };
 
@@ -27,6 +27,7 @@ const initialState = {
   activeFilm: null,
   shownFilms: 8,
   films,
+  filteredFilms: films,
   filters: getUniqueGenres()
 };
 
@@ -37,7 +38,7 @@ const reducer = (state = initialState, action) => {
 
       return Object.assign({}, state, {
         activeFilter: filter,
-        films: getFilmsByFilter(filter),
+        filteredFilms: getFilmsByFilter(state.films, filter),
         shownFilms: 8
       });
 
