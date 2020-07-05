@@ -6,7 +6,17 @@ import ShowMore from "../show-more/show-more.jsx";
 
 
 const Main = (props) => {
-  const {TOP_FILM, shownFilms, films, onTitleClick, onPosterClick, activeFilter, onFilterChange, onShowMoreClick} = props;
+  const {
+    TOP_FILM,
+    shownFilms,
+    films,
+    filters,
+    onTitleClick,
+    onPosterClick,
+    activeFilter,
+    onFilterChange,
+    onShowMoreClick
+  } = props;
 
   return (
     <React.Fragment>
@@ -108,6 +118,7 @@ const Main = (props) => {
           <Filters
             activeFilter = {activeFilter}
             onFilterChange = {onFilterChange}
+            filters = {filters}
           />
 
           <FilmsList
@@ -174,6 +185,7 @@ Main.propTypes = {
   activeFilter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default Main;

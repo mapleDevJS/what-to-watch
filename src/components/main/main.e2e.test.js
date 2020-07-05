@@ -52,6 +52,7 @@ describe(`Main e2e tests`, () => {
           onFilterChange={() => {}}
           onShowMoreClick = {() => {}}
           shownFilms = {8}
+          filters = {[`All genres`, `Drama`]}
         />
     );
 
@@ -67,6 +68,7 @@ describe(`Main e2e tests`, () => {
         <Main
           TOP_FILM = {TOP_FILM}
           films = {films}
+          filters = {[`All genres`, `Drama`]}
           onTitleClick={() => {}}
           onPosterClick={onPosterClickHandler}
           activeFilter = {`All genres`}

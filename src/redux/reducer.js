@@ -2,22 +2,33 @@ import films from "../mocks/films.js";
 import {Action} from "./actions.js";
 import {View} from "../components/app/app.jsx";
 
+const FILTER = {
+  ALL: `All genres`
+};
+
+const getFilmsByFilter = (filmsToFilter = [], filter) => {
+  if (filter === FILTER.ALL) {
+    return filmsToFilter;
+  } else {
+    return filmsToFilter.filter((film) => film.genre === filter);
+  }
+};
+
+const getUniqueGenres = () => {
+  const genres = films.map((film) => film.genre);
+  genres.unshift(FILTER.ALL);
+
+  return [...new Set(genres)];
+};
 
 const initialState = {
   view: View.LIST,
-  activeFilter: `All genres`,
+  activeFilter: FILTER.ALL,
   activeFilm: null,
   shownFilms: 8,
-  films
-};
-
-
-export const getFilmsByFilter = (filter) => {
-  if (filter === `All genres`) {
-    return films;
-  } else {
-    return films.filter((film) => film.genre === filter);
-  }
+  films,
+  filteredFilms: films,
+  filters: getUniqueGenres()
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,7 +38,8 @@ const reducer = (state = initialState, action) => {
 
       return Object.assign({}, state, {
         activeFilter: filter,
-        films: getFilmsByFilter(filter),
+        filteredFilms: getFilmsByFilter(state.films, filter),
+        shownFilms: 8
       });
 
     case Action.CHANGE_VIEW:

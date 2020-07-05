@@ -32,9 +32,9 @@ class App extends PureComponent {
         return (
           <Main
             TOP_FILM = {TOP_FILM}
-            // films = {this.props.films.slice(0, this.props.shownFilms)}
             shownFilms = {this.props.shownFilms}
-            films = {this.props.films}
+            films = {this.props.filteredFilms}
+            filters = {this.props.filters}
             onTitleClick = {this.props.onCardClick}
             onPosterClick = {this.props.onCardClick}
             activeFilter = {this.props.activeFilter}
@@ -54,6 +54,23 @@ App.propTypes = {
     releaseDate: PropTypes.number.isRequired
   }),
   films: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        background: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        releaseDate: PropTypes.number.isRequired,
+        bigPoster: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        level: PropTypes.string.isRequired,
+        totalRatings: PropTypes.number.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.array.isRequired
+      })
+  ).isRequired,
+  filteredFilms: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         background: PropTypes.string.isRequired,
@@ -90,7 +107,8 @@ App.propTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired
   }),
-  shownFilms: PropTypes.number.isRequired
+  shownFilms: PropTypes.number.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -99,7 +117,9 @@ const mapStateToProps = (state) => {
     activeFilm: state.activeFilm,
     activeFilter: state.activeFilter,
     films: state.films,
-    shownFilms: state.shownFilms
+    filteredFilms: state.filteredFilms,
+    shownFilms: state.shownFilms,
+    filters: state.filters
   };
 };
 

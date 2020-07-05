@@ -42,7 +42,9 @@ it(`Render App`, () => {
     activeFilm: null,
     activeFilter: `All genres`,
     films,
-    shownFilms: 8
+    filteredFilms: films,
+    shownFilms: 8,
+    filters: [`All genres`, `Drama`]
   });
 
   const tree = renderer
