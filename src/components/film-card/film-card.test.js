@@ -29,7 +29,8 @@ it(`Render FilmCard`, () => {
       film = {film}
       onTitleClick = {() => {}}
       onPosterClick = {() => {}}
-      onCardHover = {() => {}}
+      isPlaying = {true}
+      setPlayingFilm = {() => {}}
     />, {
       createNodeMock: () => {
         return {};

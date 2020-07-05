@@ -36,8 +36,9 @@ describe(`FilmCard e2e tests`, () => {
         <FilmCard
           film={film}
           onTitleClick = {onTitleClickHandler}
-          onPosterClick={() => {}}
-          onCardHover={() => {}}
+          onPosterClick = {() => {}}
+          isPlaying = {false}
+          setPlayingFilm = {() => {}}
         />
     );
 
@@ -57,10 +58,11 @@ describe(`FilmCard e2e tests`, () => {
 
     const filmCard = shallow(
         <FilmCard
-          film={film}
-          onTitleClick={() => {}}
-          onPosterClick={onPosterClickHandler}
-          onCardHover={() => {}}
+          film = {film}
+          onTitleClick = {() => {}}
+          onPosterClick = {onPosterClickHandler}
+          isPlaying = {false}
+          setPlayingFilm = {() => {}}
         />
     );
 
@@ -71,23 +73,23 @@ describe(`FilmCard e2e tests`, () => {
     expect(onPosterClickHandler).toHaveBeenCalledWith(film);
   });
 
-  it(`Should Card be hovered with correct args`, () => {
-    const onCardHover = jest.fn();
+  // it(`Should Card be hovered with correct args`, () => {
+  //   const onCardHover = jest.fn();
 
 
-    const filmCard = shallow(
-        <FilmCard
-          film={film}
-          onTitleClick={() => {}}
-          onPosterClick={() => {}}
-          onCardHover={onCardHover}
-        />
-    );
+  //   const filmCard = shallow(
+  //       <FilmCard
+  //         film={film}
+  //         onTitleClick={() => {}}
+  //         onPosterClick={() => {}}
+  //         onCardHover={onCardHover}
+  //       />
+  //   );
 
-    const card = filmCard.find(`.small-movie-card`);
-    card.simulate(`mouseenter`);
+  //   const card = filmCard.find(`.small-movie-card`);
+  //   card.simulate(`mouseenter`);
 
-    expect(onCardHover).toHaveBeenCalledTimes(1);
-    expect(onCardHover).toHaveBeenCalledWith(film);
-  });
+  //   expect(onCardHover).toHaveBeenCalledTimes(1);
+  //   expect(onCardHover).toHaveBeenCalledWith(film);
+  // });
 });
