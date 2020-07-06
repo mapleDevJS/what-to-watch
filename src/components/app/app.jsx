@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import Main from "../main/main.jsx";
@@ -12,39 +12,34 @@ export const View = {
   DETAILS: `details`
 };
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
+const App = (props) => {
+  const {TOP_FILM} = props;
+
+  switch (props.view) {
+    case View.DETAILS:
+      return (
+        <FilmDetails
+          film = {props.activeFilm}
+        />
+      );
+
+    default:
+      return (
+        <Main
+          TOP_FILM = {TOP_FILM}
+          shownFilms = {props.shownFilms}
+          films = {props.filteredFilms}
+          filters = {props.filters}
+          onTitleClick = {props.onCardClick}
+          onPosterClick = {props.onCardClick}
+          activeFilter = {props.activeFilter}
+          onFilterChange = {props.onFilterChange}
+          onShowMoreClick = {props.onShowMoreClick}
+        />
+      );
   }
+};
 
-  render() {
-    const {TOP_FILM} = this.props;
-
-    switch (this.props.view) {
-      case View.DETAILS:
-        return (
-          <FilmDetails
-            film = {this.props.activeFilm}
-          />
-        );
-
-      default:
-        return (
-          <Main
-            TOP_FILM = {TOP_FILM}
-            shownFilms = {this.props.shownFilms}
-            films = {this.props.filteredFilms}
-            filters = {this.props.filters}
-            onTitleClick = {this.props.onCardClick}
-            onPosterClick = {this.props.onCardClick}
-            activeFilter = {this.props.activeFilter}
-            onFilterChange = {this.props.onFilterChange}
-            onShowMoreClick = {this.props.onShowMoreClick}
-          />
-        );
-    }
-  }
-}
 
 App.propTypes = {
   TOP_FILM: PropTypes.shape({

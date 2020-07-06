@@ -5,37 +5,22 @@ import VideoPlayer from "../video-player/video-player.jsx";
 class FilmCard extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isPlaying: false
-    };
   }
 
   render() {
-    const {film, onCardHover, onTitleClick, onPosterClick} = this.props;
-
+    const {film, onTitleClick, onPosterClick, isPlaying, setPlayingFilm} = this.props;
     const title = film.title;
 
     return (
       <article
         className="small-movie-card catalog__movies-card"
         onClick={() => onPosterClick(film)}
-        onMouseEnter = {() => {
-          onCardHover(film);
-          this.setState({
-            isPlaying: true
-          });
-        }}
-        onMouseLeave = {() => {
-          onCardHover(null);
-          this.setState({
-            isPlaying: false
-          });
-        }}
+        onMouseEnter = {() => setPlayingFilm(true)}
+        onMouseLeave = {() => setPlayingFilm(false)}
       >
         <div className="small-movie-card__image">
           <VideoPlayer
-            isPlaying={this.state.isPlaying}
+            isPlaying={isPlaying}
             film = {film}
             isMuted = {true}
           />
@@ -73,9 +58,10 @@ FilmCard.propTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired
   }).isRequired,
-  onCardHover: PropTypes.func.isRequired,
   onTitleClick: PropTypes.func.isRequired,
-  onPosterClick: PropTypes.func.isRequired
+  onPosterClick: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  setPlayingFilm: PropTypes.func.isRequired
 };
 
 export default FilmCard;
