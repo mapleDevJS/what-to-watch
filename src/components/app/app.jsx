@@ -5,28 +5,42 @@ import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 
 import {connect} from "react-redux";
-import {changeView, filterFilms, renderFilms} from "../../redux/actions.js";
+import {changeView, filterFilms, renderFilms, playVideo} from "../../redux/actions.js";
+import FullVideoPlayer from "../full-video-player/full-video-player.jsx";
+import withFullVideo from "../hocs/with-full-video/with-full-video.js";
 
 export const View = {
   LIST: `list`,
-  DETAILS: `details`
+  DETAILS: `details`,
+  VIDEO: `video`
 };
 
+const FullVideoPlayerWrapped = withFullVideo(FullVideoPlayer);
+
 const App = (props) => {
-  const {TOP_FILM} = props;
+  const {PROMO_FILM} = props;
 
   switch (props.view) {
     case View.DETAILS:
       return (
         <FilmDetails
           film = {props.activeFilm}
+          onPlayClick = {props.onPlayClick}
+        />
+      );
+
+    case View.VIDEO:
+      return (
+        <FullVideoPlayerWrapped
+          title = {props.activeFilm.title}
+          onExitClickHandler = {() => {}}
         />
       );
 
     default:
       return (
         <Main
-          TOP_FILM = {TOP_FILM}
+          PROMO_FILM = {PROMO_FILM}
           shownFilms = {props.shownFilms}
           films = {props.filteredFilms}
           filters = {props.filters}
@@ -35,6 +49,7 @@ const App = (props) => {
           activeFilter = {props.activeFilter}
           onFilterChange = {props.onFilterChange}
           onShowMoreClick = {props.onShowMoreClick}
+          onPlayClick = {props.onPlayClick}
         />
       );
   }
@@ -42,7 +57,7 @@ const App = (props) => {
 
 
 App.propTypes = {
-  TOP_FILM: PropTypes.shape({
+  PROMO_FILM: PropTypes.shape({
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
@@ -86,6 +101,7 @@ App.propTypes = {
   activeFilter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
+  onPlayClick: PropTypes.func.isRequired,
   view: PropTypes.string.isRequired,
   activeFilm: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -122,7 +138,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onCardClick: (film) => dispatch(changeView(film)),
     onFilterChange: (filter) => dispatch(filterFilms(filter)),
-    onShowMoreClick: () => dispatch(renderFilms())
+    onShowMoreClick: () => dispatch(renderFilms()),
+    onPlayClick: (film) => dispatch(playVideo(film))
   };
 };
 

@@ -1,7 +1,9 @@
 export const Action = {
   CHANGE_FILTER: `Change filter`,
   CHANGE_VIEW: `Change view`,
-  RENDER_FILMS: `Render films`
+  RENDER_FILMS: `Render films`,
+  PLAY_VIDEO: `Play video`,
+  EXIT_VIDEO: `Exit video`
 };
 
 export const changeView = (film) => {
@@ -21,6 +23,19 @@ export const filterFilms = (filter) => {
 export const renderFilms = () => {
   return {
     type: Action.RENDER_FILMS,
+  };
+};
+
+export const playVideo = (film) => {
+  return {
+    type: Action.PLAY_VIDEO,
+    payload: film
+  };
+};
+
+export const exitVideo = () => {
+  return {
+    type: Action.EXIT_VIDEO,
   };
 };
 

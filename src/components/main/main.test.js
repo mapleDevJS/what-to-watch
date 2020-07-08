@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
-const TOP_FILM = {
+const PROMO_FILM = {
   title: `The Grand Budapest Hotel`,
   poster: `bg-the-grand-budapest-hotel.jpg`,
   genre: `Drama`,
@@ -36,7 +36,7 @@ it(`Should Main render correctly`, () => {
   const tree = renderer
     .create(
         <Main
-          TOP_FILM = {TOP_FILM}
+          PROMO_FILM = {PROMO_FILM}
           films = {films}
           onTitleClick = {() => {}}
           onPosterClick = {() => {}}

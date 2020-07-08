@@ -1,4 +1,5 @@
 import films from "../mocks/films.js";
+import PROMO_FILM from "../mocks/films.js";
 import {Action} from "./actions.js";
 import {View} from "../components/app/app.jsx";
 
@@ -24,7 +25,7 @@ const getUniqueGenres = () => {
 const initialState = {
   view: View.LIST,
   activeFilter: FILTER.ALL,
-  activeFilm: null,
+  activeFilm: PROMO_FILM,
   shownFilms: 8,
   films,
   filteredFilms: films,
@@ -51,6 +52,17 @@ const reducer = (state = initialState, action) => {
     case Action.RENDER_FILMS:
       return Object.assign({}, state, {
         shownFilms: state.shownFilms + 8
+      });
+
+    case Action.PLAY_VIDEO:
+      return Object.assign({}, state, {
+        view: View.VIDEO,
+        activeFilm: action.payload
+      });
+
+    case Action.EXIT_VIDEO:
+      return Object.assign({}, state, {
+        view: View.LIST
       });
 
 

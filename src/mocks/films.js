@@ -86,14 +86,6 @@ const VIDEOS = [
   `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
 ];
 
-export const TOP_FILM = {
-  title: `The Grand Budapest Hotel`,
-  poster: `the-grand-budapest-hotel-poster.jpg`,
-  genre: `Drama`,
-  releaseDate: 2014
-};
-
-
 const getRandomRating = (min, max) => {
   return (Math.random() * (max - min) + min).toFixed(1);
 };
@@ -114,6 +106,27 @@ const getLevel = (rating) => {
       return `Very Good`;
   }
   return `Awesome`;
+};
+
+export const PROMO_FILM = {
+  id: generateUniqueId(),
+  background: `bg-the-grand-budapest-hotel.jpg`,
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  releaseDate: 2014,
+  bigPoster: `the-grand-budapest-hotel-poster.jpg`,
+  poster: getRandomElement(POSTERS),
+  preview: getRandomElement(VIDEOS),
+  rating: parseFloat(getRandomRating(FILM_RATING.MIN, FILM_RATING.MAX), 10),
+  level: getLevel(parseFloat(getRandomRating(FILM_RATING.MIN, FILM_RATING.MAX), 10)),
+  totalRatings: 240,
+  director: `Wes Andreson`,
+  starring: [
+    `Bill Murray`,
+    `Edward Norton`,
+    `Jude Law`,
+    `Willem Dafoe`
+  ]
 };
 
 export const createFilms = () => {

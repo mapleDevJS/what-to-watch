@@ -3,7 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
-const TOP_FILM = {
+const PROMO_FILM = {
   title: `The Grand Budapest Hotel`,
   poster: `bg-the-grand-budapest-hotel.jpg`,
   genre: `Drama`,
@@ -44,7 +44,7 @@ describe(`Main e2e tests`, () => {
 
     const main = shallow(
         <Main
-          TOP_FILM = {TOP_FILM}
+          PROMO_FILM = {PROMO_FILM}
           films = {films}
           onTitleClick={onTitleClickHandler}
           onPosterClick={() => {}}
@@ -66,7 +66,7 @@ describe(`Main e2e tests`, () => {
 
     const main = shallow(
         <Main
-          TOP_FILM = {TOP_FILM}
+          PROMO_FILM = {PROMO_FILM}
           films = {films}
           filters = {[`All genres`, `Drama`]}
           onTitleClick={() => {}}
