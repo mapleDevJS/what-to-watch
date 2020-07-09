@@ -129,7 +129,7 @@ export const PROMO_FILM = {
   ]
 };
 
-export const createFilms = () => {
+const createFilms = () => {
   let films = [];
 
   for (let i = 0; i < FILMS_NUMBER; i++) {
@@ -159,4 +159,4 @@ export const createFilms = () => {
   return films;
 };
 
-export default createFilms();
+export const films = createFilms();

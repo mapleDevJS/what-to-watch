@@ -33,7 +33,7 @@ const App = (props) => {
       return (
         <FullVideoPlayerWrapped
           title = {props.activeFilm.title}
-          onExitClickHandler = {() => {}}
+          onExitClickHandler = {() => console.log(`Exit clicked`)}
         />
       );
 
@@ -139,7 +139,7 @@ const mapDispatchToProps = (dispatch) => {
     onCardClick: (film) => dispatch(changeView(film)),
     onFilterChange: (filter) => dispatch(filterFilms(filter)),
     onShowMoreClick: () => dispatch(renderFilms()),
-    onPlayClick: (film) => dispatch(playVideo(film))
+    onPlayClick: () => dispatch(playVideo()),
   };
 };
 

@@ -26,10 +26,9 @@ export const renderFilms = () => {
   };
 };
 
-export const playVideo = (film) => {
+export const playVideo = () => {
   return {
-    type: Action.PLAY_VIDEO,
-    payload: film
+    type: Action.PLAY_VIDEO
   };
 };
 
