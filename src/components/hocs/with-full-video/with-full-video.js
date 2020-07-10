@@ -8,7 +8,7 @@ const withFullVideo = (Component) => {
 
       this._videoRef = createRef();
 
-      this._playbackToggleVideo = this._playbackToggleVideo.bind(this);
+      this._playbackToggle = this._playbackToggle.bind(this);
       this._onFullScreenClick = this._onFullScreenClick.bind(this);
 
       this.state = {
@@ -33,10 +33,10 @@ const withFullVideo = (Component) => {
     }
 
     componentDidMount() {
-      const {film} = this.props;
+      const {preview} = this.props;
       const video = this._videoRef.current;
 
-      video.src = film;
+      video.src = preview;
       video.play();
 
       video.onloadedmetadata = () => {
@@ -82,12 +82,12 @@ const withFullVideo = (Component) => {
     render() {
       return <Component
         {...this.props}
-        progress={this.state.progress}
-        duration={this.state.duration}
-        isPlaying={this.state.isPlaying}
-        time={this._formatDurationToTime(this.state.duration)}
-        playbackToggleVideo={this._playbackToggleVideo}
-        onFullScreenClick={this._onFullScreenClick}
+        progress = {this.state.progress}
+        duration = {this.state.duration}
+        isPlaying = {this.state.isPlaying}
+        time = {this._formatDurationToTime(this.state.duration)}
+        playbackToggle = {this._playbackToggle}
+        onFullScreenClick = {this._onFullScreenClick}
       >
         <video
           ref={this._videoRef}
@@ -97,7 +97,7 @@ const withFullVideo = (Component) => {
       </Component>;
     }
 
-    _playbackToggleVideo() {
+    _playbackToggle() {
       this.setState((prevState) => {
         return {isPlaying: !prevState.isPlaying};
       });
@@ -106,7 +106,7 @@ const withFullVideo = (Component) => {
   }
 
   WithFullVideo.propTypes = {
-    film: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
   };
 
   return WithFullVideo;

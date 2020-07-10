@@ -9,8 +9,8 @@ const FullVideoPlayer = (props) => {
     progress,
     duration,
     time,
-    onExitClickHandler,
-    playbackToggleVideo,
+    onExitClick,
+    playbackToggle,
     isPlaying,
     onFullScreenClick,
     children
@@ -20,11 +20,10 @@ const FullVideoPlayer = (props) => {
   return (
     <div className="player">
       {children}
-
       <button
         type="button"
         className="player__exit"
-        onClick = {onExitClickHandler}
+        onClick = {onExitClick}
       >
         Exit
       </button>
@@ -32,8 +31,17 @@ const FullVideoPlayer = (props) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value={progress} max={duration}></progress>
-            <div className="player__toggler" style={{left: ((progress * 100) / duration) + `%`}}>Toggler</div>
+            <progress
+              className="player__progress"
+              value={progress}
+              max={duration}>
+            </progress>
+            <div
+              className="player__toggler"
+              style={{left: ((progress * 100) / duration) + `%`}}
+            >
+              Toggler
+            </div>
           </div>
           <div className="player__time-value">{time}</div>
         </div>
@@ -42,22 +50,23 @@ const FullVideoPlayer = (props) => {
           <button
             type="button"
             className="player__play"
-            onClick={playbackToggleVideo}
+            onClick={playbackToggle}
           >
-            {isPlaying ?
-            <>
-                <svg viewBox="0 0 14 21" width="14" height="21">
-                  <use xlinkHref="#pause"/>
-                </svg>
-                <span>Pause</span>
-            </>
-              :
-              <>
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"/>
-                </svg>
-                <span>Play</span>
-              </>
+            {
+              isPlaying ?
+                <>
+                  <svg viewBox="0 0 14 21" width="14" height="21">
+                    <use xlinkHref="#pause"/>
+                  </svg>
+                  <span>Pause</span>
+                </>
+                :
+                <>
+                  <svg viewBox="0 0 19 19" width="19" height="19">
+                    <use xlinkHref="#play-s"/>
+                  </svg>
+                  <span>Play</span>
+                </>
             }
           </button>
 
@@ -81,13 +90,12 @@ const FullVideoPlayer = (props) => {
 
 FullVideoPlayer.propTypes = {
   title: PropTypes.string.isRequired,
-  onExitClickHandler: PropTypes.func.isRequired,
+  onExitClick: PropTypes.func.isRequired,
   progress: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
-  time: PropTypes.number.isRequired,
+  time: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  formatRuntimeToTime: PropTypes.func.isRequired,
-  playbackToggleVideo: PropTypes.func.isRequired,
+  playbackToggle: PropTypes.func.isRequired,
   onFullScreenClick: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 };

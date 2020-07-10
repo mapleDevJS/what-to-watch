@@ -5,7 +5,7 @@ import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 
 import {connect} from "react-redux";
-import {changeView, filterFilms, renderFilms, playVideo} from "../../redux/actions.js";
+import {changeView, filterFilms, renderFilms, playVideo, exitVideo} from "../../redux/actions.js";
 import FullVideoPlayer from "../full-video-player/full-video-player.jsx";
 import withFullVideo from "../hocs/with-full-video/with-full-video.js";
 
@@ -32,8 +32,9 @@ const App = (props) => {
     case View.VIDEO:
       return (
         <FullVideoPlayerWrapped
+          preview = {props.activeFilm.preview}
           title = {props.activeFilm.title}
-          onExitClickHandler = {() => console.log(`Exit clicked`)}
+          onExitClick = {props.onExitClick}
         />
       );
 
@@ -102,6 +103,7 @@ App.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
+  onExitClick: PropTypes.func.isRequired,
   view: PropTypes.string.isRequired,
   activeFilm: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -140,6 +142,7 @@ const mapDispatchToProps = (dispatch) => {
     onFilterChange: (filter) => dispatch(filterFilms(filter)),
     onShowMoreClick: () => dispatch(renderFilms()),
     onPlayClick: () => dispatch(playVideo()),
+    onExitClick: () => dispatch(exitVideo())
   };
 };
 
