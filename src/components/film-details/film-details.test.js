@@ -27,6 +27,7 @@ it(`Render FilmDetails`, () => {
   const tree = renderer
     .create(<FilmDetails
       film = {film}
+      onPlayClick = {() => {}}
     />, {
       createNodeMock: () => {
         return {};

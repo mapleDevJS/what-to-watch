@@ -45,6 +45,7 @@ it(`Should Main render correctly`, () => {
           onShowMoreClick = {() => {}}
           shownFilms = {8}
           filters = {[`All genres`, `Drama`]}
+          onPlayClick = {() => {}}
         />, {
           createNodeMock: () => {
             return {};

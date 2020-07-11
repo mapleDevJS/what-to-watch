@@ -40,7 +40,6 @@ Enzyme.configure({
 describe(`Main e2e tests`, () => {
   it(`Should film title be clciked`, () => {
     const onTitleClickHandler = jest.fn();
-    // const onFilterCHangeHandler = jest.fn();
 
     const main = shallow(
         <Main
@@ -53,6 +52,7 @@ describe(`Main e2e tests`, () => {
           onShowMoreClick = {() => {}}
           shownFilms = {8}
           filters = {[`All genres`, `Drama`]}
+          onPlayClick = {() => {}}
         />
     );
 
@@ -75,6 +75,7 @@ describe(`Main e2e tests`, () => {
           onFilterChange={() => {}}
           onShowMoreClick = {() => {}}
           shownFilms = {8}
+          onPlayClick = {() => {}}
         />
     );
 
