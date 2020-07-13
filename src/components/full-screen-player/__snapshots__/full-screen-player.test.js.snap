@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render FullVideoPlayer 1`] = `
+exports[`Render FullScreenPlayer 1`] = `
 <div
   className="player"
 >

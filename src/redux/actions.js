@@ -26,15 +26,11 @@ export const renderFilms = () => {
   };
 };
 
-export const playVideo = () => {
-  return {
-    type: Action.PLAY_VIDEO
-  };
-};
+export const playVideo = () => ({
+  type: Action.PLAY_VIDEO
+});
 
-export const exitVideo = () => {
-  return {
-    type: Action.EXIT_VIDEO,
-  };
-};
+export const exitVideo = () => ({
+  type: Action.EXIT_VIDEO
+});
 

@@ -6,7 +6,7 @@ import FilmDetails from "../film-details/film-details.jsx";
 
 import {connect} from "react-redux";
 import {changeView, filterFilms, renderFilms, playVideo, exitVideo} from "../../redux/actions.js";
-import FullVideoPlayer from "../full-video-player/full-video-player.jsx";
+import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withFullVideo from "../hocs/with-full-video/with-full-video.js";
 
 export const View = {
@@ -15,7 +15,7 @@ export const View = {
   VIDEO: `video`
 };
 
-const FullVideoPlayerWrapped = withFullVideo(FullVideoPlayer);
+const FullScreenPlayerWrapped = withFullVideo(FullScreenPlayer);
 
 const App = (props) => {
   const {PROMO_FILM} = props;
@@ -31,7 +31,7 @@ const App = (props) => {
 
     case View.VIDEO:
       return (
-        <FullVideoPlayerWrapped
+        <FullScreenPlayerWrapped
           preview = {props.activeFilm.preview}
           title = {props.activeFilm.title}
           onExitClick = {props.onExitClick}

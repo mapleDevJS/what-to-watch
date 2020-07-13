@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 
-const FullVideoPlayer = (props) => {
+const FullScreenPlayer = (props) => {
   const {
     title,
     progress,
@@ -88,7 +88,7 @@ const FullVideoPlayer = (props) => {
   );
 };
 
-FullVideoPlayer.propTypes = {
+FullScreenPlayer.propTypes = {
   title: PropTypes.string.isRequired,
   onExitClick: PropTypes.func.isRequired,
   progress: PropTypes.number.isRequired,
@@ -100,4 +100,4 @@ FullVideoPlayer.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default FullVideoPlayer;
+export default FullScreenPlayer;

@@ -29,8 +29,13 @@ it(`WithFullVideo is rendered correctly`, () => {
       onExitClick = {() => {}}
     />
   ), {
-    createNodeMock() {
-      return {};
+    createNodeMock(element) {
+      if (element.type === `video`) {
+        return {
+          play: () => {}
+        };
+      }
+      return null;
     }
   }).toJSON();
 

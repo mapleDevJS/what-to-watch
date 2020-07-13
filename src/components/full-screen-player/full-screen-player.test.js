@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import FullVideoPlayer from "./full-video-player.jsx";
+import FullScreenPlayer from "./full-screen-player.jsx";
 
-it(`Render FullVideoPlayer`, () => {
+it(`Render FullScreenPlayer`, () => {
   const tree = renderer
     .create(
-        <FullVideoPlayer
+        <FullScreenPlayer
           title={`The Rock`}
           progress={0}
           duration={0}
@@ -15,7 +15,7 @@ it(`Render FullVideoPlayer`, () => {
           onFullScreenClick={() => {}}
           onExitClick={() => {}}>
           <video/>
-        </FullVideoPlayer>).toJSON();
+        </FullScreenPlayer>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
