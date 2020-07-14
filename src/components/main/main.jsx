@@ -7,7 +7,7 @@ import ShowMore from "../show-more/show-more.jsx";
 
 const Main = (props) => {
   const {
-    TOP_FILM,
+    PROMO_FILM,
     shownFilms,
     films,
     filters,
@@ -15,7 +15,8 @@ const Main = (props) => {
     onPosterClick,
     activeFilter,
     onFilterChange,
-    onShowMoreClick
+    onShowMoreClick,
+    onPlayClick
   } = props;
 
   return (
@@ -79,21 +80,25 @@ const Main = (props) => {
             <div className="movie-card__poster">
               <img
                 src="img\the-grand-budapest-hotel-poster.jpg"
-                alt={TOP_FILM.title}
+                alt={PROMO_FILM.title}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{TOP_FILM.title}</h2>
+              <h2 className="movie-card__title">{PROMO_FILM.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{TOP_FILM.genre}</span>
-                <span className="movie-card__year">{TOP_FILM.releaseDate}</span>
+                <span className="movie-card__genre">{PROMO_FILM.genre}</span>
+                <span className="movie-card__year">{PROMO_FILM.releaseDate}</span>
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                  onClick = {onPlayClick}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -156,7 +161,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  TOP_FILM: PropTypes.shape({
+  PROMO_FILM: PropTypes.shape({
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
@@ -185,6 +190,7 @@ Main.propTypes = {
   activeFilter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
+  onPlayClick: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 

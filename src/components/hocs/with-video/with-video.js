@@ -12,12 +12,6 @@ const withVideo = (Component) => {
       this._setPlayingFilm = this._setPlayingFilm.bind(this);
     }
 
-    _setPlayingFilm(isPlaying) {
-      this.setState({
-        isPlaying
-      });
-    }
-
     render() {
       const {isPlaying} = this.state;
 
@@ -28,6 +22,12 @@ const withVideo = (Component) => {
           setPlayingFilm={this._setPlayingFilm}
         />
       );
+    }
+
+    _setPlayingFilm(isPlaying) {
+      this.setState({
+        isPlaying
+      });
     }
   }
 

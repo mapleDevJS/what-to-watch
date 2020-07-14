@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const FilmDetails = (props) => {
-  const {film} = props;
+  const {film, onPlayClick} = props;
 
   const {
     background,
@@ -84,7 +84,11 @@ const FilmDetails = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                  onClick = {onPlayClick}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -221,7 +225,8 @@ FilmDetails.propTypes = {
     totalRatings: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired
-  })
+  }).isRequired,
+  onPlayClick: PropTypes.func.isRequired
 };
 
 export default FilmDetails;

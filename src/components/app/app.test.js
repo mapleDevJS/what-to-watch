@@ -6,7 +6,7 @@ import configureStore from "redux-mock-store";
 
 const mockStore = configureStore([]);
 
-const TOP_FILM = {
+const PROMO_FILM = {
   title: `The Grand Budapest Hotel`,
   poster: `bg-the-grand-budapest-hotel.jpg`,
   genre: `Drama`,
@@ -51,7 +51,7 @@ it(`Render App`, () => {
     .create(
         <Provider store = {store}>
           <App
-            TOP_FILM = {TOP_FILM}
+            PROMO_FILM = {PROMO_FILM}
           />
         </Provider>
         , {
