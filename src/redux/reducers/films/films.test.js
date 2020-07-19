@@ -1,5 +1,5 @@
-import {reducer} from "./reducer.js";
-import {Action} from "./actions.js";
+import {reducer} from "./films.js";
+import {Action} from "../../actions.js";
 
 const films = [
   {
@@ -70,7 +70,7 @@ const initialState = {
   activeFilter: `All genres`,
   activeFilm: null,
   shownFilms: 8,
-  films,
+  // films,
   filteredFilms: films
 };
 
@@ -88,7 +88,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     activeFilter: `All genres`,
     activeFilm: null,
     shownFilms: 8,
-    films,
+    // films,
     filteredFilms: films
   });
 });
@@ -102,7 +102,7 @@ it(`Reducer should change view to details and add activeFilm`, () => {
     activeFilter: `All genres`,
     activeFilm: film,
     shownFilms: 8,
-    films,
+    // films,
     filteredFilms: films
   });
 });
@@ -116,7 +116,7 @@ it(`Reducer should change filter to "Comedy"`, () => {
     activeFilter: `Comedy`,
     activeFilm: null,
     shownFilms: 8,
-    films,
+    // films,
     filteredFilms: getFilmsByFilter(initialState.films, `Comedy`)
   });
 });
@@ -130,7 +130,7 @@ it(`Reducer should change filter to "Drama"`, () => {
     activeFilter: `Drama`,
     activeFilm: null,
     shownFilms: 8,
-    films,
+    // films,
     filteredFilms: getFilmsByFilter(initialState.films, `Drama`)
   });
 });
@@ -150,7 +150,7 @@ it(`Reducer should render more films`, () => {
     activeFilter: `All genres`,
     activeFilm: null,
     shownFilms: 16,
-    films,
+    // films,
     filteredFilms: films
   });
 });
@@ -161,7 +161,7 @@ it(`Reducer should render more films`, () => {
     activeFilter: `All genres`,
     activeFilm: null,
     shownFilms: 16,
-    films,
+    // films,
     filteredFilms: films
   }, {
     type: Action.RENDER_FILMS,
@@ -170,7 +170,7 @@ it(`Reducer should render more films`, () => {
     activeFilter: `All genres`,
     activeFilm: null,
     shownFilms: 24,
-    films,
+    // films,
     filteredFilms: films
   });
 });

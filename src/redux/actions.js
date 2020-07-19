@@ -3,7 +3,12 @@ export const Action = {
   CHANGE_VIEW: `Change view`,
   RENDER_FILMS: `Render films`,
   PLAY_VIDEO: `Play video`,
-  EXIT_VIDEO: `Exit video`
+  EXIT_VIDEO: `Exit video`,
+  LOAD_FILMS: `Load films`,
+  SET_FILTERED_FILMS: `Set filtered films`,
+  LOAD_PROMO_FILM: `Load promo film`,
+  SET_ACTIVE_FILM: `Set active film`,
+  REQUIRED_AUTHORIZATION: `Required authorization`,
 };
 
 export const changeView = (film) => {
@@ -32,5 +37,30 @@ export const playVideo = () => ({
 
 export const exitVideo = () => ({
   type: Action.EXIT_VIDEO
+});
+
+export const loadFilms = (films) => ({
+  type: Action.LOAD_FILMS,
+  payload: films,
+});
+
+export const loadPromoFilm = (film) => ({
+  type: Action.LOAD_PROMO_FILM,
+  payload: film,
+});
+
+export const setActiveFilm = (film) => ({
+  type: Action.SET_ACTIVE_FILM,
+  payload: film,
+});
+
+export const setFilteredFilms = (films) => ({
+  type: Action.SET_FILTERED_FILMS,
+  payload: films,
+});
+
+export const requireAuthorization = (status) => ({
+  type: Action.REQUIRED_AUTHORIZATION,
+  payload: status,
 });
 

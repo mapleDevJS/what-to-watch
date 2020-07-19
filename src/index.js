@@ -1,38 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-import {PROMO_FILM} from "./mocks/films.js";
-import {createStore} from "redux";
+// import {PROMO_FILM} from "./mocks/films.js";
+import {createStore, applyMiddleware} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
-import {reducer} from "./redux/reducer.js";
-import {View} from "./components/app/app.jsx";
-import {films} from "./mocks/films.js";
-import {getUniqueGenres} from "./utils/utils.js";
-import {FILTER} from "./consts.js";
+import thunk from "redux-thunk";
+import reducer from "./redux/reducers/reducer.js";
+import {requireAuthorization} from "./redux/actions.js";
+import {Operation as DataOperation} from "./redux/reducers/data/data.js";
+// import {Operation as FilmsOperation} from "./redux/reducers/films/films.js";
+import {Operation as UserOperation, AuthorizationStatus} from "./redux/reducers/user/user.js";
 
-const initialState = {
-  view: View.LIST,
-  activeFilter: FILTER.ALL,
-  activeFilm: PROMO_FILM,
-  shownFilms: 8,
-  films,
-  filteredFilms: films,
-  filters: getUniqueGenres(films)
-};
+import {createAPI} from "./api.js";
+
+const api = createAPI(() => {
+  store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+});
 
 const store = createStore(
     reducer,
-    initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
+
+store.dispatch(DataOperation.loadFilms());
+store.dispatch(DataOperation.loadPromoFilm());
+store.dispatch(UserOperation.checkAuth());
 
 const root = document.querySelector(`#root`);
 
 ReactDOM.render(
-    <Provider store ={store}>
-      <App
-        PROMO_FILM = {PROMO_FILM}
-      />
+    <Provider store = {store}>
+      <App />
     </Provider>,
     root
 );

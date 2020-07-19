@@ -8,6 +8,8 @@ import {connect} from "react-redux";
 import {changeView, filterFilms, renderFilms, playVideo, exitVideo} from "../../redux/actions.js";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withFullVideo from "../hocs/with-full-video/with-full-video.js";
+import {getUniqueGenres} from "../../utils/utils.js";
+import NameSpace from "../../redux/reducers/name-space.js";
 
 export const View = {
   LIST: `list`,
@@ -18,8 +20,6 @@ export const View = {
 const FullScreenPlayerWrapped = withFullVideo(FullScreenPlayer);
 
 const App = (props) => {
-  const {PROMO_FILM} = props;
-
   switch (props.view) {
     case View.DETAILS:
       return (
@@ -41,10 +41,10 @@ const App = (props) => {
     default:
       return (
         <Main
-          PROMO_FILM = {PROMO_FILM}
+          promoFilm = {props.promoFilm}
           shownFilms = {props.shownFilms}
           films = {props.filteredFilms}
-          filters = {props.filters}
+          filters = {getUniqueGenres(props.films)}
           onTitleClick = {props.onCardClick}
           onPosterClick = {props.onCardClick}
           activeFilter = {props.activeFilter}
@@ -58,44 +58,68 @@ const App = (props) => {
 
 
 App.propTypes = {
-  PROMO_FILM: PropTypes.shape({
+  promoFilm: PropTypes.shape({
+    color: PropTypes.string,
+    bigPoster: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired
+    previewImg: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    runtime: PropTypes.number.isRequired,
+    totalRatings: PropTypes.number.isRequired,
+    level: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired,
+    videoLink: PropTypes.string.isRequired
   }),
   films: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        background: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
+        color: PropTypes.string,
         bigPoster: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+        isFavourite: PropTypes.bool.isRequired,
+        title: PropTypes.string.isRequired,
         poster: PropTypes.string.isRequired,
+        previewImg: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
-        level: PropTypes.string.isRequired,
+        releaseDate: PropTypes.number.isRequired,
+        runtime: PropTypes.number.isRequired,
         totalRatings: PropTypes.number.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.array.isRequired
+        level: PropTypes.string.isRequired,
+        starring: PropTypes.array.isRequired,
+        videoLink: PropTypes.string.isRequired
       })
   ).isRequired,
   filteredFilms: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        background: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
+        color: PropTypes.string,
         bigPoster: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+        isFavourite: PropTypes.bool.isRequired,
+        title: PropTypes.string.isRequired,
         poster: PropTypes.string.isRequired,
+        previewImg: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
-        level: PropTypes.string.isRequired,
+        releaseDate: PropTypes.number.isRequired,
+        runtime: PropTypes.number.isRequired,
         totalRatings: PropTypes.number.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.array.isRequired
+        level: PropTypes.string.isRequired,
+        starring: PropTypes.array.isRequired,
+        videoLink: PropTypes.string.isRequired
       })
   ).isRequired,
   onCardClick: PropTypes.func.isRequired,
@@ -106,19 +130,24 @@ App.propTypes = {
   onExitClick: PropTypes.func.isRequired,
   view: PropTypes.string.isRequired,
   activeFilm: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
+    color: PropTypes.string,
     bigPoster: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
+    previewImg: PropTypes.string.isRequired,
     preview: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    level: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    runtime: PropTypes.number.isRequired,
     totalRatings: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.array.isRequired
+    level: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired,
+    videoLink: PropTypes.string.isRequired
   }),
   shownFilms: PropTypes.number.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired
@@ -126,13 +155,14 @@ App.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    view: state.view,
-    activeFilm: state.activeFilm,
-    activeFilter: state.activeFilter,
-    films: state.films,
-    filteredFilms: state.filteredFilms,
-    shownFilms: state.shownFilms,
-    filters: state.filters
+    view: state[NameSpace.FILMS].view,
+    activeFilm: state[NameSpace.DATA].activeFilm,
+    activeFilter: state[NameSpace.DATA].activeFilter,
+    films: state[NameSpace.DATA].films,
+    promoFilm: state[NameSpace.DATA].promoFilm,
+    filteredFilms: state[NameSpace.DATA].filteredFilms,
+    shownFilms: state[NameSpace.FILMS].shownFilms,
+    filters: state[NameSpace.FILMS].filters
   };
 };
 

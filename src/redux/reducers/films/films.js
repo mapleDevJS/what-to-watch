@@ -1,26 +1,16 @@
 
-import {Action} from "./actions.js";
-import {View} from "../components/app/app.jsx";
+import {Action} from "../../actions.js";
+import {View} from "../../../components/app/app.jsx";
 
-const getFilmsByFilter = (filmsToFilter = [], filter) => {
-  if (filter === `All genres`) {
-    return filmsToFilter;
-  } else {
-    return filmsToFilter.filter((film) => film.genre === filter);
-  }
+// import {getPromoFilm, getFilms} from "../data/selectors.js";
+
+const initialState = {
+  view: View.LIST,
+  shownFilms: 8,
 };
 
-const reducer = (state, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case Action.CHANGE_FILTER:
-      const filter = action.payload;
-
-      return Object.assign({}, state, {
-        activeFilter: filter,
-        filteredFilms: getFilmsByFilter(state.films, filter),
-        shownFilms: 8
-      });
-
     case Action.CHANGE_VIEW:
       return Object.assign({}, state, {
         view: View.DETAILS,
@@ -41,7 +31,6 @@ const reducer = (state, action) => {
       return Object.assign({}, state, {
         view: View.LIST
       });
-
 
     default:
       return state;

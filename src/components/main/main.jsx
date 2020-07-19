@@ -7,7 +7,7 @@ import ShowMore from "../show-more/show-more.jsx";
 
 const Main = (props) => {
   const {
-    PROMO_FILM,
+    promoFilm,
     shownFilms,
     films,
     filters,
@@ -80,17 +80,17 @@ const Main = (props) => {
             <div className="movie-card__poster">
               <img
                 src="img\the-grand-budapest-hotel-poster.jpg"
-                alt={PROMO_FILM.title}
+                alt={promoFilm.title}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{PROMO_FILM.title}</h2>
+              <h2 className="movie-card__title">{promoFilm.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{PROMO_FILM.genre}</span>
-                <span className="movie-card__year">{PROMO_FILM.releaseDate}</span>
+                <span className="movie-card__genre">{promoFilm.genre}</span>
+                <span className="movie-card__year">{promoFilm.releaseDate}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -161,28 +161,47 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  PROMO_FILM: PropTypes.shape({
+  promoFilm: PropTypes.shape({
+    color: PropTypes.string,
+    bigPoster: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired
+    previewImg: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    runtime: PropTypes.number.isRequired,
+    totalRatings: PropTypes.number.isRequired,
+    level: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired,
+    videoLink: PropTypes.string.isRequired
   }),
   shownFilms: PropTypes.number.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        background: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
+        color: PropTypes.string,
         bigPoster: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+        isFavourite: PropTypes.bool.isRequired,
+        title: PropTypes.string.isRequired,
         poster: PropTypes.string.isRequired,
+        previewImg: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
-        level: PropTypes.string.isRequired,
+        releaseDate: PropTypes.number.isRequired,
+        runtime: PropTypes.number.isRequired,
         totalRatings: PropTypes.number.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.array.isRequired
+        level: PropTypes.string.isRequired,
+        starring: PropTypes.array.isRequired,
+        videoLink: PropTypes.string.isRequired
       })
   ).isRequired,
   onTitleClick: PropTypes.func.isRequired,
