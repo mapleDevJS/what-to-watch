@@ -1,95 +1,18 @@
 import {reducer} from "./films.js";
 import {Action} from "../../actions.js";
-
-const films = [
-  {
-    id: `lKFDHkhaeud`,
-    background: `bg-the-grand-budapest-hotel.jpg`,
-    title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    genre: `Drama`,
-    releaseDate: 2020,
-    bigPoster: `the-grand-budapest-hotel-poster.jpg`,
-    poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    rating: 8.9,
-    level: `Very Good`,
-    totalRatings: 240,
-    director: `Wes Andreson`,
-    starring: [
-      `Bill Murray`,
-      `Edward Norton`,
-      `Jude Law`,
-      `Willem Dafoe`
-    ]
-  },
-  {
-    id: `lKFDHkhaeud`,
-    background: `bg-the-grand-budapest-hotel.jpg`,
-    title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    genre: `Comedy`,
-    releaseDate: 2020,
-    bigPoster: `the-grand-budapest-hotel-poster.jpg`,
-    poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    rating: 8.9,
-    level: `Very Good`,
-    totalRatings: 240,
-    director: `Wes Andreson`,
-    starring: [
-      `Bill Murray`,
-      `Edward Norton`,
-      `Jude Law`,
-      `Willem Dafoe`
-    ]
-  }
-];
-
-const film = {
-  id: `lKFDHkhaeud`,
-  background: `bg-the-grand-budapest-hotel.jpg`,
-  title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  genre: `Drama`,
-  releaseDate: 2020,
-  bigPoster: `the-grand-budapest-hotel-poster.jpg`,
-  poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  rating: 8.9,
-  level: `Very Good`,
-  totalRatings: 240,
-  director: `Wes Andreson`,
-  starring: [
-    `Bill Murray`,
-    `Edward Norton`,
-    `Jude Law`,
-    `Willem Dafoe`
-  ]
-};
+import {film} from "../../../mocks/films.js";
 
 const initialState = {
-  view: `list`,
-  activeFilter: `All genres`,
-  activeFilm: null,
+  view: `List`,
   shownFilms: 8,
-  // films,
-  filteredFilms: films
-};
-
-const getFilmsByFilter = (filmsToFilter = [], filter) => {
-  if (filter === `All genres`) {
-    return filmsToFilter;
-  } else {
-    return filmsToFilter.filter((item) => item.genre === filter);
-  }
+  activeFilter: `All genres`,
 };
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(initialState, {})).toEqual({
-    view: `list`,
-    activeFilter: `All genres`,
-    activeFilm: null,
+    view: `List`,
     shownFilms: 8,
-    // films,
-    filteredFilms: films
+    activeFilter: `All genres`,
   });
 });
 
@@ -98,12 +21,10 @@ it(`Reducer should change view to details and add activeFilm`, () => {
     type: Action.CHANGE_VIEW,
     payload: film,
   })).toEqual({
-    view: `details`,
-    activeFilter: `All genres`,
-    activeFilm: film,
+    view: `Details`,
     shownFilms: 8,
-    // films,
-    filteredFilms: films
+    activeFilter: `All genres`,
+    activeFilm: film
   });
 });
 
@@ -112,12 +33,9 @@ it(`Reducer should change filter to "Comedy"`, () => {
     type: Action.CHANGE_FILTER,
     payload: `Comedy`,
   })).toEqual({
-    view: `list`,
+    view: `List`,
     activeFilter: `Comedy`,
-    activeFilm: null,
     shownFilms: 8,
-    // films,
-    filteredFilms: getFilmsByFilter(initialState.films, `Comedy`)
   });
 });
 
@@ -126,12 +44,9 @@ it(`Reducer should change filter to "Drama"`, () => {
     type: Action.CHANGE_FILTER,
     payload: `Drama`,
   })).toEqual({
-    view: `list`,
+    view: `List`,
     activeFilter: `Drama`,
-    activeFilm: null,
     shownFilms: 8,
-    // films,
-    filteredFilms: getFilmsByFilter(initialState.films, `Drama`)
   });
 });
 
@@ -146,31 +61,50 @@ it(`Reducer should render more films`, () => {
   expect(reducer(initialState, {
     type: Action.RENDER_FILMS,
   })).toEqual({
-    view: `list`,
+    view: `List`,
     activeFilter: `All genres`,
-    activeFilm: null,
     shownFilms: 16,
-    // films,
-    filteredFilms: films
   });
 });
 
 it(`Reducer should render more films`, () => {
   expect(reducer({
-    view: `list`,
+    view: `List`,
     activeFilter: `All genres`,
-    activeFilm: null,
     shownFilms: 16,
-    // films,
-    filteredFilms: films
   }, {
     type: Action.RENDER_FILMS,
   })).toEqual({
-    view: `list`,
+    view: `List`,
     activeFilter: `All genres`,
-    activeFilm: null,
     shownFilms: 24,
-    // films,
-    filteredFilms: films
+  });
+});
+
+it(`Reducer should play video`, () => {
+  expect(reducer({
+    view: `List`,
+    activeFilter: `All genres`,
+    shownFilms: 16,
+  }, {
+    type: Action.PLAY_VIDEO,
+  })).toEqual({
+    view: `Video`,
+    activeFilter: `All genres`,
+    shownFilms: 16,
+  });
+});
+
+it(`Reducer should exit video`, () => {
+  expect(reducer({
+    view: `Video`,
+    activeFilter: `All genres`,
+    shownFilms: 24,
+  }, {
+    type: Action.EXIT_VIDEO,
+  })).toEqual({
+    view: `List`,
+    activeFilter: `All genres`,
+    shownFilms: 24,
   });
 });

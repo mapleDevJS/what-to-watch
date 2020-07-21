@@ -1,5 +1,7 @@
 import React, {createRef, PureComponent} from 'react';
+
 import PropTypes from "prop-types";
+import {filmPropTypes} from "../../../utils/proptypes.js";
 
 const withFullVideo = (Component) => {
   class WithFullVideo extends PureComponent {
@@ -19,10 +21,10 @@ const withFullVideo = (Component) => {
     }
 
     componentDidMount() {
-      const {preview} = this.props;
+      const {film} = this.props;
       const video = this._videoRef.current;
 
-      video.src = preview;
+      video.src = film.video;
       video.play();
 
       video.onloadedmetadata = () => {
@@ -78,7 +80,7 @@ const withFullVideo = (Component) => {
         <video
           ref={this._videoRef}
           className="player__video"
-          poster="img/player-poster.jpg"
+          poster={this.props.film.previewImg}
         />
       </Component>;
     }
@@ -105,7 +107,7 @@ const withFullVideo = (Component) => {
   }
 
   WithFullVideo.propTypes = {
-    preview: PropTypes.string.isRequired,
+    film: PropTypes.shape(filmPropTypes).isRequired,
   };
 
   return WithFullVideo;

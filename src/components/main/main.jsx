@@ -1,5 +1,8 @@
 import React from "react";
+
 import PropTypes from "prop-types";
+import {filmPropTypes} from "../../utils/proptypes.js";
+
 import Filters from "../filters/filters.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import ShowMore from "../show-more/show-more.jsx";
@@ -54,7 +57,7 @@ const Main = (props) => {
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={promoFilm.backgroundImg} alt={promoFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -79,18 +82,18 @@ const Main = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src="img\the-grand-budapest-hotel-poster.jpg"
-                alt={promoFilm.title}
+                src={promoFilm.poster}
+                alt={promoFilm.name}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoFilm.title}</h2>
+              <h2 className="movie-card__title">{promoFilm.name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{promoFilm.genre}</span>
-                <span className="movie-card__year">{promoFilm.releaseDate}</span>
+                <span className="movie-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -161,49 +164,9 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promoFilm: PropTypes.shape({
-    color: PropTypes.string,
-    bigPoster: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    previewImg: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    runtime: PropTypes.number.isRequired,
-    totalRatings: PropTypes.number.isRequired,
-    level: PropTypes.string.isRequired,
-    starring: PropTypes.array.isRequired,
-    videoLink: PropTypes.string.isRequired
-  }),
+  promoFilm: PropTypes.shape(filmPropTypes),
   shownFilms: PropTypes.number.isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        color: PropTypes.string,
-        bigPoster: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
-        isFavourite: PropTypes.bool.isRequired,
-        title: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        previewImg: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        releaseDate: PropTypes.number.isRequired,
-        runtime: PropTypes.number.isRequired,
-        totalRatings: PropTypes.number.isRequired,
-        level: PropTypes.string.isRequired,
-        starring: PropTypes.array.isRequired,
-        videoLink: PropTypes.string.isRequired
-      })
-  ).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
   onTitleClick: PropTypes.func.isRequired,
   onPosterClick: PropTypes.func.isRequired,
   activeFilter: PropTypes.string.isRequired,

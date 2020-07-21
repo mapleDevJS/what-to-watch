@@ -1,6 +1,7 @@
-
 import React, {PureComponent, createRef} from "react";
+
 import PropTypes from "prop-types";
+import {filmPropTypes} from "../../utils/proptypes.js";
 
 
 class VideoPlayer extends PureComponent {
@@ -14,7 +15,7 @@ class VideoPlayer extends PureComponent {
   componentDidMount() {
     const video = this._videoRef.current;
 
-    video.src = this.props.film.preview;
+    video.src = this.props.film.previewVideo;
     video.muted = this.props.isMuted;
   }
 
@@ -40,7 +41,7 @@ class VideoPlayer extends PureComponent {
   }
 
   render() {
-    const poster = this.props.film.poster;
+    const poster = this.props.film.previewImg;
     const isMuted = this.props.isMuted;
 
     return (
@@ -48,7 +49,7 @@ class VideoPlayer extends PureComponent {
         <video
           className={`player__video`}
           ref = {this._videoRef}
-          poster = {`img/${poster}`}
+          poster = {poster}
           muted = {isMuted}
         />
       </>
@@ -59,21 +60,7 @@ class VideoPlayer extends PureComponent {
 VideoPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   isMuted: PropTypes.bool.isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    bigPoster: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    level: PropTypes.string.isRequired,
-    totalRatings: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.array.isRequired
-  }),
+  film: PropTypes.shape(filmPropTypes).isRequired,
 };
 
 export default VideoPlayer;

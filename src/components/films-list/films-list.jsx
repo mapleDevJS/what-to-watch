@@ -1,8 +1,12 @@
 import React, {PureComponent} from "react";
+
 import PropTypes from "prop-types";
-import {generateUniqueId} from "../../utils/utils.js";
+import {filmPropTypes} from "../../utils/proptypes.js";
+
 import FilmCard from "../film-card/film-card.jsx";
 import withVideo from "../hocs/with-video/with-video";
+
+import {generateUniqueId} from "../../utils/utils.js";
 
 class FilmsList extends PureComponent {
   constructor(props) {
@@ -31,26 +35,9 @@ class FilmsList extends PureComponent {
 }
 
 FilmsList.propTypes = {
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        background: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
-        bigPoster: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        level: PropTypes.string.isRequired,
-        totalRatings: PropTypes.number.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.array.isRequired
-      })
-  ).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
   onTitleClick: PropTypes.func.isRequired,
   onPosterClick: PropTypes.func.isRequired
 };
-
 
 export default FilmsList;

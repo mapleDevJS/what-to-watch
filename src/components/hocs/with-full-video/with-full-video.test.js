@@ -2,12 +2,14 @@ import React from "react";
 import renderer from "react-test-renderer";
 import withFullVideo from "./with-full-video.js";
 import PropTypes from "prop-types";
+import {film} from "../../../mocks/films.js";
 
 const MockComponent = (props) => {
   const {children} = props;
+
   return (
     <>
-        {children}
+      {children}
     </>
   );
 };
@@ -24,8 +26,7 @@ const MockComponentWrapped = withFullVideo(MockComponent);
 it(`WithFullVideo is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
-      preview = {``}
-      title = {``}
+      film={film}
       onExitClick = {() => {}}
     />
   ), {

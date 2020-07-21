@@ -22,3 +22,7 @@ export const getFilteredFilms = createSelector(
       }
     }
 );
+
+export const getActiveFilm = (state) => {
+  return state[NameSpace.DATA].activeFilm;
+};

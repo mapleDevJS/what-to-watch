@@ -13,7 +13,7 @@ exports[`Render FilmCard 1`] = `
     <video
       className="player__video"
       muted={true}
-      poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+      poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
     />
   </div>
   <h3
@@ -24,7 +24,7 @@ exports[`Render FilmCard 1`] = `
       href="movie-page.html"
       onClick={[Function]}
     >
-      Fantastic Beasts: The Crimes of Grindelwald
+      Gangs of new york
     </a>
   </h3>
 </article>

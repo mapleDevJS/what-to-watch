@@ -1,162 +1,645 @@
-import {getRandomElement, generateUniqueId} from "../utils/utils.js";
-
-const FILMS_NUMBER = 20;
-
-const RELEASE_DATE = {
-  FIRST: 1895,
-  LAST: 2020
-};
-
-const FILM_RATING = {
-  MIN: 0,
-  MAX: 10
-};
-
-const TITLES = [
-  `Fantastic Beasts: The Crimes of Grindelwald`,
-  `Bohemian Rhapsody`,
-  `Macbeth`,
-  `Aviator`,
-  `We need to talk about Kevin`,
-  `What We Do in the Shadows`,
-  `Revenant`,
-  `Johnny English`,
-  `Shutter Island`,
-  `Pulp Fiction`,
-  `No Country for Old Men`,
-  `Snatch`,
-  `Moonrise Kingdom`,
-  `Seven Years in Tibet`,
-  `Midnight Special`,
-  `War of the Worlds`,
-  `Dardjeeling Limited`,
-  `Orlando`,
-  `Mindhunter`,
-  `Midnight Special`
-];
-
-const POSTERS = [
-  `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  `bohemian-rhapsody.jpg`,
-  `macbeth.jpg`,
-  `aviator.jpg`,
-  `we-need-to-talk-about-kevin.jpg`,
-  `what-we-do-in-the-shadows.jpg`,
-  `revenant.jpg`,
-  `johnny-english.jpg`,
-  `shutter-island.jpg`,
-  `pulp-fiction.jpg`,
-  `no-country-for-old-men.jpg`,
-  `snatch.jpg`,
-  `moonrise-kingdom.jpg`,
-  `seven-years-in-tibet.jpg`,
-  `midnight-special.jpg`,
-  `war-of-the-worlds.jpg`,
-  `dardjeeling-limited.jpg`,
-  `orlando.jpg`,
-  `mindhunter.jpg`,
-  `midnight-special.jpg`
-];
-
-const GENRES = [
-  `Sci-fi`,
-  `Horror`,
-  `Action`,
-  `Drama`,
-  `Comedy`,
-  `Thriller`,
-  `Fantasy`,
-  `Adventure`,
-  `War`,
-  `Mystery`,
-  `Documentary`,
-  `Crime`,
-  `Sci-fi`,
-  `Horror`,
-  `Action`,
-  `Drama`,
-  `Comedy`,
-  `Thriller`,
-  `Fantasy`,
-  `Adventure`
-];
-
-const VIDEOS = [
-  `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-];
-
-const getRandomRating = (min, max) => {
-  return (Math.random() * (max - min) + min).toFixed(1);
-};
-
-const getRandomYear = (min, max) => {
-  return (Math.random() * (max - min) + min).toFixed(0);
-};
-
-const getLevel = (rating) => {
-  switch (true) {
-    case (rating < 3):
-      return `Bad`;
-    case (rating >= 3 && rating < 5):
-      return `Normal`;
-    case (rating >= 5 && rating < 8):
-      return `Good`;
-    case (rating >= 8 && rating < 10):
-      return `Very Good`;
-  }
-  return `Awesome`;
-};
-
-export const PROMO_FILM = {
-  id: generateUniqueId(),
-  background: `bg-the-grand-budapest-hotel.jpg`,
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  releaseDate: 2014,
-  bigPoster: `the-grand-budapest-hotel-poster.jpg`,
-  poster: getRandomElement(POSTERS),
-  preview: getRandomElement(VIDEOS),
-  rating: parseFloat(getRandomRating(FILM_RATING.MIN, FILM_RATING.MAX), 10),
-  level: getLevel(parseFloat(getRandomRating(FILM_RATING.MIN, FILM_RATING.MAX), 10)),
-  totalRatings: 240,
-  director: `Wes Andreson`,
+export const film = {
+  color: `#A6B7AC`,
+  backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg`,
+  description: `In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.`,
+  director: `Martin Scorsese`,
+  genre: `Crime`,
+  id: 1,
+  isFavourite: false,
+  name: `Gangs of new york`,
+  poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
+  previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`,
+  previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  rating: 8.8,
+  released: 2002,
+  runtime: 167,
+  scoresCount: 370881,
   starring: [
-    `Bill Murray`,
-    `Edward Norton`,
-    `Jude Law`,
-    `Willem Dafoe`
-  ]
+    `Leonardo DiCaprio`,
+    `Cameron Diaz`,
+    `Daniel Day-Lewis`
+  ],
+  video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
 };
 
-const createFilms = () => {
-  let films = [];
+export const promoFilm = {
+  color: `#A6B7AC`,
+  backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg`,
+  description: `In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.`,
+  director: `Martin Scorsese`,
+  genre: `Crime`,
+  id: 1,
+  isFavourite: false,
+  name: `Gangs of new york`,
+  poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
+  previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`,
+  previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  rating: 8.8,
+  released: 2002,
+  runtime: 167,
+  scoresCount: 370881,
+  starring: [
+    `Leonardo DiCaprio`,
+    `Cameron Diaz`,
+    `Daniel Day-Lewis`
+  ],
+  video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+};
 
-  for (let i = 0; i < FILMS_NUMBER; i++) {
-    let rating = parseFloat(getRandomRating(FILM_RATING.MIN, FILM_RATING.MAX), 10);
+export const emptyFilm = {
+  color: ``,
+  backgroundImg: ``,
+  description: ``,
+  director: ``,
+  genre: ``,
+  id: 0,
+  isFavourite: false,
+  name: `Promo film is loading...`,
+  poster: ``,
+  previewImg: ``,
+  previewVideo: ``,
+  rating: 0,
+  released: 0,
+  runtime: 0,
+  scoresCount: 0,
+  starring: [],
+  video: ``,
+};
 
-    films.push({
-      id: generateUniqueId(),
-      background: `bg-the-grand-budapest-hotel.jpg`,
-      title: getRandomElement(TITLES),
-      genre: GENRES[i],
-      releaseDate: parseInt(getRandomYear(RELEASE_DATE.FIRST, RELEASE_DATE.LAST), 10),
-      bigPoster: `the-grand-budapest-hotel-poster.jpg`,
-      poster: getRandomElement(POSTERS),
-      preview: getRandomElement(VIDEOS),
-      rating,
-      level: getLevel(rating),
-      totalRatings: 240,
-      director: `Wes Andreson`,
-      starring: [
-        `Bill Murray`,
-        `Edward Norton`,
-        `Jude Law`,
-        `Willem Dafoe`
-      ]
-    });
+export const films = [
+  {
+    color: `#A6B7AC`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg`,
+    description: `In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.`,
+    director: `Martin Scorsese`,
+    genre: `Crime`,
+    id: 1,
+    isFavourite: false,
+    name: `Gangs of new york`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 8.8,
+    released: 2002,
+    runtime: 167,
+    scoresCount: 370881,
+    starring: [
+      `Leonardo DiCaprio`,
+      `Cameron Diaz`,
+      `Daniel Day-Lewis`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#D8E3E5`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg`,
+    description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
+    director: `Wes Anderson`,
+    genre: `Adventure`,
+    id: 2,
+    isFavourite: false,
+    name: `Moonrise Kingdom`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 7.9,
+    released: 2012,
+    runtime: 94,
+    scoresCount: 291183,
+    starring: [
+      `Jared Gilman`,
+      `Kara Hayward`,
+      `Bruce Willis`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#795433`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Pulp_Fiction.jpg`,
+    description: `The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.`,
+    director: `Quentin Tarantino`,
+    genre: `Crime`,
+    id: 3,
+    isFavourite: false,
+    name: `Pulp Fiction`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Pulp_Fiction.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/pulp-fiction.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 1.5,
+    released: 1994,
+    runtime: 153,
+    scoresCount: 1635992,
+    starring: [
+      `John Travolta`,
+      `Uma Thurman`,
+      `Samuel L. Jackson`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#73B39A`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/bronson.jpg`,
+    description: `A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.`,
+    director: `Nicolas Winding Refn`,
+    genre: `Action`,
+    id: 4,
+    isFavourite: false,
+    name: `Bronson`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/bronson.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/bronson.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 3.6,
+    released: 2008,
+    runtime: 92,
+    scoresCount: 109661,
+    starring: [
+      `Tom Hardy`,
+      `Kelly Adams`,
+      `Luing Andrews`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#828585`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Midnight_Special.jpg`,
+    description: `A father and son go on the run, pursued by the government and a cult drawn to the child's special powers.`,
+    director: `Jeff Nichols`,
+    genre: `Action`,
+    id: 5,
+    isFavourite: false,
+    name: `Midnight Special`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Midnight_Special.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/midnight-special.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 3.3,
+    released: 2016,
+    runtime: 112,
+    scoresCount: 67815,
+    starring: [
+      `Michael Shannon`,
+      `Joel Edgerton`,
+      `Kirsten Dunst `
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#B9B27E`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/matrix.jpg`,
+    description: `A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.`,
+    director: `Wachowski Brothers`,
+    genre: `Action`,
+    id: 6,
+    isFavourite: false,
+    name: `Matrix`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/matrix.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/matrix.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 4.4,
+    released: 1999,
+    runtime: 136,
+    scoresCount: 1503092,
+    starring: [
+      `Keanu Reeves`,
+      `Laurence Fishburne`,
+      `Carrie-Anne Moss`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#CBAC79`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/ones_upon_a_time_in_america.jpg`,
+    description: `A former Prohibition-era Jewish gangster returns to the Lower East Side of Manhattan over thirty years later, where he once again must confront the ghosts and regrets of his old life.`,
+    director: `Sergio Leone`,
+    genre: `Crime`,
+    id: 7,
+    isFavourite: false,
+    name: `Once Upon a Time in America`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Once_Upon_a_Time_in_America.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 9.9,
+    released: 1984,
+    runtime: 229,
+    scoresCount: 276395,
+    starring: [
+      `Robert De Niro`,
+      `James Woods`,
+      `Elizabeth McGovern`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#F0DBA2`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Johnny_English.jpg`,
+    description: `After a sudden attack on the MI5, Johnny English, Britain's most confident yet unintelligent spy, becomes Britain's only spy.`,
+    director: `Peter Howitt`,
+    genre: `Comedy`,
+    id: 8,
+    isFavourite: false,
+    name: `Johnny English`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Johnny_English.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/johnny-english.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 10,
+    released: 2003,
+    runtime: 88,
+    scoresCount: 136843,
+    starring: [
+      `Rowan Atkinson`,
+      `John Malkovich`,
+      `Natalie Imbruglia`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#92918B`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Revenant.jpg`,
+    description: `A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team.`,
+    director: `Alejandro G. Iñárritu`,
+    genre: `Action`,
+    id: 9,
+    isFavourite: false,
+    name: `The Revenant`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Revenant.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/revenant.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 4,
+    released: 2015,
+    runtime: 156,
+    scoresCount: 618498,
+    starring: [
+      `Leonardo DiCaprio`,
+      `Tom Hardy`,
+      `Will Poulter`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#E1DFDE`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/We_need_to_talk_about_Kevin.jpg`,
+    description: `Kevin's mother struggles to love her strange child, despite the increasingly dangerous things he says and does as he grows up. But Kevin is just getting started, and his final act will be beyond anything anyone imagined.`,
+    director: `Lynne Ramsay`,
+    genre: `Drama`,
+    id: 10,
+    isFavourite: false,
+    name: `We need to talk about Kevin`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/We_need_to_talk_about_Kevin.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/we-need-to-talk-about-kevin.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 3.8,
+    released: 2011,
+    runtime: 112,
+    scoresCount: 123240,
+    starring: [
+      `Tilda Swinton`,
+      `John C. Reilly`,
+      `Ezra Miller`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#C4C0C0`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/A_Star_is_Born.jpg`,
+    description: `A musician helps a young singer find fame as age and alcoholism send his own career into a downward spiral.`,
+    director: `Bradley Cooper`,
+    genre: `Drama`,
+    id: 11,
+    isFavourite: false,
+    name: `A Star Is Born`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/A_Star_Is_Born.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/A_Star_Is_Born.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 3.9,
+    released: 2018,
+    runtime: 136,
+    scoresCount: 244484,
+    starring: [
+      `Lady Gaga`,
+      `Bradley Cooper`,
+      `Sam Elliott`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#F1E9CE`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Macbeth.jpg`,
+    description: `Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.`,
+    director: `Justin Kurzel`,
+    genre: `Drama`,
+    id: 12,
+    isFavourite: false,
+    name: `Macbeth`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Macbeth.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/macbeth.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 3.3,
+    released: 2015,
+    runtime: 113,
+    scoresCount: 48798,
+    starring: [
+      `Michael Fassbender`,
+      `Marion Cotillard`,
+      `Jack Madigan`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#EBC996`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/beach.jpg`,
+    description: `Vicenarian Richard travels to Thailand and finds himself in possession of a strange map. Rumours state that it leads to a solitary beach paradise, a tropical bliss. Excited and intrigued, he sets out to find it.`,
+    director: `Danny Boyle`,
+    genre: `Adventure`,
+    id: 13,
+    isFavourite: false,
+    name: `Beach`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/beach.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/beach.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 3.3,
+    released: 2000,
+    runtime: 119,
+    scoresCount: 207824,
+    starring: [
+      `Leonardo DiCaprio`,
+      `Daniel York`,
+      `Patcharawan Patarakijjanon`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#FDFDFC`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg`,
+    description: `Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.`,
+    director: `Guy Ritchie`,
+    genre: `Comedy`,
+    id: 14,
+    isFavourite: false,
+    name: `Snatch`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 0.2,
+    released: 2000,
+    runtime: 104,
+    scoresCount: 716577,
+    starring: [
+      `Jason Statham`,
+      `Brad Pitt`,
+      `Benicio Del Toro`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#B6A99F`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Fantastic_Beasts.jpg`,
+    description: `In an effort to thwart Grindelwald's plans of raising pure-blood wizards to rule over all non-magical beings, Albus Dumbledore enlists his former student Newt Scamander, who agrees to help, though he's unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.`,
+    director: `David Yates`,
+    genre: `Fantasy`,
+    id: 15,
+    isFavourite: false,
+    name: `Fantastic Beasts: The Crimes of Grindelwald`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Fantastic_Beasts.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 3.4,
+    released: 2018,
+    runtime: 134,
+    scoresCount: 160757,
+    starring: [
+      `Eddie Redmayne`,
+      `Katherine Waterston`,
+      `Dan Fogler`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#C6CADF`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Seven_Years_in_Tibet.jpg`,
+    description: `True story of Heinrich Harrer, an Austrian mountain climber who became friends with the Dalai Lama at the time of China's takeover of Tibet.`,
+    director: `Jean-Jacques Annaud`,
+    genre: `Adventure`,
+    id: 16,
+    isFavourite: false,
+    name: `Seven Years in Tibet`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Seven_Years_in_Tibet.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/seven-years-in-tibet.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 3.6,
+    released: 1997,
+    runtime: 136,
+    scoresCount: 112612,
+    starring: [
+      `Brad Pitt`,
+      `David Thewlis`,
+      `BD Wong`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#9B7E61`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/War_of_the_Worlds.jpg`,
+    description: `As Earth is invaded by alien tripod fighting machines, one family fights for survival.`,
+    director: `Steven Spielberg`,
+    genre: `Adventure`,
+    id: 17,
+    isFavourite: false,
+    name: `War of the Worlds`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/War_of_the_Worlds.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 9.3,
+    released: 2005,
+    runtime: 116,
+    scoresCount: 386834,
+    starring: [
+      `Tom Cruise`,
+      `Dakota Fanning`,
+      `Tim Robbins`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#977461`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Shutter_Island.jpg`,
+    description: `In 1954, a U.S. Marshal investigates the disappearance of a murderer, who escaped from a hospital for the criminally insane.`,
+    director: `Martin Scorsese`,
+    genre: `Thriller`,
+    id: 18,
+    isFavourite: false,
+    name: `Shutter Island`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Shutter_Island.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/shutter-island.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 4.1,
+    released: 2010,
+    runtime: 138,
+    scoresCount: 1002557,
+    starring: [
+      `Leonardo DiCaprio`,
+      `Emily Mortimer`,
+      `Mark Ruffalo`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#AD9F8B`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Dardjeeling_Limited.jpg`,
+    description: `A year after their father's funeral, three brothers travel across India by train in an attempt to bond with each other.`,
+    director: `Wes Anderson`,
+    genre: `Adventure`,
+    id: 19,
+    isFavourite: false,
+    name: `Dardjeeling Limited`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Dardjeeling_Limited.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/dardjeeling_limited.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 3.6,
+    released: 2007,
+    runtime: 91,
+    scoresCount: 165106,
+    starring: [
+      `Owen Wilson`,
+      `Adrien Brody`,
+      `Jason Schwartzman`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#E1DAD7`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/legend.jpg`,
+    description: `Identical twin gangsters Ronald and Reginald Kray terrorize London during the 1960s.`,
+    director: `Brian Helgeland`,
+    genre: `Crime`,
+    id: 20,
+    isFavourite: false,
+    name: `Legend`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Legend.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/legend.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 3.5,
+    released: 2015,
+    runtime: 132,
+    scoresCount: 138487,
+    starring: [
+      `Tom Hardy`,
+      `Emily Browning`,
+      `Taron Egerton`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#BDAD8F`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/No_Country_for_Old_Men.jpg`,
+    description: `Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.`,
+    director: `Ethan Coen`,
+    genre: `Crime`,
+    id: 21,
+    isFavourite: false,
+    name: `No Country for Old Men`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/No_Country_for_Old_Men.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/no-country-for-old-men.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 4.1,
+    released: 2007,
+    runtime: 122,
+    scoresCount: 764976,
+    starring: [
+      `Tommy Lee Jones`,
+      `Javier Bardem`,
+      `Josh Brolin`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#D8D3BD`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Orlando.jpg`,
+    description: `Young nobleman Orlando is commanded by Queen Elizabeth I to stay forever young. Miraculously, he does just that. The film follows him as he moves through several centuries of British history, experiencing a variety of lives and relationships along the way, and even changing sex.`,
+    director: `Sally Potter`,
+    genre: `Drama`,
+    id: 22,
+    isFavourite: false,
+    name: `Orlando`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Orlando.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/orlando.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 2.6,
+    released: 1992,
+    runtime: 94,
+    scoresCount: 12292,
+    starring: [
+      `Tilda Swinton`,
+      `Billy Zane`,
+      `Quentin Crisp`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
+  },
+  {
+    color: `#929FA5`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Bohemian_Rhapsody.jpg`,
+    description: `Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and their extraordinary lead singer Freddie Mercury. Freddie defied stereotypes and shattered convention to become one of the most beloved entertainers on the planet. The film traces the meteoric rise of the band through their iconic songs and revolutionary sound. They reach unparalleled success, but in an unexpected turn Freddie, surrounded by darker influences, shuns Queen in pursuit of his solo career. Having suffered greatly without the collaboration of Queen, Freddie manages to reunite with his bandmates just in time for Live Aid. While bravely facing a recent AIDS diagnosis, Freddie leads the band in one of the greatest performances in the history of rock music. Queen cements a legacy that continues to inspire outsiders, dreamers and music lovers to this day.`,
+    director: `Bryan Singer`,
+    genre: `Drama`,
+    id: 23,
+    isFavourite: false,
+    name: `Bohemian Rhapsody`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Bohemian_Rhapsody.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/bohemian_rhapsody.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 6.1,
+    released: 2018,
+    runtime: 134,
+    scoresCount: 338903,
+    starring: [
+      `Rami Malek`,
+      `Lucy Boynton`,
+      `Gwilym Lee`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#D6CDAF`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Aviator.jpg`,
+    description: `A biopic depicting the early years of legendary Director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.`,
+    director: `Martin Scorsese`,
+    genre: `Drama`,
+    id: 24,
+    isFavourite: false,
+    name: `Aviator`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Aviator.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/aviator.jpg`,
+    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: 9.8,
+    released: 2014,
+    runtime: 170,
+    scoresCount: 307174,
+    starring: [
+      `Leonardo DiCaprio`,
+      `Cate Blanchett`,
+      `Kate Beckinsale`
+    ],
+    video: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`
+  },
+  {
+    color: `#A39E81`,
+    backgroundImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/What-We-Do-in-the-Shadows.jpg`,
+    description: `A look into the daily (or rather, nightly) lives of three vampires who've lived together for over 100 years, in Staten Island.`,
+    director: `Jemaine Clement`,
+    genre: `Comedy`,
+    id: 25,
+    isFavourite: false,
+    name: `What We Do in the Shadows`,
+    poster: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/What-We-Do-in-the-Shadows.jpg`,
+    previewImg: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/what-we-do-in-the-shadows.jpg`,
+    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: 7.2,
+    released: 2019,
+    runtime: 30,
+    scoresCount: 6173,
+    starring: [
+      `Kayvan Novak`,
+      `Matt Berry`,
+      `Natasia Demetriou`
+    ],
+    video: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`
   }
-  return films;
-};
-
-export const films = createFilms();
+];

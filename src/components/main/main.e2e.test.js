@@ -3,35 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
-const PROMO_FILM = {
-  title: `The Grand Budapest Hotel`,
-  poster: `bg-the-grand-budapest-hotel.jpg`,
-  genre: `Drama`,
-  releaseDate: 2014
-};
-
-const films = [
-  {
-    id: `lKFDHkhaeud`,
-    background: `bg-the-grand-budapest-hotel.jpg`,
-    title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    genre: `Drama`,
-    releaseDate: 2020,
-    bigPoster: `the-grand-budapest-hotel-poster.jpg`,
-    poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    rating: 8.9,
-    level: `Very Good`,
-    totalRatings: 240,
-    director: `Wes Andreson`,
-    starring: [
-      `Bill Murray`,
-      `Edward Norton`,
-      `Jude Law`,
-      `Willem Dafoe`
-    ]
-  }
-];
+import {promoFilm, films} from "../../mocks/films.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -43,7 +15,7 @@ describe(`Main e2e tests`, () => {
 
     const main = shallow(
         <Main
-          PROMO_FILM = {PROMO_FILM}
+          promoFilm = {promoFilm}
           films = {films}
           onTitleClick={onTitleClickHandler}
           onPosterClick={() => {}}
@@ -66,7 +38,7 @@ describe(`Main e2e tests`, () => {
 
     const main = shallow(
         <Main
-          PROMO_FILM = {PROMO_FILM}
+          promoFilm = {promoFilm}
           films = {films}
           filters = {[`All genres`, `Drama`]}
           onTitleClick={() => {}}

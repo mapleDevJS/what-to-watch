@@ -1,14 +1,30 @@
-import {Action, loadFilms, loadPromoFilm, setActiveFilm, setFilteredFilms} from "../../actions.js";
+import {Action, loadFilms, loadPromoFilm, setActiveFilm} from "../../actions.js";
 import filmAdapter from "../../../components/adapters/film-adapter.js";
-import {FILTER} from "../../../consts.js";
-// import {getFilteredFilms} from "./selectors.js";
+
+const emptyFilm = {
+  color: ``,
+  backgroundImg: ``,
+  description: ``,
+  director: ``,
+  genre: ``,
+  id: 0,
+  isFavourite: false,
+  name: `Promo film is loading...`,
+  poster: ``,
+  previewImg: ``,
+  previewVideo: ``,
+  rating: 0,
+  released: 0,
+  runtime: 0,
+  scoresCount: 0,
+  starring: [],
+  video: ``,
+};
 
 const initialState = {
   films: [],
-  filteredFilms: null,
-  promoFilm: {},
-  activeFilm: {},
-  activeFilter: FILTER.ALL,
+  promoFilm: emptyFilm,
+  activeFilm: emptyFilm,
 };
 
 export const Operation = {
@@ -17,7 +33,6 @@ export const Operation = {
       .then((response) => {
         const films = response.data.map((film) => filmAdapter(film));
         dispatch(loadFilms(films));
-        dispatch(setFilteredFilms(films));
       });
   },
 
@@ -33,15 +48,6 @@ export const Operation = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case Action.CHANGE_FILTER:
-      const filter = action.payload;
-
-      return Object.assign({}, state, {
-        activeFilter: filter,
-        filteredFilms: action.payload,
-        shownFilms: 8
-      });
-
     case Action.LOAD_FILMS:
       return Object.assign({}, state, {
         films: action.payload,
@@ -55,11 +61,6 @@ export const reducer = (state = initialState, action) => {
     case Action.SET_ACTIVE_FILM:
       return Object.assign({}, state, {
         activeFilm: action.payload
-      });
-
-    case Action.SET_FILTERED_FILMS:
-      return Object.assign({}, state, {
-        filteredFilms: action.payload
       });
 
     default:

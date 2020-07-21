@@ -1,11 +1,13 @@
 
 import React from "react";
+
 import PropTypes from "prop-types";
+import {filmPropTypes} from "../../utils/proptypes.js";
 
 
 const FullScreenPlayer = (props) => {
   const {
-    title,
+    film,
     progress,
     duration,
     time,
@@ -70,7 +72,7 @@ const FullScreenPlayer = (props) => {
             }
           </button>
 
-          <div className="player__name">{title}</div>
+          <div className="player__name">{film.name}</div>
 
           <button
             type="button"
@@ -89,7 +91,8 @@ const FullScreenPlayer = (props) => {
 };
 
 FullScreenPlayer.propTypes = {
-  title: PropTypes.string.isRequired,
+  film: PropTypes.shape(filmPropTypes).isRequired,
+  // name: PropTypes.string.isRequired,
   onExitClick: PropTypes.func.isRequired,
   progress: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,

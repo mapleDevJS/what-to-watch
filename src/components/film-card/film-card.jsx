@@ -1,5 +1,8 @@
 import React, {PureComponent} from "react";
+
 import PropTypes from "prop-types";
+import {filmPropTypes} from "../../utils/proptypes.js";
+
 import VideoPlayer from "../video-player/video-player.jsx";
 
 class FilmCard extends PureComponent {
@@ -9,7 +12,6 @@ class FilmCard extends PureComponent {
 
   render() {
     const {film, onTitleClick, onPosterClick, isPlaying, setPlayingFilm} = this.props;
-    const title = film.title;
 
     return (
       <article
@@ -20,7 +22,7 @@ class FilmCard extends PureComponent {
       >
         <div className="small-movie-card__image">
           <VideoPlayer
-            isPlaying={isPlaying}
+            isPlaying = {isPlaying}
             film = {film}
             isMuted = {true}
           />
@@ -34,7 +36,7 @@ class FilmCard extends PureComponent {
             className="small-movie-card__link"
             href="movie-page.html"
           >
-            {title}
+            {film.name}
           </a>
         </h3>
       </article>
@@ -43,21 +45,7 @@ class FilmCard extends PureComponent {
 }
 
 FilmCard.propTypes = {
-  film: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    bigPoster: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    level: PropTypes.string.isRequired,
-    totalRatings: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.array.isRequired
-  }).isRequired,
+  film: PropTypes.shape(filmPropTypes).isRequired,
   onTitleClick: PropTypes.func.isRequired,
   onPosterClick: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,

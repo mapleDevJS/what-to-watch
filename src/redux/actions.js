@@ -7,6 +7,7 @@ export const Action = {
   LOAD_FILMS: `Load films`,
   SET_FILTERED_FILMS: `Set filtered films`,
   LOAD_PROMO_FILM: `Load promo film`,
+  SET_PROMO_FILM_LOADED: `Set promo film loaded`,
   SET_ACTIVE_FILM: `Set active film`,
   REQUIRED_AUTHORIZATION: `Required authorization`,
 };
@@ -47,6 +48,10 @@ export const loadFilms = (films) => ({
 export const loadPromoFilm = (film) => ({
   type: Action.LOAD_PROMO_FILM,
   payload: film,
+});
+
+export const setPromoFilmLoaded = () => ({
+  type: Action.SET_PROMO_FILM_LOADED,
 });
 
 export const setActiveFilm = (film) => ({
