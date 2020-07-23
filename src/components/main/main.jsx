@@ -1,5 +1,8 @@
 import React from "react";
+
 import PropTypes from "prop-types";
+import {filmPropTypes} from "../../utils/proptypes.js";
+
 import Filters from "../filters/filters.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import ShowMore from "../show-more/show-more.jsx";
@@ -7,7 +10,7 @@ import ShowMore from "../show-more/show-more.jsx";
 
 const Main = (props) => {
   const {
-    PROMO_FILM,
+    promoFilm,
     shownFilms,
     films,
     filters,
@@ -54,7 +57,7 @@ const Main = (props) => {
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={promoFilm.backgroundImg} alt={promoFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -79,18 +82,18 @@ const Main = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src="img\the-grand-budapest-hotel-poster.jpg"
-                alt={PROMO_FILM.title}
+                src={promoFilm.poster}
+                alt={promoFilm.name}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{PROMO_FILM.title}</h2>
+              <h2 className="movie-card__title">{promoFilm.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{PROMO_FILM.genre}</span>
-                <span className="movie-card__year">{PROMO_FILM.releaseDate}</span>
+                <span className="movie-card__genre">{promoFilm.genre}</span>
+                <span className="movie-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -161,30 +164,9 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  PROMO_FILM: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired
-  }),
+  promoFilm: PropTypes.shape(filmPropTypes),
   shownFilms: PropTypes.number.isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        background: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
-        bigPoster: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        level: PropTypes.string.isRequired,
-        totalRatings: PropTypes.number.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.array.isRequired
-      })
-  ).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
   onTitleClick: PropTypes.func.isRequired,
   onPosterClick: PropTypes.func.isRequired,
   activeFilter: PropTypes.string.isRequired,

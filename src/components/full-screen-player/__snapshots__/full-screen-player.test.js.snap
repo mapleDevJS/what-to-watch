@@ -67,7 +67,7 @@ exports[`Render FullScreenPlayer 1`] = `
       <div
         className="player__name"
       >
-        The Rock
+        Gangs of new york
       </div>
       <button
         className="player__full-screen"

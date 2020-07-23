@@ -1,21 +1,37 @@
 import React from "react";
+
 import PropTypes from "prop-types";
+import {filmPropTypes} from "../../utils/proptypes";
+
+const getLevel = (rating) => {
+  switch (true) {
+    case (rating < 3):
+      return `Bad`;
+    case (rating >= 3 && rating < 5):
+      return `Normal`;
+    case (rating >= 5 && rating < 8):
+      return `Good`;
+    case (rating >= 8 && rating < 10):
+      return `Very Good`;
+  }
+  return `Awesome`;
+};
 
 const FilmDetails = (props) => {
   const {film, onPlayClick} = props;
 
   const {
-    background,
-    title,
+    color,
+    name,
+    description,
     genre,
-    releaseDate,
+    released,
     poster,
-    bigPoster,
+    backgroundImg,
     rating,
-    level,
-    totalRatings,
     director,
-    starring
+    starring,
+    scoresCount
   } = film;
 
   return (
@@ -51,10 +67,10 @@ const FilmDetails = (props) => {
 
       </div>
 
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style = {{background: color}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={`img/${background}`} alt={title} />
+            <img src={backgroundImg} alt={name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -77,10 +93,10 @@ const FilmDetails = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{releaseDate}</span>
+                <span className="movie-card__year">{released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -109,7 +125,7 @@ const FilmDetails = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={`img/${bigPoster}`} alt={`${poster} poster`} width="218" height="327" />
+              <img src={poster} alt={`${poster} poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -130,19 +146,15 @@ const FilmDetails = (props) => {
               <div className="movie-rating">
                 <div className="movie-rating__score">{rating}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{level}</span>
-                  <span className="movie-rating__count">{`${totalRatings} ratings`}</span>
+                  <span className="movie-rating__level">{getLevel(rating)}</span>
+                  <span className="movie-rating__count">{`${scoresCount} ratings`}</span>
                 </p>
               </div>
 
               <div className="movie-card__text">
-                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.</p>
-
-                <p>Gustave prides himself on providing first-className service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
-
+                <p>{description}</p>
                 <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-                <p className="movie-card__starring"><strong>Starring: {starring} and other</strong></p>
+                <p className="movie-card__starring"><strong>Starring: {starring.map((star) => star).join(`, `)} and other</strong></p>
               </div>
             </div>
           </div>
@@ -211,21 +223,7 @@ const FilmDetails = (props) => {
 };
 
 FilmDetails.propTypes = {
-  film: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    bigPoster: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    level: PropTypes.string.isRequired,
-    totalRatings: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.array.isRequired
-  }).isRequired,
+  film: PropTypes.shape(filmPropTypes).isRequired,
   onPlayClick: PropTypes.func.isRequired
 };
 

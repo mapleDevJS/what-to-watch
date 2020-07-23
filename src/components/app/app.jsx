@@ -1,25 +1,28 @@
 import React from "react";
+
+import {connect} from "react-redux";
+import {changeView, filterFilms, renderFilms, playVideo, exitVideo, setActiveFilm} from "../../redux/actions.js";
+import {getFilms, getFilteredFilms, getPromoFilm, getActiveFilm} from "../../redux/reducers/data/selectors";
+import {getView, getActiveFilter, getShownFilms} from "../../redux/reducers/films/selectors";
+
 import PropTypes from "prop-types";
+import {filmPropTypes} from "../../utils/proptypes.js";
 
 import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
-
-import {connect} from "react-redux";
-import {changeView, filterFilms, renderFilms, playVideo, exitVideo} from "../../redux/actions.js";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withFullVideo from "../hocs/with-full-video/with-full-video.js";
+import {getUniqueGenres} from "../../utils/utils.js";
 
 export const View = {
-  LIST: `list`,
-  DETAILS: `details`,
-  VIDEO: `video`
+  LIST: `List`,
+  DETAILS: `Details`,
+  VIDEO: `Video`
 };
 
 const FullScreenPlayerWrapped = withFullVideo(FullScreenPlayer);
 
 const App = (props) => {
-  const {PROMO_FILM} = props;
-
   switch (props.view) {
     case View.DETAILS:
       return (
@@ -32,8 +35,7 @@ const App = (props) => {
     case View.VIDEO:
       return (
         <FullScreenPlayerWrapped
-          preview = {props.activeFilm.preview}
-          title = {props.activeFilm.title}
+          film = {props.activeFilm}
           onExitClick = {props.onExitClick}
         />
       );
@@ -41,13 +43,13 @@ const App = (props) => {
     default:
       return (
         <Main
-          PROMO_FILM = {PROMO_FILM}
-          shownFilms = {props.shownFilms}
           films = {props.filteredFilms}
+          promoFilm = {props.promoFilm}
+          shownFilms = {props.shownFilms}
           filters = {props.filters}
+          activeFilter = {props.activeFilter}
           onTitleClick = {props.onCardClick}
           onPosterClick = {props.onCardClick}
-          activeFilter = {props.activeFilter}
           onFilterChange = {props.onFilterChange}
           onShowMoreClick = {props.onShowMoreClick}
           onPlayClick = {props.onPlayClick}
@@ -56,48 +58,11 @@ const App = (props) => {
   }
 };
 
-
 App.propTypes = {
-  PROMO_FILM: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired
-  }),
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        background: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
-        bigPoster: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        level: PropTypes.string.isRequired,
-        totalRatings: PropTypes.number.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.array.isRequired
-      })
-  ).isRequired,
-  filteredFilms: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        background: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
-        bigPoster: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        level: PropTypes.string.isRequired,
-        totalRatings: PropTypes.number.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.array.isRequired
-      })
-  ).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
+  filteredFilms: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
+  promoFilm: PropTypes.shape(filmPropTypes),
+  activeFilm: PropTypes.shape(filmPropTypes),
   onCardClick: PropTypes.func.isRequired,
   activeFilter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
@@ -105,40 +70,29 @@ App.propTypes = {
   onPlayClick: PropTypes.func.isRequired,
   onExitClick: PropTypes.func.isRequired,
   view: PropTypes.string.isRequired,
-  activeFilm: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    bigPoster: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    level: PropTypes.string.isRequired,
-    totalRatings: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.array.isRequired
-  }),
   shownFilms: PropTypes.number.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    view: state.view,
-    activeFilm: state.activeFilm,
-    activeFilter: state.activeFilter,
-    films: state.films,
-    filteredFilms: state.filteredFilms,
-    shownFilms: state.shownFilms,
-    filters: state.filters
+    view: getView(state),
+    films: getFilms(state),
+    filteredFilms: getFilteredFilms(state),
+    promoFilm: getPromoFilm(state),
+    activeFilm: getActiveFilm(state),
+    filters: getUniqueGenres(getFilms(state)),
+    activeFilter: getActiveFilter(state),
+    shownFilms: getShownFilms(state)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCardClick: (film) => dispatch(changeView(film)),
+    onCardClick: (film) => {
+      dispatch(changeView(film));
+      dispatch(setActiveFilm(film));
+    },
     onFilterChange: (filter) => dispatch(filterFilms(filter)),
     onShowMoreClick: () => dispatch(renderFilms()),
     onPlayClick: () => dispatch(playVideo()),

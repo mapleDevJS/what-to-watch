@@ -4,6 +4,6 @@ exports[`VideoPlayer is rendered correctly 1`] = `
 <video
   className="player__video"
   muted={true}
-  poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+  poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
 />
 `;
