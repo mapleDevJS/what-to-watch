@@ -9,6 +9,7 @@ it(`Should Main render correctly`, () => {
   const tree = renderer
     .create(
         <Main
+          authorizationStatus = {`No auth`}
           promoFilm = {promoFilm}
           films = {films}
           onTitleClick = {() => {}}
@@ -19,6 +20,7 @@ it(`Should Main render correctly`, () => {
           shownFilms = {8}
           filters = {[`All genres`, `Drama`]}
           onPlayClick = {() => {}}
+          onSignInClick = {() => {}}
         />, {
           createNodeMock: () => {
             return {};

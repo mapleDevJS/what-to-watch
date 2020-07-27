@@ -1,23 +1,29 @@
 import React from "react";
 
 import {connect} from "react-redux";
-import {changeView, filterFilms, renderFilms, playVideo, exitVideo, setActiveFilm} from "../../redux/actions.js";
+import {changeView, filterFilms, renderFilms, playVideo, exitVideo, setActiveFilm, changeViewToSignIn} from "../../redux/actions.js";
 import {getFilms, getFilteredFilms, getPromoFilm, getActiveFilm} from "../../redux/reducers/data/selectors";
 import {getView, getActiveFilter, getShownFilms} from "../../redux/reducers/films/selectors";
+import {getAuthorizationStatus, getAuthorizationError} from "../../redux/reducers/user/selectors";
+
+import {Operation as UserOperation} from "../../redux/reducers/user/user.js";
 
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
 import Main from "../main/main.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
+import SignIn from "../sign-in/sign-in.jsx";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withFullVideo from "../hocs/with-full-video/with-full-video.js";
+
 import {getUniqueGenres} from "../../utils/utils.js";
 
 export const View = {
   LIST: `List`,
   DETAILS: `Details`,
-  VIDEO: `Video`
+  VIDEO: `Video`,
+  SIGN_IN: `Sign in`
 };
 
 const FullScreenPlayerWrapped = withFullVideo(FullScreenPlayer);
@@ -40,9 +46,19 @@ const App = (props) => {
         />
       );
 
+    case View.SIGN_IN:
+      return (
+        <SignIn
+          authorizationError = {props.authorizationError}
+          onSubmit={props.login}
+        />
+      );
+
     default:
       return (
         <Main
+          authorizationStatus = {props.authorizationStatus}
+          login = {props.login}
           films = {props.filteredFilms}
           promoFilm = {props.promoFilm}
           shownFilms = {props.shownFilms}
@@ -53,6 +69,7 @@ const App = (props) => {
           onFilterChange = {props.onFilterChange}
           onShowMoreClick = {props.onShowMoreClick}
           onPlayClick = {props.onPlayClick}
+          onSignInClick = {props.onSignInClick}
         />
       );
   }
@@ -71,7 +88,11 @@ App.propTypes = {
   onExitClick: PropTypes.func.isRequired,
   view: PropTypes.string.isRequired,
   shownFilms: PropTypes.number.isRequired,
-  filters: PropTypes.arrayOf(PropTypes.string).isRequired
+  filters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  authorizationError: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -83,7 +104,9 @@ const mapStateToProps = (state) => {
     activeFilm: getActiveFilm(state),
     filters: getUniqueGenres(getFilms(state)),
     activeFilter: getActiveFilter(state),
-    shownFilms: getShownFilms(state)
+    shownFilms: getShownFilms(state),
+    authorizationStatus: getAuthorizationStatus(state),
+    authorizationError: getAuthorizationError(state)
   };
 };
 
@@ -96,7 +119,9 @@ const mapDispatchToProps = (dispatch) => {
     onFilterChange: (filter) => dispatch(filterFilms(filter)),
     onShowMoreClick: () => dispatch(renderFilms()),
     onPlayClick: () => dispatch(playVideo()),
-    onExitClick: () => dispatch(exitVideo())
+    onExitClick: () => dispatch(exitVideo()),
+    onSignInClick: () => dispatch(changeViewToSignIn()),
+    login: (authData) => dispatch(UserOperation.login(authData))
   };
 };
 

@@ -27,6 +27,11 @@ const reducer = (state = initialState, action) => {
         activeFilm: action.payload
       });
 
+    case Action.CHANGE_VIEW_TO_SIGN_IN:
+      return Object.assign({}, state, {
+        view: View.SIGN_IN,
+      });
+
     case Action.RENDER_FILMS:
       return Object.assign({}, state, {
         shownFilms: state.shownFilms + 8

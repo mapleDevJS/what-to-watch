@@ -3,13 +3,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
+import Logo from "../logo/logo.jsx";
 import Filters from "../filters/filters.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import ShowMore from "../show-more/show-more.jsx";
+import Footer from "../footer/footer.jsx";
 
+import {AuthorizationStatus} from "../../redux/reducers/user/user.js";
 
 const Main = (props) => {
   const {
+    authorizationStatus,
     promoFilm,
     shownFilms,
     films,
@@ -19,7 +23,8 @@ const Main = (props) => {
     activeFilter,
     onFilterChange,
     onShowMoreClick,
-    onPlayClick
+    onPlayClick,
+    onSignInClick
   } = props;
 
   return (
@@ -65,16 +70,23 @@ const Main = (props) => {
         <header className="page-header movie-card__head">
           <div className="logo">
             <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
+              <Logo />
             </a>
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            {authorizationStatus === AuthorizationStatus.AUTH ?
+              <div className="user-block__avatar">
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </div> :
+              <a
+                onClick={onSignInClick}
+                className="user-block__link"
+                style={{cursor: `pointer`}}
+              >
+                Sign in
+              </a>
+            }
           </div>
         </header>
 
@@ -145,25 +157,14 @@ const Main = (props) => {
 
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </React.Fragment>
   );
 };
 
 Main.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   promoFilm: PropTypes.shape(filmPropTypes),
   shownFilms: PropTypes.number.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
@@ -173,6 +174,7 @@ Main.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 

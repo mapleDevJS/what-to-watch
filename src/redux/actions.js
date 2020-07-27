@@ -10,6 +10,9 @@ export const Action = {
   SET_PROMO_FILM_LOADED: `Set promo film loaded`,
   SET_ACTIVE_FILM: `Set active film`,
   REQUIRED_AUTHORIZATION: `Required authorization`,
+  ERROR_AUTHORIZATION: `Error authorization `,
+  SET_USER_DATA: `Set user data`,
+  CHANGE_VIEW_TO_SIGN_IN: `Change view to sign in`
 };
 
 export const changeView = (film) => {
@@ -69,3 +72,16 @@ export const requireAuthorization = (status) => ({
   payload: status,
 });
 
+export const errorAuthorization = (code) => ({
+  type: Action.ERROR_AUTHORIZATION,
+  payload: code,
+});
+
+export const setUserData = (userData) => ({
+  type: Action.SET_USER_DATA,
+  payload: userData,
+});
+
+export const changeViewToSignIn = () => ({
+  type: Action.CHANGE_VIEW_TO_SIGN_IN,
+});

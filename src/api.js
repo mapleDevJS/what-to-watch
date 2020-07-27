@@ -1,12 +1,16 @@
 import axios from "axios";
 
 const Error = {
+  SUCCESS: 200,
+  BAD_REQUEST: 400,
   UNAUTHORIZED: 401
 };
 
+const URL = `https://4.react.pages.academy/wtw`;
+
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
-    baseURL: `https://4.react.pages.academy/wtw`,
+    baseURL: URL,
     timeout: 5000,
     withCredentials: true,
   });
