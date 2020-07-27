@@ -15,6 +15,7 @@ describe(`Main e2e tests`, () => {
 
     const main = shallow(
         <Main
+          authorizationStatus = {`No auth`}
           promoFilm = {promoFilm}
           films = {films}
           onTitleClick={onTitleClickHandler}
@@ -25,6 +26,7 @@ describe(`Main e2e tests`, () => {
           shownFilms = {8}
           filters = {[`All genres`, `Drama`]}
           onPlayClick = {() => {}}
+          onSignInClick = {() => {}}
         />
     );
 
@@ -38,6 +40,7 @@ describe(`Main e2e tests`, () => {
 
     const main = shallow(
         <Main
+          authorizationStatus = {`No auth`}
           promoFilm = {promoFilm}
           films = {films}
           filters = {[`All genres`, `Drama`]}
@@ -48,6 +51,7 @@ describe(`Main e2e tests`, () => {
           onShowMoreClick = {() => {}}
           shownFilms = {8}
           onPlayClick = {() => {}}
+          onSignInClick = {() => {}}
         />
     );
 

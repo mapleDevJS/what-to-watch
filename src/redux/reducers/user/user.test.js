@@ -1,10 +1,35 @@
-import {reducer, AuthorizationStatus} from "./user.js";
+import MockAdapter from 'axios-mock-adapter';
+import {createAPI} from '../../../api.js';
+
+import {reducer, AuthorizationStatus, Operation} from "./user.js";
 import {Action, requireAuthorization} from "../../actions.js";
 
+const api = createAPI(() => {});
+
+describe(`Operaions User`, () => {
+  it(`Should return checkAuth NO_AUTH`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const userCheckAuth = Operation.checkAuth();
+
+    apiMock
+      .onGet(`/login`)
+      .reply(200, [{fake: true}]);
+
+    return userCheckAuth(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledWith({
+          type: Action.REQUIRED_AUTHORIZATION,
+          payload: `Auth`,
+        });
+      });
+  });
+});
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    authorizationError: false,
   });
 });
 
@@ -26,23 +51,16 @@ it(`Reducer should change authorizationStatus by a given value`, () => {
   })).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
   });
+});
 
+it(`Return authorizationError after change`, () => {
   expect(reducer({
-    authorizationStatus: AuthorizationStatus.AUTH,
+    authorizationError: false,
   }, {
-    type: Action.REQUIRED_AUTHORIZATION,
-    payload: AuthorizationStatus.AUTH,
+    type: Action.ERROR_AUTHORIZATION,
+    payload: true,
   })).toEqual({
-    authorizationStatus: AuthorizationStatus.AUTH,
-  });
-
-  expect(reducer({
-    authorizationStatus: AuthorizationStatus.NO_AUTH,
-  }, {
-    type: Action.REQUIRED_AUTHORIZATION,
-    payload: AuthorizationStatus.NO_AUTH,
-  })).toEqual({
-    authorizationStatus: AuthorizationStatus.NO_AUTH,
+    authorizationError: true,
   });
 });
 

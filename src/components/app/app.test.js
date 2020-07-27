@@ -22,7 +22,8 @@ it(`Render App`, () => {
       activeFilter: `All genres`,
     },
     [NameSpace.USER]: {
-      authorizationStatus: `NO_AUTH`
+      authorizationStatus: `No auth`,
+      authorizationError: false
     },
   });
 

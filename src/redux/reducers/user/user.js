@@ -7,6 +7,7 @@ export const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationError: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,9 +16,15 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
       });
-  }
 
-  return state;
+    case Action.ERROR_AUTHORIZATION:
+      return Object.assign({}, state, {
+        authorizationError: action.payload,
+      });
+
+    default:
+      return state;
+  }
 };
 
 const Operation = {
@@ -36,9 +43,12 @@ const Operation = {
       email: authData.login,
       password: authData.password,
     })
-      .then(() => {
-        dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-      });
+    .then(() => {
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    })
+    .catch((err) => {
+      throw err;
+    });
   },
 };
 
