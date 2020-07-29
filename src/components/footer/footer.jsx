@@ -1,14 +1,18 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 import Logo from "../logo/logo.jsx";
+import {AppRoute} from "../../consts.js";
 
 const Footer = () => {
   return (
     <footer className="page-footer">
       <div className="logo">
-        <a href="main.html" className="logo__link logo__link--light">
+        <Link
+          to={AppRoute.ROOT}
+          className="logo__link logo__link--light">
           <Logo />
-        </a>
+        </Link>
       </div>
 
       <div className="copyright">

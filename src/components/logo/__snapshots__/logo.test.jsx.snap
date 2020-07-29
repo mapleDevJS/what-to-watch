@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should header render correctly 1`] = `
+exports[`Should "Logo" render correctly 1`] = `
 Array [
   <span
     className="logo__letter logo__letter--1"

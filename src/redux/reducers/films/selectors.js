@@ -16,6 +16,6 @@ export const getShownFilms = (state) => {
   return state[NameSpace.FILMS].shownFilms;
 };
 
-export const getView = (state) => {
-  return state[NameSpace.FILMS].view;
-};
+// export const getView = (state) => {
+//   return state[NameSpace.FILMS].view;
+// };

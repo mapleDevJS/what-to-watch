@@ -26,7 +26,8 @@ class FilmsList extends PureComponent {
               film = {film}
               onTitleClick = {onTitleClick}
               onPosterClick = {onPosterClick}
-            />);
+            />
+          );
         })}
       </div>
     );

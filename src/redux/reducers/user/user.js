@@ -1,4 +1,6 @@
 import {Action, requireAuthorization} from "../../actions.js";
+import {AppRoute} from "../../../consts.js";
+import history from "../../../history.js";
 
 export const AuthorizationStatus = {
   AUTH: `Auth`,
@@ -34,6 +36,7 @@ const Operation = {
         dispatch(requireAuthorization(AuthorizationStatus.AUTH));
       })
       .catch((err) => {
+        history.push(AppRoute.LOGIN);
         throw err;
       });
   },
@@ -45,6 +48,7 @@ const Operation = {
     })
     .then(() => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      history.push(AppRoute.ROOT);
     })
     .catch((err) => {
       throw err;

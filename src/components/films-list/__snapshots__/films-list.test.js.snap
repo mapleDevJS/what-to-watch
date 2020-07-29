@@ -6,25 +6,29 @@ exports[`Render FilmsList 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Gangs of new york
@@ -33,25 +37,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Moonrise Kingdom
@@ -60,25 +68,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Pulp Fiction
@@ -87,25 +99,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/bronson.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/bronson.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Bronson
@@ -114,25 +130,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/midnight-special.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/midnight-special.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Midnight Special
@@ -141,25 +161,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/matrix.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/matrix.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Matrix
@@ -168,25 +192,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Once Upon a Time in America
@@ -195,25 +223,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/johnny-english.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/johnny-english.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Johnny English
@@ -222,25 +254,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/revenant.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/revenant.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         The Revenant
@@ -249,25 +285,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/we-need-to-talk-about-kevin.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/we-need-to-talk-about-kevin.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         We need to talk about Kevin
@@ -276,25 +316,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/A_Star_Is_Born.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/A_Star_Is_Born.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         A Star Is Born
@@ -303,25 +347,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/macbeth.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/macbeth.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Macbeth
@@ -330,25 +378,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/beach.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/beach.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Beach
@@ -357,25 +409,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Snatch
@@ -384,25 +440,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Fantastic Beasts: The Crimes of Grindelwald
@@ -411,25 +471,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/seven-years-in-tibet.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/seven-years-in-tibet.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Seven Years in Tibet
@@ -438,25 +502,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         War of the Worlds
@@ -465,25 +533,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/shutter-island.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/shutter-island.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Shutter Island
@@ -492,25 +564,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/dardjeeling_limited.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/dardjeeling_limited.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Dardjeeling Limited
@@ -519,25 +595,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/legend.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/legend.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Legend
@@ -546,25 +626,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/no-country-for-old-men.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/no-country-for-old-men.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         No Country for Old Men
@@ -573,25 +657,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/orlando.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/orlando.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Orlando
@@ -600,25 +688,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/bohemian_rhapsody.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/bohemian_rhapsody.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Bohemian Rhapsody
@@ -627,25 +719,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/aviator.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/aviator.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         Aviator
@@ -654,25 +750,29 @@ exports[`Render FilmsList 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/film"
+      onClick={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/what-we-do-in-the-shadows.jpg"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/what-we-do-in-the-shadows.jpg"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/film"
         onClick={[Function]}
       >
         What We Do in the Shadows

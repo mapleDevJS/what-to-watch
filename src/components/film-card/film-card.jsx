@@ -1,9 +1,12 @@
 import React, {PureComponent} from "react";
+import {Link} from "react-router-dom";
 
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
 import VideoPlayer from "../video-player/video-player.jsx";
+
+import {AppRoute} from "../../consts.js";
 
 class FilmCard extends PureComponent {
   constructor(props) {
@@ -16,28 +19,33 @@ class FilmCard extends PureComponent {
     return (
       <article
         className="small-movie-card catalog__movies-card"
-        onClick={() => onPosterClick(film)}
         onMouseEnter = {() => setPlayingFilm(true)}
         onMouseLeave = {() => setPlayingFilm(false)}
       >
-        <div className="small-movie-card__image">
-          <VideoPlayer
-            isPlaying = {isPlaying}
-            film = {film}
-            isMuted = {true}
-          />
-        </div>
+        <Link
+          to={AppRoute.FILM}
+          onClick={() => onPosterClick(film)}
+        >
+          <div className="small-movie-card__image">
+            <VideoPlayer
+              isPlaying = {isPlaying}
+              film = {film}
+              isMuted = {true}
+            />
+          </div>
+        </Link>
+
         <h3 className="small-movie-card__title">
-          <a
+          <Link
+            to={AppRoute.FILM}
             onClick = {(evt) => {
               evt.preventDefault();
               onTitleClick(film);
             }}
             className="small-movie-card__link"
-            href="movie-page.html"
           >
             {film.name}
-          </a>
+          </Link>
         </h3>
       </article>
     );
