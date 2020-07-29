@@ -22,61 +22,9 @@ import {getUniqueGenres} from "../../utils/utils.js";
 import history from "../../history.js";
 import {AppRoute} from "../../consts.js";
 
-// export const View = {
-//   LIST: `List`,
-//   DETAILS: `Details`,
-//   VIDEO: `Video`,
-//   SIGN_IN: `Sign in`
-// };
-
 const FullScreenPlayerWrapped = withFullVideo(FullScreenPlayer);
 
 const App = (props) => {
-  // switch (props.view) {
-  //   case View.DETAILS:
-  //     return (
-  //       <FilmDetails
-  //         film = {props.activeFilm}
-  //         onPlayClick = {props.onPlayClick}
-  //       />
-  //     );
-
-  //   case View.VIDEO:
-  //     return (
-  //       <FullScreenPlayerWrapped
-  //         film = {props.activeFilm}
-  //         onExitClick = {props.onExitClick}
-  //       />
-  //     );
-
-  //   case View.SIGN_IN:
-  //     return (
-  // <SignIn
-  //   authorizationError = {props.authorizationError}
-  //   onSubmit={props.login}
-  // />
-  //     );
-
-  //   default:
-  //     return (
-  //       <Main
-  //         authorizationStatus = {props.authorizationStatus}
-  //         login = {props.login}
-  //         films = {props.filteredFilms}
-  //         promoFilm = {props.promoFilm}
-  //         shownFilms = {props.shownFilms}
-  //         filters = {props.filters}
-  //         activeFilter = {props.activeFilter}
-  //         onTitleClick = {props.onCardClick}
-  //         onPosterClick = {props.onCardClick}
-  //         onFilterChange = {props.onFilterChange}
-  //         onShowMoreClick = {props.onShowMoreClick}
-  //         onPlayClick = {props.onPlayClick}
-  //         onSignInClick = {props.onSignInClick}
-  //       />
-  //     );
-  // }
-
   return (
     <Router history={history}>
       <Switch>
@@ -93,20 +41,16 @@ const App = (props) => {
             onPosterClick = {props.onCardClick}
             onFilterChange = {props.onFilterChange}
             onShowMoreClick = {props.onShowMoreClick}
-            // onPlayClick = {props.onPlayClick}
-            // onSignInClick = {props.onSignInClick}
           />
         </Route>
         <Route exact path={AppRoute.FILM}>
           <FilmDetails
             film = {props.activeFilm}
-            // onPlayClick = {props.onPlayClick}
           />
         </Route>
         <Route exact path={AppRoute.PLAYER}>
           <FullScreenPlayerWrapped
             film = {props.activeFilm}
-            // onExitClick = {props.onExitClick}
           />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
@@ -129,20 +73,15 @@ App.propTypes = {
   activeFilter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
-  // onPlayClick: PropTypes.func.isRequired,
-  // onExitClick: PropTypes.func.isRequired,
-  // view: PropTypes.string.isRequired,
   shownFilms: PropTypes.number.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   authorizationError: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
-  // onSignInClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    // view: getView(state),
     films: getFilms(state),
     filteredFilms: getFilteredFilms(state),
     promoFilm: getPromoFilm(state),
@@ -159,13 +98,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onCardClick: (film) => {
       dispatch(setActiveFilm(film));
-      // history.push(AppRoute.FILM);
     },
     onFilterChange: (filter) => dispatch(filterFilms(filter)),
     onShowMoreClick: () => dispatch(renderFilms()),
-    // onPlayClick: () => dispatch(playVideo()),
-    // onExitClick: () => dispatch(exitVideo()),
-    // onSignInClick: () => dispatch(history.push(AppRoute.LOGIN)),
     login: (authData) => dispatch(UserOperation.login(authData))
   };
 };

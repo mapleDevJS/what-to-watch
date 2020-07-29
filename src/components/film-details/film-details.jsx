@@ -82,7 +82,6 @@ const FilmDetails = (props) => {
                   to={AppRoute.PLAYER}
                   className="btn btn--play movie-card__button"
                   type="button"
-                  // onClick = {onPlayClick}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -191,7 +190,6 @@ const FilmDetails = (props) => {
 
 FilmDetails.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
-  // onPlayClick: PropTypes.func.isRequired
 };
 
 export default FilmDetails;

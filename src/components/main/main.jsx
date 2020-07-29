@@ -26,8 +26,6 @@ const Main = (props) => {
     activeFilter,
     onFilterChange,
     onShowMoreClick,
-    // onPlayClick,
-    // onSignInClick
   } = props;
 
   return (
@@ -90,7 +88,6 @@ const Main = (props) => {
                   to={AppRoute.PLAYER}
                   className="btn btn--play movie-card__button"
                   type="button"
-                  // onClick = {onPlayClick}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -151,8 +148,6 @@ Main.propTypes = {
   activeFilter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
-  // onPlayClick: PropTypes.func.isRequired,
-  // onSignInClick: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
