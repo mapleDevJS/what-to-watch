@@ -38,10 +38,7 @@ class FilmCard extends PureComponent {
         <h3 className="small-movie-card__title">
           <Link
             to={AppRoute.FILM}
-            onClick = {(evt) => {
-              evt.preventDefault();
-              onTitleClick(film);
-            }}
+            onClick = {() => onTitleClick(film)}
             className="small-movie-card__link"
           >
             {film.name}
