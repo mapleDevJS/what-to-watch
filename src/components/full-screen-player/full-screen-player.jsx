@@ -1,8 +1,11 @@
 
 import React from "react";
+import {Link} from "react-router-dom";
 
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
+
+import {AppRoute} from "../../consts.js";
 
 
 const FullScreenPlayer = (props) => {
@@ -11,7 +14,6 @@ const FullScreenPlayer = (props) => {
     progress,
     duration,
     time,
-    onExitClick,
     playbackToggle,
     isPlaying,
     onFullScreenClick,
@@ -22,13 +24,13 @@ const FullScreenPlayer = (props) => {
   return (
     <div className="player">
       {children}
-      <button
+      <Link
+        to={AppRoute.FILM}
         type="button"
         className="player__exit"
-        onClick = {onExitClick}
       >
         Exit
-      </button>
+      </Link>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -92,7 +94,6 @@ const FullScreenPlayer = (props) => {
 
 FullScreenPlayer.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
-  // name: PropTypes.string.isRequired,
   onExitClick: PropTypes.func.isRequired,
   progress: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,

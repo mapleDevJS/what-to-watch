@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Logo from "./logo.jsx";
+import Svg from "./svg.jsx";
 
-it(`Should "Logo" render correctly`, () => {
+it(`Should "Svg" render correctly`, () => {
   const tree = renderer
     .create(
-        <Logo />, {
+        <Svg />, {
           createNodeMock: () => {
             return {};
           }

@@ -1,23 +1,29 @@
 import React from "react";
+import {Router} from "react-router-dom";
+
 import renderer from "react-test-renderer";
 import FullScreenPlayer from "./full-screen-player.jsx";
+import history from "../../history.js";
 
 import {film} from "../../mocks/films.js";
 
 it(`Render FullScreenPlayer`, () => {
   const tree = renderer
     .create(
-        <FullScreenPlayer
-          film = {film}
-          progress={0}
-          duration={0}
-          isPlaying={false}
-          time={``}
-          playbackToggle={() => {}}
-          onFullScreenClick={() => {}}
-          onExitClick={() => {}}>
-          <video/>
-        </FullScreenPlayer>).toJSON();
+        <Router history={history}>
+          <FullScreenPlayer
+            film = {film}
+            progress={0}
+            duration={0}
+            isPlaying={false}
+            time={``}
+            playbackToggle={() => {}}
+            onFullScreenClick={() => {}}
+            onExitClick={() => {}}>
+            <video/>
+          </FullScreenPlayer>
+        </Router>
+    ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

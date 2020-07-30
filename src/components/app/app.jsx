@@ -1,9 +1,10 @@
 import React from "react";
+import {Switch, Route, Router} from "react-router-dom";
 
 import {connect} from "react-redux";
-import {changeView, filterFilms, renderFilms, playVideo, exitVideo, setActiveFilm, changeViewToSignIn} from "../../redux/actions.js";
+import {filterFilms, renderFilms, setActiveFilm} from "../../redux/actions.js";
 import {getFilms, getFilteredFilms, getPromoFilm, getActiveFilm} from "../../redux/reducers/data/selectors";
-import {getView, getActiveFilter, getShownFilms} from "../../redux/reducers/films/selectors";
+import {getActiveFilter, getShownFilms} from "../../redux/reducers/films/selectors";
 import {getAuthorizationStatus, getAuthorizationError} from "../../redux/reducers/user/selectors";
 
 import {Operation as UserOperation} from "../../redux/reducers/user/user.js";
@@ -18,61 +19,49 @@ import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withFullVideo from "../hocs/with-full-video/with-full-video.js";
 
 import {getUniqueGenres} from "../../utils/utils.js";
-
-export const View = {
-  LIST: `List`,
-  DETAILS: `Details`,
-  VIDEO: `Video`,
-  SIGN_IN: `Sign in`
-};
+import history from "../../history.js";
+import {AppRoute} from "../../consts.js";
 
 const FullScreenPlayerWrapped = withFullVideo(FullScreenPlayer);
 
 const App = (props) => {
-  switch (props.view) {
-    case View.DETAILS:
-      return (
-        <FilmDetails
-          film = {props.activeFilm}
-          onPlayClick = {props.onPlayClick}
-        />
-      );
-
-    case View.VIDEO:
-      return (
-        <FullScreenPlayerWrapped
-          film = {props.activeFilm}
-          onExitClick = {props.onExitClick}
-        />
-      );
-
-    case View.SIGN_IN:
-      return (
-        <SignIn
-          authorizationError = {props.authorizationError}
-          onSubmit={props.login}
-        />
-      );
-
-    default:
-      return (
-        <Main
-          authorizationStatus = {props.authorizationStatus}
-          login = {props.login}
-          films = {props.filteredFilms}
-          promoFilm = {props.promoFilm}
-          shownFilms = {props.shownFilms}
-          filters = {props.filters}
-          activeFilter = {props.activeFilter}
-          onTitleClick = {props.onCardClick}
-          onPosterClick = {props.onCardClick}
-          onFilterChange = {props.onFilterChange}
-          onShowMoreClick = {props.onShowMoreClick}
-          onPlayClick = {props.onPlayClick}
-          onSignInClick = {props.onSignInClick}
-        />
-      );
-  }
+  return (
+    <Router history={history}>
+      <Switch>
+        <Route exact path={AppRoute.ROOT}>
+          <Main
+            authorizationStatus = {props.authorizationStatus}
+            login = {props.login}
+            films = {props.filteredFilms}
+            promoFilm = {props.promoFilm}
+            shownFilms = {props.shownFilms}
+            filters = {props.filters}
+            activeFilter = {props.activeFilter}
+            onTitleClick = {props.onCardClick}
+            onPosterClick = {props.onCardClick}
+            onFilterChange = {props.onFilterChange}
+            onShowMoreClick = {props.onShowMoreClick}
+          />
+        </Route>
+        <Route exact path={AppRoute.FILM}>
+          <FilmDetails
+            film = {props.activeFilm}
+          />
+        </Route>
+        <Route exact path={AppRoute.PLAYER}>
+          <FullScreenPlayerWrapped
+            film = {props.activeFilm}
+          />
+        </Route>
+        <Route exact path={AppRoute.LOGIN}>
+          <SignIn
+            authorizationError = {props.authorizationError}
+            onSubmit={props.login}
+          />
+        </Route>
+      </Switch>
+    </Router>
+  );
 };
 
 App.propTypes = {
@@ -84,20 +73,15 @@ App.propTypes = {
   activeFilter: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
-  onPlayClick: PropTypes.func.isRequired,
-  onExitClick: PropTypes.func.isRequired,
-  view: PropTypes.string.isRequired,
   shownFilms: PropTypes.number.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   authorizationError: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
-  onSignInClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    view: getView(state),
     films: getFilms(state),
     filteredFilms: getFilteredFilms(state),
     promoFilm: getPromoFilm(state),
@@ -113,14 +97,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onCardClick: (film) => {
-      dispatch(changeView(film));
       dispatch(setActiveFilm(film));
     },
     onFilterChange: (filter) => dispatch(filterFilms(filter)),
     onShowMoreClick: () => dispatch(renderFilms()),
-    onPlayClick: () => dispatch(playVideo()),
-    onExitClick: () => dispatch(exitVideo()),
-    onSignInClick: () => dispatch(changeViewToSignIn()),
     login: (authData) => dispatch(UserOperation.login(authData))
   };
 };

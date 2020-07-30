@@ -120,6 +120,8 @@ Array [
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -143,10 +145,13 @@ Array [
       >
         <a
           className="user-block__link"
+          href="/login"
           onClick={[Function]}
           style={
             Object {
+              "color": "inherit",
               "cursor": "pointer",
+              "textDecoration": "none",
             }
           }
         >
@@ -195,8 +200,9 @@ Array [
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href="/player"
               onClick={[Function]}
               type="button"
             >
@@ -212,7 +218,7 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
               type="button"
@@ -336,25 +342,29 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/film"
+            onClick={[Function]}
           >
-            <video
-              className="player__video"
-              muted={true}
-              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                className="player__video"
+                muted={true}
+                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/film"
               onClick={[Function]}
             >
               Gangs of new york
@@ -363,25 +373,29 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/film"
+            onClick={[Function]}
           >
-            <video
-              className="player__video"
-              muted={true}
-              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                className="player__video"
+                muted={true}
+                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/film"
               onClick={[Function]}
             >
               Moonrise Kingdom
@@ -390,25 +404,29 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/film"
+            onClick={[Function]}
           >
-            <video
-              className="player__video"
-              muted={true}
-              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                className="player__video"
+                muted={true}
+                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/film"
               onClick={[Function]}
             >
               Pulp Fiction
@@ -417,25 +435,29 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/film"
+            onClick={[Function]}
           >
-            <video
-              className="player__video"
-              muted={true}
-              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/bronson.jpg"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                className="player__video"
+                muted={true}
+                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/bronson.jpg"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/film"
               onClick={[Function]}
             >
               Bronson
@@ -444,25 +466,29 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/film"
+            onClick={[Function]}
           >
-            <video
-              className="player__video"
-              muted={true}
-              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/midnight-special.jpg"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                className="player__video"
+                muted={true}
+                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/midnight-special.jpg"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/film"
               onClick={[Function]}
             >
               Midnight Special
@@ -471,25 +497,29 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/film"
+            onClick={[Function]}
           >
-            <video
-              className="player__video"
-              muted={true}
-              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/matrix.jpg"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                className="player__video"
+                muted={true}
+                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/matrix.jpg"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/film"
               onClick={[Function]}
             >
               Matrix
@@ -498,25 +528,29 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/film"
+            onClick={[Function]}
           >
-            <video
-              className="player__video"
-              muted={true}
-              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                className="player__video"
+                muted={true}
+                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/film"
               onClick={[Function]}
             >
               Once Upon a Time in America
@@ -525,25 +559,29 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/film"
+            onClick={[Function]}
           >
-            <video
-              className="player__video"
-              muted={true}
-              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/johnny-english.jpg"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                className="player__video"
+                muted={true}
+                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/johnny-english.jpg"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/film"
               onClick={[Function]}
             >
               Johnny English
@@ -571,7 +609,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

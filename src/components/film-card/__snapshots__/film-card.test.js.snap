@@ -3,25 +3,29 @@
 exports[`Render FilmCard 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  <div
-    className="small-movie-card__image"
+  <a
+    href="/film"
+    onClick={[Function]}
   >
-    <video
-      className="player__video"
-      muted={true}
-      poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
-    />
-  </div>
+    <div
+      className="small-movie-card__image"
+    >
+      <video
+        className="player__video"
+        muted={true}
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
+      />
+    </div>
+  </a>
   <h3
     className="small-movie-card__title"
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/film"
       onClick={[Function]}
     >
       Gangs of new york
