@@ -1,6 +1,6 @@
 import React from "react";
 
-const Svg = () => {
+const SvgContainer = () => {
   return (
     <div className="visually-hidden">
 
@@ -35,4 +35,4 @@ const Svg = () => {
   );
 };
 
-export default Svg;
+export default SvgContainer;

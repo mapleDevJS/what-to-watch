@@ -2,79 +2,108 @@ import React from "react";
 import {Switch, Route, Router} from "react-router-dom";
 
 import {connect} from "react-redux";
-import {filterFilms, renderFilms, setActiveFilm} from "../../redux/actions.js";
-import {getFilms, getFilteredFilms, getPromoFilm, getActiveFilm} from "../../redux/reducers/data/selectors";
-import {getActiveFilter, getShownFilms} from "../../redux/reducers/films/selectors";
-import {getAuthorizationStatus, getAuthorizationError} from "../../redux/reducers/user/selectors";
 
+import {getAppLoadingStatus, getFilms, getFavoriteFilms} from "../../redux/reducers/data/selectors";
+import {getAuthorizationStatus, getAuthorizationError} from "../../redux/reducers/user/selectors";
 import {Operation as UserOperation} from "../../redux/reducers/user/user.js";
 
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
+import Loader from "../loader/loader.jsx";
+
 import Main from "../main/main.jsx";
-import FilmDetails from "../film-details/film-details.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
+import MyList from "../my-list/my-list.jsx";
+import Review from "../review/review.jsx";
+import FilmDetails from "../film-details/film-details.jsx";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withFullVideo from "../hocs/with-full-video/with-full-video.js";
 
-import {getUniqueGenres} from "../../utils/utils.js";
+import PrivateRoute from "../private-route/private-route.js";
+
 import history from "../../history.js";
 import {AppRoute} from "../../consts.js";
+import {getFilmById} from '../../utils/utils.js';
 
 const FullScreenPlayerWrapped = withFullVideo(FullScreenPlayer);
 
 const App = (props) => {
+  const {isLoading, authorizationStatus, films, favoriteFilms} = props;
+
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path={AppRoute.ROOT}>
-          <Main
-            authorizationStatus = {props.authorizationStatus}
-            login = {props.login}
-            films = {props.filteredFilms}
-            promoFilm = {props.promoFilm}
-            shownFilms = {props.shownFilms}
-            filters = {props.filters}
-            activeFilter = {props.activeFilter}
-            onTitleClick = {props.onCardClick}
-            onPosterClick = {props.onCardClick}
-            onFilterChange = {props.onFilterChange}
-            onShowMoreClick = {props.onShowMoreClick}
-          />
+        <Route exact path={AppRoute.ROOT}
+          render = {() => {
+            return isLoading ? <Loader/> : <Main/>;
+          }}
+        />
+
+        <PrivateRoute exact
+          path={AppRoute.LOGIN}
+          redirectPath={AppRoute.ROOT}
+          render={() => {
+            return (
+              <SignIn/>);
+          }}>
+        </PrivateRoute>
+
+        <Route exact path={`${AppRoute.FILMS}/:id`}
+          render={(routeProps) => {
+            const id = Number(routeProps.match.params.id);
+            const activeFilm = getFilmById(films, id);
+
+            return isLoading ?
+              <Loader/> :
+
+              <FilmDetails
+                film = {activeFilm}
+              />;
+
+          }}
+        />
+
+        <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.PLAYER}`}
+          render={(routeProps) => {
+            const id = Number(routeProps.match.params.id);
+            const activeFilm = getFilmById(films, id);
+
+            return isLoading ?
+              <Loader/> :
+
+              <FullScreenPlayerWrapped film={activeFilm}/>;
+          }}>
         </Route>
-        <Route exact path={AppRoute.FILM}>
-          <FilmDetails
-            film = {props.activeFilm}
-          />
-        </Route>
-        <Route exact path={AppRoute.PLAYER}>
-          <FullScreenPlayerWrapped
-            film = {props.activeFilm}
-          />
-        </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <SignIn
-            authorizationError = {props.authorizationError}
-            onSubmit={props.login}
-          />
-        </Route>
+
+        <PrivateRoute exact path={AppRoute.MY_LIST}
+          redirectPath={AppRoute.LOGIN}
+          render={() => {
+            return (
+              <MyList
+                authorizationStatus={authorizationStatus}
+                films = {favoriteFilms}
+              />);
+          }}>
+        </PrivateRoute>
+
+        <PrivateRoute exact path={AppRoute.REVIEW}
+          redirectPath={AppRoute.LOGIN}
+          render={() => {
+            return (
+              <Review/>);
+          }}>
+        </PrivateRoute>
+
       </Switch>
     </Router>
   );
 };
 
 App.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
-  filteredFilms: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
-  promoFilm: PropTypes.shape(filmPropTypes),
-  activeFilm: PropTypes.shape(filmPropTypes),
-  onCardClick: PropTypes.func.isRequired,
-  activeFilter: PropTypes.string.isRequired,
-  onFilterChange: PropTypes.func.isRequired,
-  onShowMoreClick: PropTypes.func.isRequired,
-  shownFilms: PropTypes.number.isRequired,
-  filters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  favoriteFilms: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   authorizationError: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
@@ -82,26 +111,17 @@ App.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    isLoading: getAppLoadingStatus(state),
     films: getFilms(state),
-    filteredFilms: getFilteredFilms(state),
-    promoFilm: getPromoFilm(state),
-    activeFilm: getActiveFilm(state),
-    filters: getUniqueGenres(getFilms(state)),
-    activeFilter: getActiveFilter(state),
-    shownFilms: getShownFilms(state),
+    favoriteFilms: getFavoriteFilms(state),
     authorizationStatus: getAuthorizationStatus(state),
-    authorizationError: getAuthorizationError(state)
+    authorizationError: getAuthorizationError(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCardClick: (film) => {
-      dispatch(setActiveFilm(film));
-    },
-    onFilterChange: (filter) => dispatch(filterFilms(filter)),
-    onShowMoreClick: () => dispatch(renderFilms()),
-    login: (authData) => dispatch(UserOperation.login(authData))
+    login: (authData) => dispatch(UserOperation.login(authData)),
   };
 };
 

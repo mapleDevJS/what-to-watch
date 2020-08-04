@@ -1,6 +1,8 @@
-import {Action, requireAuthorization} from "../../actions.js";
-import {AppRoute} from "../../../consts.js";
+import {Action, Creator} from "./actions.js";
 import history from "../../../history.js";
+
+import {AppRoute} from "../../../consts.js";
+
 
 export const AuthorizationStatus = {
   AUTH: `Auth`,
@@ -10,6 +12,7 @@ export const AuthorizationStatus = {
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   authorizationError: false,
+  user: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +27,11 @@ const reducer = (state = initialState, action) => {
         authorizationError: action.payload,
       });
 
+    case Action.SET_USER_DATA:
+      return Object.assign({}, state, {
+        user: action.payload,
+      });
+
     default:
       return state;
   }
@@ -32,11 +40,12 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
-        dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      .then((response) => {
+        dispatch(Creator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(Creator.setUserData(response.data));
       })
       .catch((err) => {
-        history.push(AppRoute.LOGIN);
+        dispatch(Creator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
         throw err;
       });
   },
@@ -46,15 +55,15 @@ const Operation = {
       email: authData.login,
       password: authData.password,
     })
-    .then(() => {
-      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    .then((response) => {
+      dispatch(Creator.setAuthorizationStatus(AuthorizationStatus.AUTH));
+      dispatch(Creator.setUserData(response.data));
       history.push(AppRoute.ROOT);
     })
     .catch((err) => {
       throw err;
     });
-  },
+  }
 };
-
 
 export {reducer, Operation};

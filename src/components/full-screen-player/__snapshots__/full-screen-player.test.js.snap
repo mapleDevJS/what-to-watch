@@ -7,7 +7,7 @@ exports[`Render FullScreenPlayer 1`] = `
   <video />
   <a
     className="player__exit"
-    href="/film"
+    href="/"
     onClick={[Function]}
     type="button"
   >

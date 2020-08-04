@@ -1,17 +1,21 @@
-import axios from "axios";
+import axios from 'axios';
+import history from './history';
+
+import {AppRoute} from "./consts";
+
+const TIMEOUT = 5000;
+const URL = `https://4.react.pages.academy/wtw`;
 
 const Error = {
-  SUCCESS: 200,
   BAD_REQUEST: 400,
-  UNAUTHORIZED: 401
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404,
 };
-
-const URL = `https://4.react.pages.academy/wtw`;
 
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: URL,
-    timeout: 5000,
+    timeout: TIMEOUT,
     withCredentials: true,
   });
 
@@ -20,16 +24,20 @@ export const createAPI = (onUnauthorized) => {
   };
 
   const onFail = (err) => {
-    const {response} = err;
+    const {response, request} = err;
 
-    if (response.status === Error.UNAUTHORIZED) {
-      onUnauthorized();
+    switch (response.status) {
+      case Error.UNAUTHORIZED:
+        if (request.responseURL !== URL + `/login`) {
+          history.push(AppRoute.LOGIN);
+        }
+        break;
 
-      // Бросаем ошибку, потому что нам важно прервать цепочку промисов после запроса авторизации.
-      // Запрос авторизации - это особый случай и важно дать понять приложению, что запрос был неудачным.
-      throw err;
+      default:
+        throw err;
     }
 
+    onUnauthorized();
     throw err;
   };
 
