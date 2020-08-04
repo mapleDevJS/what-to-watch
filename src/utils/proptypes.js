@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 
 export const filmPropTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string.isRequired,
   backgroundImg: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  isFavourite: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   previewImg: PropTypes.string.isRequired,
@@ -17,5 +17,5 @@ export const filmPropTypes = {
   runtime: PropTypes.number.isRequired,
   scoresCount: PropTypes.number.isRequired,
   starring: PropTypes.array.isRequired,
-  video: PropTypes.string.isRequired
+  video: PropTypes.string.isRequiredg
 };

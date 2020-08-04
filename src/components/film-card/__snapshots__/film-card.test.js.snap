@@ -7,7 +7,7 @@ exports[`Render FilmCard 1`] = `
   onMouseLeave={[Function]}
 >
   <a
-    href="/film"
+    href="/films/1"
     onClick={[Function]}
   >
     <div
@@ -25,7 +25,7 @@ exports[`Render FilmCard 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="/film"
+      href="/films/1"
       onClick={[Function]}
     >
       Gangs of new york
