@@ -1,14 +1,14 @@
 export const Action = {
   CHANGE_FILTER: `Change filter`,
-  RENDER_FILMS: `Render films`,
-  PLAY_VIDEO: `Play video`,
-  EXIT_VIDEO: `Exit video`,
+  SHOW_MORE: `Show more films`,
   LOAD_FILMS: `Load films`,
   LOAD_PROMO_FILM: `Load promo film`,
-  SET_ACTIVE_FILM: `Set active film`,
+  LOAD_FAVORITE_FILMS: `Load favorite films`,
+  SET_FAVORITE_FILMS: `Set favorite films`,
   REQUIRED_AUTHORIZATION: `Required authorization`,
   ERROR_AUTHORIZATION: `Error authorization `,
   SET_USER_DATA: `Set user data`,
+  SET_APP_LOADING_STATUS: `Set app loading status`
 };
 
 export const filterFilms = (filter) => {
@@ -18,19 +18,11 @@ export const filterFilms = (filter) => {
   };
 };
 
-export const renderFilms = () => {
+export const showMore = () => {
   return {
-    type: Action.RENDER_FILMS,
+    type: Action.SHOW_MORE,
   };
 };
-
-export const playVideo = () => ({
-  type: Action.PLAY_VIDEO
-});
-
-export const exitVideo = () => ({
-  type: Action.EXIT_VIDEO
-});
 
 export const loadFilms = (films) => ({
   type: Action.LOAD_FILMS,
@@ -42,9 +34,9 @@ export const loadPromoFilm = (film) => ({
   payload: film,
 });
 
-export const setActiveFilm = (film) => ({
-  type: Action.SET_ACTIVE_FILM,
-  payload: film,
+export const loadFavoriteFilms = (films) => ({
+  type: Action.LOAD_FAVORITE_FILMS,
+  payload: films,
 });
 
 export const requireAuthorization = (status) => ({
@@ -60,4 +52,9 @@ export const errorAuthorization = (code) => ({
 export const setUserData = (userData) => ({
   type: Action.SET_USER_DATA,
   payload: userData,
+});
+
+export const setAppLoadingStatus = (isLoading) => ({
+  type: Action.SET_APP_LOADING_STATUS,
+  payload: isLoading
 });
