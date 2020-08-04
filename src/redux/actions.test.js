@@ -1,4 +1,4 @@
-import {Action, filterFilms, showMore} from "./actions.js";
+import {Action, filterFilms, renderFilms} from "./actions.js";
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for "filterFilms" shoul work properly`, () => {
@@ -7,9 +7,9 @@ describe(`Action creators work correctly`, () => {
       payload: `Comedy`,
     });
   });
-  it(`Action creator for "showMore" should work properly`, () => {
-    expect(showMore()).toEqual({
-      type: Action.SHOW_MORE
+  it(`Action creator for "renderFilms" should work properly`, () => {
+    expect(renderFilms()).toEqual({
+      type: Action.RENDER_FILMS
     });
   });
 });

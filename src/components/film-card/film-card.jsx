@@ -14,7 +14,7 @@ class FilmCard extends PureComponent {
   }
 
   render() {
-    const {film, isPlaying, setPlayingFilm} = this.props;
+    const {film, onTitleClick, onPosterClick, isPlaying, setPlayingFilm} = this.props;
 
     return (
       <article
@@ -23,7 +23,8 @@ class FilmCard extends PureComponent {
         onMouseLeave = {() => setPlayingFilm(false)}
       >
         <Link
-          to={`${AppRoute.FILMS}/${film.id}`}
+          to={AppRoute.FILM}
+          onClick={() => onPosterClick(film)}
         >
           <div className="small-movie-card__image">
             <VideoPlayer
@@ -36,7 +37,8 @@ class FilmCard extends PureComponent {
 
         <h3 className="small-movie-card__title">
           <Link
-            to={`${AppRoute.FILMS}/${film.id}`}
+            to={AppRoute.FILM}
+            onClick = {() => onTitleClick(film)}
             className="small-movie-card__link"
           >
             {film.name}
@@ -49,6 +51,8 @@ class FilmCard extends PureComponent {
 
 FilmCard.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
+  onTitleClick: PropTypes.func.isRequired,
+  onPosterClick: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   setPlayingFilm: PropTypes.func.isRequired
 };

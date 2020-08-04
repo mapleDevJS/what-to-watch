@@ -1,26 +1,30 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-import {connect} from "react-redux";
-
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes";
 
-import {getFilms} from "../../redux/reducers/data/selectors.js";
-
-import SvgContainer from "../svg-container/svg-container.jsx";
+import Svg from "../svg/svg.jsx";
 import Logo from "../logo/logo.jsx";
-import User from "../user/user.jsx";
-import MyListButton from "../my-list-button/my-list-button.jsx";
-import FilmsList from "../films-list/films-list.jsx";
 import Footer from "../footer/footer.jsx";
-
 import {AppRoute} from "../../consts";
-import {getSimilarFilms, getLevel} from "../../utils/utils.js";
 
+const getLevel = (rating) => {
+  switch (true) {
+    case (rating < 3):
+      return `Bad`;
+    case (rating >= 3 && rating < 5):
+      return `Normal`;
+    case (rating >= 5 && rating < 8):
+      return `Good`;
+    case (rating >= 8 && rating < 10):
+      return `Very Good`;
+  }
+  return `Awesome`;
+};
 
 const FilmDetails = (props) => {
-  const {film, films} = props;
+  const {film} = props;
 
   const {
     color,
@@ -33,12 +37,12 @@ const FilmDetails = (props) => {
     rating,
     director,
     starring,
-    scoresCount,
+    scoresCount
   } = film;
 
   return (
     <React.Fragment>
-      <SvgContainer />
+      <Svg />
 
       <section className="movie-card movie-card--full" style = {{background: color}}>
         <div className="movie-card__hero">
@@ -58,8 +62,11 @@ const FilmDetails = (props) => {
               </Link>
             </div>
 
-            <User/>
-
+            <div className="user-block">
+              <div className="user-block__avatar">
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </div>
+            </div>
           </header>
 
           <div className="movie-card__wrap">
@@ -71,7 +78,8 @@ const FilmDetails = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <Link to={`${AppRoute.FILMS}/${film.id}${AppRoute.PLAYER}`}
+                <Link
+                  to={AppRoute.PLAYER}
                   className="btn btn--play movie-card__button"
                   type="button"
                 >
@@ -80,15 +88,13 @@ const FilmDetails = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-
-                <MyListButton film = {film}/>
-
-                <Link
-                  to = {AppRoute.REVIEW}
-                  className="btn movie-card__button"
-                >
-                    Add review
-                </Link>
+                <button className="btn btn--list movie-card__button" type="button">
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
+                  </svg>
+                  <span>My list</span>
+                </button>
+                <a href="add-review.html" className="btn movie-card__button">Add review</a>
               </div>
             </div>
           </div>
@@ -138,7 +144,41 @@ const FilmDetails = (props) => {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__movies-list">
-            <FilmsList films = {getSimilarFilms(films, film)}/>
+            <article className="small-movie-card catalog__movies-card">
+              <div className="small-movie-card__image">
+                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
+              </div>
+              <h3 className="small-movie-card__title">
+                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
+              </h3>
+            </article>
+
+            <article className="small-movie-card catalog__movies-card">
+              <div className="small-movie-card__image">
+                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
+              </div>
+              <h3 className="small-movie-card__title">
+                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
+              </h3>
+            </article>
+
+            <article className="small-movie-card catalog__movies-card">
+              <div className="small-movie-card__image">
+                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
+              </div>
+              <h3 className="small-movie-card__title">
+                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
+              </h3>
+            </article>
+
+            <article className="small-movie-card catalog__movies-card">
+              <div className="small-movie-card__image">
+                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
+              </div>
+              <h3 className="small-movie-card__title">
+                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
+              </h3>
+            </article>
           </div>
         </section>
 
@@ -150,14 +190,6 @@ const FilmDetails = (props) => {
 
 FilmDetails.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
 };
 
-const mapStateToProps = (state) => {
-
-  return {
-    films: getFilms(state)
-  };
-};
-
-export default connect(mapStateToProps)(FilmDetails);
+export default FilmDetails;

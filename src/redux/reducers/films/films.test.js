@@ -42,7 +42,7 @@ it(`Reducer should change filter`, () => {
 
 it(`Reducer should render more films`, () => {
   expect(reducer(initialState, {
-    type: Action.SHOW_MORE,
+    type: Action.RENDER_FILMS,
   })).toEqual({
     activeFilter: `All genres`,
     shownFilms: 16,
@@ -54,7 +54,7 @@ it(`Reducer should render more films`, () => {
     activeFilter: `All genres`,
     shownFilms: 16,
   }, {
-    type: Action.SHOW_MORE,
+    type: Action.RENDER_FILMS,
   })).toEqual({
     activeFilter: `All genres`,
     shownFilms: 24,

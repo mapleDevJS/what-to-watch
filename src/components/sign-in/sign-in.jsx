@@ -1,17 +1,10 @@
 import React, {PureComponent, createRef} from "react";
-import {Link} from "react-router-dom";
-
-import {connect} from "react-redux";
 
 import PropTypes from 'prop-types';
 
 import Logo from "../logo/logo.jsx";
 import Footer from "../footer/footer.jsx";
 
-import {Operation as UserOperation} from "../../redux/reducers/user/user.js";
-
-import {AppRoute} from "../../consts.js";
-import {getAuthorizationError} from "../../redux/reducers/user/selectors.js";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -20,6 +13,18 @@ class SignIn extends PureComponent {
     this.loginRef = createRef();
     this.passwordRef = createRef();
 
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(evt) {
+    const {onSubmit} = this.props;
+
+    evt.preventDefault();
+
+    onSubmit({
+      login: this.loginRef.current.value,
+      password: this.passwordRef.current.value,
+    });
   }
 
   render() {
@@ -28,25 +33,14 @@ class SignIn extends PureComponent {
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
-          <Link
-            to={AppRoute.ROOT}
-            className="logo__link"
-          >
-            <Logo />
-          </Link>
+          <Logo />
 
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
 
         <div className="sign-in user-page__content">
           <form action="#" className="sign-in__form"
-            onSubmit={(evt) => {
-              evt.preventDefault();
-              this.props.login({
-                login: this.loginRef.current.value,
-                password: this.passwordRef.current.value,
-              });
-            }}
+            onSubmit={this.handleSubmit}
           >
             {
               authorizationError ?
@@ -94,15 +88,7 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   authorizationError: PropTypes.bool.isRequired,
-  login: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  authorizationError: getAuthorizationError(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  login: (data) => dispatch(UserOperation.login(data))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;

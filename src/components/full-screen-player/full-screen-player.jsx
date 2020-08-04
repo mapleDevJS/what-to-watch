@@ -25,7 +25,7 @@ const FullScreenPlayer = (props) => {
     <div className="player">
       {children}
       <Link
-        to={AppRoute.ROOT}
+        to={AppRoute.FILM}
         type="button"
         className="player__exit"
       >
@@ -94,6 +94,7 @@ const FullScreenPlayer = (props) => {
 
 FullScreenPlayer.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
+  onExitClick: PropTypes.func.isRequired,
   progress: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,

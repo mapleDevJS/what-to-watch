@@ -3,7 +3,7 @@ import {Action} from "../../actions.js";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../../api.js";
 import {emptyFilm, promoFilm, films} from "../../../mocks/films.js";
-import Film from "../../../components/adapters/film.js";
+import filmAdapter from "../../../components/adapters/film-adapter.js";
 
 const api = createAPI(() => {});
 
@@ -21,7 +21,7 @@ describe(`Operations Data`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledWith({
           type: Action.LOAD_FILMS,
-          payload: [Film.parse({fake: true})],
+          payload: [filmAdapter({fake: true})],
         });
       });
   });
@@ -39,7 +39,7 @@ describe(`Operations Data`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledWith({
           type: Action.LOAD_PROMO_FILM,
-          payload: Film.parse({fake: true}),
+          payload: filmAdapter({fake: true}),
         });
       });
   });

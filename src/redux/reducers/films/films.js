@@ -1,15 +1,10 @@
 
-import {Action} from "./actions.js";
-import {ALL_GENRES} from "../../../consts.js";
-
-const FilmsCount = {
-  ON_START: 8,
-  SHOW_MORE: 8
-};
+import {Action} from "../../actions.js";
+import {FILTER} from "../../../consts.js";
 
 const initialState = {
-  shownFilms: FilmsCount.ON_START,
-  activeFilter: ALL_GENRES,
+  shownFilms: 8,
+  activeFilter: FILTER.ALL,
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,12 +14,12 @@ const reducer = (state = initialState, action) => {
 
       return Object.assign({}, state, {
         activeFilter: filter,
-        shownFilms: FilmsCount.ON_START
+        shownFilms: 8
       });
 
-    case Action.SHOW_MORE:
+    case Action.RENDER_FILMS:
       return Object.assign({}, state, {
-        shownFilms: state.shownFilms + FilmsCount.SHOW_MORE
+        shownFilms: state.shownFilms + 8
       });
 
     default:

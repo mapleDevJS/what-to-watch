@@ -1,72 +1,47 @@
-import {Action, Creator} from "./actions.js";
-import Film from "../../../components/adapters/film.js";
-import {getFilmById} from "../../../utils/utils.js";
+import {Action, loadFilms, loadPromoFilm, setActiveFilm} from "../../actions.js";
+import filmAdapter from "../../../components/adapters/film-adapter.js";
 
-const PATH = {
-  FILMS: `films`,
-  PROMO: `promo`,
-  FAVORITE: `favorite`
+const emptyFilm = {
+  color: ``,
+  backgroundImg: ``,
+  description: ``,
+  director: ``,
+  genre: ``,
+  id: 0,
+  isFavourite: false,
+  name: `Promo film is loading...`,
+  poster: ``,
+  previewImg: ``,
+  previewVideo: ``,
+  rating: 0,
+  released: 0,
+  runtime: 0,
+  scoresCount: 0,
+  starring: [],
+  video: ``,
 };
 
 const initialState = {
-  isAppLoading: true,
   films: [],
-  promoFilm: {},
-  favoriteFilms: []
+  promoFilm: emptyFilm,
+  activeFilm: emptyFilm,
 };
 
 export const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
-    return api.get(`/${PATH.FILMS}`)
+    return api.get(`/films`)
       .then((response) => {
-        const films = response.data.map((film) => Film.parse(film));
-        dispatch(Creator.loadFilms(films));
-      })
-      .catch((err) => {
-        throw err;
+        const films = response.data.map((film) => filmAdapter(film));
+        dispatch(loadFilms(films));
       });
   },
 
   loadPromoFilm: () => (dispatch, getState, api) => {
-    return api.get(`/${PATH.FILMS}/${PATH.PROMO}`)
-      .then(
-          (response) => {
-            const promoFilm = Film.parse(response.data);
-            dispatch(Creator.loadPromoFilm(promoFilm));
-          }
-      )
-      .catch((err) => {
-        throw err;
-      });
-  },
-
-  loadFavoriteFilms: () => (dispatch, getState, api) => {
-    dispatch(Creator.setAppLoadingStatus(true));
-    return api.get(`/${PATH.FAVORITE}`)
-      .then(
-          (response) => {
-            const films = response.data.map((film) => Film.parse(film));
-            dispatch(Creator.loadFavoriteFilms(films));
-            dispatch(Creator.setAppLoadingStatus(false));
-          }
-
-      );
-  },
-
-  postFavoriteFilm: (id) => (dispatch, getState, api) => {
-    const film = getFilmById(id);
-    const status = (film.isFavorite) ? 0 : 1;
-    return api.post(`/${PATH.FAVORITE}/${film.id}/${status}`)
-      .then(() => {
-        film.isFavorite = !film.isFavorite;
-        if (status) {
-          dispatch(Creator.addFilmToMyList(film));
-        } else {
-          dispatch(Creator.removeFilmFromMyList(film));
-        }
-      })
-      .catch((err) => {
-        throw err;
+    return api.get(`/films/promo`)
+      .then((response) => {
+        const promoFilm = filmAdapter(response.data);
+        dispatch(loadPromoFilm(promoFilm));
+        dispatch(setActiveFilm(promoFilm));
       });
   },
 };
@@ -83,28 +58,9 @@ export const reducer = (state = initialState, action) => {
         promoFilm: action.payload
       });
 
-    case Action.LOAD_FAVORITE_FILMS:
+    case Action.SET_ACTIVE_FILM:
       return Object.assign({}, state, {
-        favoriteFilms: action.payload
-      });
-
-
-    case Action.SET_IS_APP_LOADING:
-      return Object.assign({}, state, {
-        isAppLoading: action.payload
-      });
-
-    case Action.ADD_FILM_TO_FAVORITE:
-      return Object.assign({}, state, {
-        favoriteFilms: state.favoriteFilms.concat(action.payload)
-      });
-
-    case Action.REMOVE_FILM_FROM_FAVORITE:
-      return Object.assign({}, state, {
-        favoriteFilms: [...state.favoriteFilms
-          .filter(
-              (film) => film.id !== action.payload.id
-          )]
+        activeFilm: action.payload
       });
 
     default:

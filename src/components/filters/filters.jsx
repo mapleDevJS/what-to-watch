@@ -1,13 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {connect} from "react-redux";
-
-import {getFilters} from "../../redux/reducers/data/selectors";
-
-import {Creator} from "../../redux/reducers/films/actions.js";
-import {getActiveFilter} from "../../redux/reducers/films/selectors";
-
 const MAX_FILTERS = 10;
 
 const Filters = (props) => {
@@ -41,17 +34,5 @@ Filters.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
-const mapStateToProps = (state) => {
-  return {
-    filters: getFilters(state),
-    activeFilter: getActiveFilter(state),
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onFilterChange: (filter) => dispatch(Creator.filterFilms(filter)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filters);
+export default Filters;

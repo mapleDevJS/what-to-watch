@@ -3,6 +3,6 @@
 exports[`WithFullVideo is rendered correctly 1`] = `
 <video
   className="player__video"
-  poster="/img/player-poster.jpg"
+  poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
 />
 `;
