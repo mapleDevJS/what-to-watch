@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should review render correctly 1`] = `
+<div
+  className="review"
+>
+  <blockquote
+    className="review__quote"
+  >
+    <p
+      className="review__text"
+      style={
+        Object {
+          "overflow": "hidden",
+          "textOverflow": "ellipsis",
+        }
+      }
+    >
+      I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.
+    </p>
+    <footer
+      className="review__details"
+    >
+      <cite
+        className="review__author"
+      >
+        Amanda Greever
+      </cite>
+      <time
+        className="review__date"
+        dateTime="2019-05-08"
+      >
+        May 08, 2019
+      </time>
+    </footer>
+  </blockquote>
+  <div
+    className="review__rating"
+  >
+    8
+  </div>
+</div>
+`;

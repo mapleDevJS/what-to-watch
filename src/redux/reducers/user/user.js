@@ -45,7 +45,7 @@ const Operation = {
         dispatch(Creator.setUserData(response.data));
       })
       .catch((err) => {
-        dispatch(Creator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+        dispatch(Creator.requireAuthorization(AuthorizationStatus.NO_AUTH));
         throw err;
       });
   },
@@ -56,8 +56,8 @@ const Operation = {
       password: authData.password,
     })
     .then((response) => {
-      dispatch(Creator.setAuthorizationStatus(AuthorizationStatus.AUTH));
       dispatch(Creator.setUserData(response.data));
+      dispatch(Creator.requireAuthorization(AuthorizationStatus.AUTH));
       history.push(AppRoute.ROOT);
     })
     .catch((err) => {

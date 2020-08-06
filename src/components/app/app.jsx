@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 import {getAppLoadingStatus, getFilms, getFavoriteFilms} from "../../redux/reducers/data/selectors";
 import {getAuthorizationStatus, getAuthorizationError} from "../../redux/reducers/user/selectors";
-import {Operation as UserOperation} from "../../redux/reducers/user/user.js";
+import {Operation as UserOperation, AuthorizationStatus} from "../../redux/reducers/user/user.js";
 
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
@@ -16,7 +16,7 @@ import Main from "../main/main.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import MyList from "../my-list/my-list.jsx";
 import Review from "../review/review.jsx";
-import FilmDetails from "../film-details/film-details.jsx";
+import FilmDetails from "../film-page/film-page.jsx";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withFullVideo from "../hocs/with-full-video/with-full-video.js";
 
@@ -40,14 +40,22 @@ const App = (props) => {
           }}
         />
 
-        <PrivateRoute exact
+        <Route exact path={AppRoute.LOGIN}
+          render = {() => {
+            return authorizationStatus === AuthorizationStatus.AUTH
+              ? <Main/>
+              : <SignIn/>;
+          }}
+        />
+
+        {/* <PrivateRoute exact
           path={AppRoute.LOGIN}
-          redirectPath={AppRoute.ROOT}
+          // redirectPath={AppRoute.LOGIN}
           render={() => {
             return (
               <SignIn/>);
           }}>
-        </PrivateRoute>
+        </PrivateRoute> */}
 
         <Route exact path={`${AppRoute.FILMS}/:id`}
           render={(routeProps) => {

@@ -41,17 +41,13 @@ Filters.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
-const mapStateToProps = (state) => {
-  return {
-    filters: getFilters(state),
-    activeFilter: getActiveFilter(state),
-  };
-};
+const mapStateToProps = (state) => ({
+  filters: getFilters(state),
+  activeFilter: getActiveFilter(state),
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onFilterChange: (filter) => dispatch(Creator.filterFilms(filter)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  onFilterChange: (filter) => dispatch(Creator.filterFilms(filter))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

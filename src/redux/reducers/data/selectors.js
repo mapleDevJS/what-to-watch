@@ -11,37 +11,24 @@ export const getFilteredFilms = createSelector(
     getFilms,
     getActiveFilter,
     (films, filter) => {
-      if (filter === ALL_GENRES) {
-        return films;
-      } else {
-        return films.filter((film) => film.genre === filter);
-      }
+      return (filter === ALL_GENRES)
+        ? films
+        : films.filter((film) => film.genre === filter);
     }
 );
 
 export const getFavoriteFilms = (state) => state[NameSpace.DATA].favoriteFilms;
 
-// export const getAreFilmsLoading = (state) => state[NameSpace.DATA].areFilmsLoading;
-
-// export const getIsPromoFilmLoading = (state) => state[NameSpace.DATA].isPromoFilmLoading;
-
-export const getAreFavoritesFilmsLoading = (state) => state[NameSpace.DATA].areFavoriteFilmsLoading;
+// export const getAreFavoritesFilmsLoading = (state) => state[NameSpace.DATA].areFavoriteFilmsLoading;
 
 export const getAppLoadingStatus = (state) => state[NameSpace.DATA].isAppLoading;
 
-// export const getFilmById = (state, id) => state[NameSpace.DATA].films.find((film) => film.id === id);
-
-// export const getFilmById = (id) => createSelector(
-//     getFilms,
-//     (films) => films.find((film) => film.id === id)
+// export const getFavoriteStatus = (activeFilm) => createSelector(
+//     getFavoriteFilms,
+//     (favoriteFilms) => {
+//       return favoriteFilms.find((film) => film.id === activeFilm.id);
+//     }
 // );
-
-export const getFavoriteStatus = (activeFilm) => createSelector(
-    getFavoriteFilms,
-    (favoriteFilms) => {
-      return favoriteFilms.find((film) => film.id === activeFilm.id);
-    }
-);
 
 export const getFilters = createSelector(
     getFilms,
@@ -53,9 +40,4 @@ export const getFilters = createSelector(
     }
 );
 
-// export const getSimilarFilms = (state, activeFilm) => createSelector(
-//     getFilms,
-//     (films) => {
-//       return films.filter((film) => film.genre === activeFilm.genre && film.id !== activeFilm.id);
-//     }
-// );
+export const getComments = (state) => state[NameSpace.DATA].comments;

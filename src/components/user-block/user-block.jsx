@@ -12,7 +12,7 @@ import {AppRoute} from "../../consts.js";
 
 const URL = `https://4.react.pages.academy`;
 
-const User = (props) => {
+const UserBlock = (props) => {
 
   const {authorizationStatus, user} = props;
 
@@ -36,7 +36,7 @@ const User = (props) => {
   );
 };
 
-User.propTypes = {
+UserBlock.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   user: PropTypes.object
 };
@@ -48,4 +48,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(User);
+export default connect(mapStateToProps)(UserBlock);

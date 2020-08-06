@@ -19,3 +19,16 @@ export const filmPropTypes = {
   starring: PropTypes.array.isRequired,
   video: PropTypes.string.isRequiredg
 };
+
+export const commentPropTypes = {
+  text: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  author: PropTypes.shape(
+      {
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+      }
+  )
+};

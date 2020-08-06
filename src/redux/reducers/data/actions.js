@@ -2,10 +2,11 @@ export const Action = {
   LOAD_FILMS: `Load films`,
   LOAD_PROMO_FILM: `Load promo films`,
   LOAD_FAVORITE_FILMS: `Load favorite films`,
+  LOAD_COMMENTS: `Load comments`,
   UPDATE_FILM: `Update film`,
-  SET_FILMS_LOADING: `Set films loading status`,
-  SET_PROMO_FILM_LOADING: `Set promo film loading status`,
-  SET_FAVORITE_FILMS_LOADING: `Set favorite films loading status`,
+  // SET_FILMS_LOADING: `Set films loading status`,
+  // SET_PROMO_FILM_LOADING: `Set promo film loading status`,
+  // SET_FAVORITE_FILMS_LOADING: `Set favorite films loading status`,
   SET_IS_APP_LOADING: `Set app loading status`,
   ADD_FILM_TO_FAVORITE: `Add film to favorites`,
   REMOVE_FILM_FROM_FAVORITE: `Remove film from favorite`
@@ -25,6 +26,11 @@ export const Creator = {
   loadFavoriteFilms: (films) => ({
     type: Action.LOAD_FAVORITE_FILMS,
     payload: films
+  }),
+
+  loadComments: (comments) => ({
+    type: Action.LOAD_COMMENTS,
+    payload: comments
   }),
 
   updateFilm: (film) => ({
