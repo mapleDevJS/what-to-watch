@@ -12,7 +12,7 @@ import {getShownFilms} from "../../redux/reducers/films/selectors";
 
 import SvgContainer from "../svg-container/svg-container.jsx";
 import Logo from "../logo/logo.jsx";
-import User from "../user/user.jsx";
+import UserBlock from "../user-block/user-block.jsx";
 import MyListButton from "../my-list-button/my-list-button.jsx";
 import Filters from "../filters/filters.jsx";
 import FilmsList from "../films-list/films-list.jsx";
@@ -58,7 +58,7 @@ const Main = (props) => {
             </Link>
           </div>
 
-          <User/>
+          <UserBlock/>
         </header>
 
         <div className="movie-card__wrap">

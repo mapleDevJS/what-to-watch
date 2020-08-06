@@ -36,15 +36,10 @@ MyListButton.propTypes = {
   onMyListClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = () => {
-  return {
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     onMyListClick: (film) => dispatch(DataOperation.postFavoriteFilm(film))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyListButton);
+export default connect(null, mapDispatchToProps)(MyListButton);

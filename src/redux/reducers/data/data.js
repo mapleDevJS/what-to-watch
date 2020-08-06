@@ -1,18 +1,21 @@
 import {Action, Creator} from "./actions.js";
 import Film from "../../../components/adapters/film.js";
+import Comment from "../../../components/adapters/comment.js";
 // import {getFilmById} from "./selectors.js";
 
 const PATH = {
   FILMS: `films`,
   PROMO: `promo`,
-  FAVORITE: `favorite`
+  FAVORITE: `favorite`,
+  COMMENTS: `comments`
 };
 
 const initialState = {
   isAppLoading: true,
   films: [],
   promoFilm: {},
-  favoriteFilms: []
+  favoriteFilms: [],
+  comments: []
 };
 
 export const Operation = {
@@ -53,6 +56,19 @@ export const Operation = {
       );
   },
 
+  loadComments: (id) => (dispatch, getState, api) => {
+    // dispatch(Creator.setAppLoadingStatus(true));
+    return api.get(`/${PATH.COMMENTS}/${id}`)
+      .then((response) => {
+        const comments = response.data.map((comment) => Comment.parse(comment));
+        dispatch(Creator.loadComments(comments));
+        // dispatch(Creator.setAppLoadingStatus(false));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
+
   postFavoriteFilm: (film) => (dispatch, getState, api) => {
     return api.post(`/${PATH.FAVORITE}/${film.id}/${film.isFavorite ? 0 : 1}`)
       .then(() => {
@@ -81,6 +97,11 @@ export const reducer = (state = initialState, action) => {
     case Action.LOAD_FAVORITE_FILMS:
       return Object.assign({}, state, {
         favoriteFilms: action.payload
+      });
+
+    case Action.LOAD_COMMENTS:
+      return Object.assign({}, state, {
+        comments: action.payload
       });
 
 

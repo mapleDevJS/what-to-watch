@@ -1,10 +1,10 @@
 import axios from 'axios';
 import history from './history';
 
-import {AppRoute} from "./consts";
+import {BASE_URL, AppRoute} from "./consts";
 
 const TIMEOUT = 5000;
-const URL = `https://4.react.pages.academy/wtw`;
+const URL = `${BASE_URL}/wtw`;
 
 const Error = {
   BAD_REQUEST: 400,

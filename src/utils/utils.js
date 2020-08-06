@@ -8,12 +8,6 @@ export const generateUniqueId = () => {
   return Math.random().toString(36).substr(2, 9);
 };
 
-// export const getUniqueGenres = (films) => {
-//   const genres = films.map((film) => film.genre);
-//   genres.unshift(ALL_GENRES);
-
-//   return [...new Set(genres)];
-// };
 
 export const getFilmById = (films, id) => {
   return films.find((film) => film.id === id);
@@ -33,4 +27,30 @@ export const getLevel = (rating) => {
       return Rating.VERY_GOOD;
   }
   return Rating.AWESOME;
+};
+
+export const formatRuntime = (runtime) => {
+  let hours = Math.floor(runtime / 60);
+  let minutes = Math.floor(((runtime / 60) - hours) * 100);
+
+  if (minutes >= 60) {
+    minutes = minutes - 60;
+    hours += 1;
+  }
+
+  return `${hours}h ${minutes}m`;
+};
+
+export const formatReviewDate = (dateString, isForUser) => {
+  const date = new Date(dateString);
+  const dateTimeFormat = new Intl.DateTimeFormat(`en`, {year: `numeric`, month: `${isForUser ? `long` : `2-digit`}`, day: `2-digit`});
+  const [{value: month},, {value: day},, {value: year}] = dateTimeFormat.formatToParts(date);
+  return isForUser ? `${month} ${day}, ${year}` : `${year}-${month}-${day}`;
+};
+
+export const sliceComments = (comments) => {
+  const sliceIndex = Math.ceil(comments.length / 2);
+  const firstColComments = comments.slice(0, sliceIndex);
+  const secondColComments = comments.slice(sliceIndex, comments.length);
+  return [firstColComments, secondColComments];
 };

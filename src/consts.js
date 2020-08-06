@@ -1,3 +1,5 @@
+export const BASE_URL = `https://4.react.pages.academy`;
+
 export const ALL_GENRES = `All genres`;
 
 export const AppRoute = {
@@ -15,4 +17,10 @@ export const Rating = {
   GOOD: `Good`,
   VERY_GOOD: `Very Good`,
   AWESOME: `Awesome`
+};
+
+export const Tab = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`
 };

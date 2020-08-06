@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
 import Logo from "../logo/logo.jsx";
-import User from "../user/user.jsx";
+import UserBlock from "../user-block/user-block.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import Footer from "../footer/footer.jsx";
 
@@ -42,7 +42,7 @@ class MyList extends PureComponent {
 
           <h1 className="page-title user-page__title">My list</h1>
 
-          <User/>
+          <UserBlock/>
 
         </header>
 

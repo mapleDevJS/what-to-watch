@@ -2,17 +2,17 @@ import React from "react";
 import {Router} from "react-router-dom";
 
 import renderer from "react-test-renderer";
-import FilmDetails from "./film-details.jsx";
+import FilmPage from "./film-page.jsx";
 import history from "../../history.js";
 
 import {film} from "../../mocks/films.js";
 
 
-it(`Render FilmDetails`, () => {
+it(`Render FilmPage`, () => {
   const tree = renderer
     .create(
         <Router history={history}>
-          <FilmDetails
+          <FilmPage
             film = {film}
             onPlayClick = {() => {}}
           />

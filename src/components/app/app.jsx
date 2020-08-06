@@ -16,7 +16,7 @@ import Main from "../main/main.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import MyList from "../my-list/my-list.jsx";
 import Review from "../review/review.jsx";
-import FilmDetails from "../film-details/film-details.jsx";
+import FilmDetails from "../film-page/film-page.jsx";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withFullVideo from "../hocs/with-full-video/with-full-video.js";
 
