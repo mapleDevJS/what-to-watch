@@ -7,21 +7,27 @@ exports[`Should button "SignIn" render correctly 1`] = `
   <header
     className="page-header user-page__head"
   >
-    <span
-      className="logo__letter logo__letter--1"
+    <a
+      className="logo__link"
+      href="/"
+      onClick={[Function]}
     >
-      W
-    </span>
-    <span
-      className="logo__letter logo__letter--2"
-    >
-      T
-    </span>
-    <span
-      className="logo__letter logo__letter--3"
-    >
-      W
-    </span>
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
     <h1
       className="page-title user-page__title"
     >

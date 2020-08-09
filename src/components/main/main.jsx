@@ -6,9 +6,9 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
-import {Creator} from "../../redux/reducers/films/actions.js";
-import {getFilteredFilms, getPromoFilm} from "../../redux/reducers/data/selectors";
-import {getShownFilms} from "../../redux/reducers/films/selectors";
+import {Creator} from "../../store/reducers/films/actions.js";
+import {getFilteredFilms, getPromoFilm} from "../../store/reducers/data/selectors";
+import {getShownFilms} from "../../store/reducers/films/selectors";
 
 import SvgContainer from "../svg-container/svg-container.jsx";
 import Logo from "../logo/logo.jsx";
@@ -42,8 +42,13 @@ const Main = (props) => {
   return (
     <React.Fragment>
       <SvgContainer/>
-      <section className="movie-card">
-        <div className="movie-card__bg">
+      <section className="movie-card" >
+        <div
+          className="movie-card__bg"
+          style = {
+            {backgroundImage: `linear-gradient(-180deg, #180202 0%, #000 100%)`}
+          }
+        >
           <img src={backgroundImg} alt={name} />
         </div>
 
@@ -81,7 +86,7 @@ const Main = (props) => {
 
               <div className="movie-card__buttons">
                 <Link
-                  to={`${AppRoute.FILMS}/${id}${AppRoute.PLAYER}`}
+                  to={`${AppRoute.PLAYER}/${id}`}
                   className="btn btn--play movie-card__button"
                   type="button"
                 >

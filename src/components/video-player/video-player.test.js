@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import VideoPlayer from "./video-player.jsx";
 
-import {film} from "../../mocks/films.js";
+import {film} from "../../test-data/films.js";
 
 
 it(`VideoPlayer is rendered correctly`, () => {

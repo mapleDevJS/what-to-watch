@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {filmPropTypes, commentPropTypes} from "../../utils/proptypes";
 
-import {getAppLoadingStatus} from "../../redux/reducers/data/selectors.js";
+import {getAppLoadingStatus} from "../../store/reducers/data/selectors.js";
 
 import Overview from "./overview/overview.jsx";
 import Details from "./details/details.jsx";
@@ -20,7 +20,7 @@ class Tabs extends PureComponent {
   }
 
   render() {
-    const {film, comments, activeTab, onTabClick} = this.props;
+    const {film, activeTab, onTabClick} = this.props;
 
     return (
         <>
@@ -45,22 +45,20 @@ class Tabs extends PureComponent {
             </nav>
 
             {
-              this._renderActiveTab(film, comments, activeTab)
+              this._renderActiveTab(film, activeTab)
             }
         </>
     );
   }
 
-  _renderActiveTab(film, comments, activeTab) {
+  _renderActiveTab(film, activeTab) {
     switch (activeTab) {
       case Tab.OVERVIEW:
         return <Overview film = {film}/>;
       case Tab.DETAILS:
         return <Details film = {film}/>;
       case Tab.REVIEWS:
-        return <Reviews
-          comments = {comments}
-        />;
+        return <Reviews comments = {this.props.comments}/>;
       default:
         return ``;
     }
@@ -69,16 +67,15 @@ class Tabs extends PureComponent {
 
 Tabs.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
-  comments: PropTypes.arrayOf(PropTypes.shape(commentPropTypes)).isRequired,
   onTabClick: PropTypes.func.isRequired,
-  activeTab: PropTypes.string.isRequired
+  activeTab: PropTypes.string.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape(commentPropTypes)).isRequired,
 };
 
 const mapStateToProps = (state) => {
 
   return {
     isAppLoading: getAppLoadingStatus(state),
-    // comments: getComments(state)
   };
 };
 

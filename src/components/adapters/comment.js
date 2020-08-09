@@ -4,10 +4,7 @@ export default class Comment {
     this.date = comment.date;
     this.id = comment.id;
     this.rating = comment.rating;
-    this.author = {
-      id: comment.user.id,
-      name: comment.user.name
-    };
+    this.author = comment.user;
   }
 
   static parse(comment) {

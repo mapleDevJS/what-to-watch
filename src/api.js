@@ -28,7 +28,7 @@ export const createAPI = (onUnauthorized) => {
 
     switch (response.status) {
       case Error.UNAUTHORIZED:
-        if (request.responseURL !== URL + `/login`) {
+        if (request.responseURL !== URL + AppRoute.LOGIN) {
           history.push(AppRoute.LOGIN);
         }
         break;

@@ -1,10 +1,10 @@
-
 import React from "react";
 import {Link} from "react-router-dom";
 
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
+import {formatDurationToTime} from "../../utils/utils.js";
 import {AppRoute} from "../../consts.js";
 
 
@@ -13,7 +13,6 @@ const FullScreenPlayer = (props) => {
     film,
     progress,
     duration,
-    time,
     playbackToggle,
     isPlaying,
     onFullScreenClick,
@@ -47,7 +46,7 @@ const FullScreenPlayer = (props) => {
               Toggler
             </div>
           </div>
-          <div className="player__time-value">{time}</div>
+          <div className="player__time-value">{formatDurationToTime(duration - progress)}</div>
         </div>
 
         <div className="player__controls-row">
@@ -96,7 +95,6 @@ FullScreenPlayer.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
   progress: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
-  time: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   playbackToggle: PropTypes.func.isRequired,
   onFullScreenClick: PropTypes.func.isRequired,

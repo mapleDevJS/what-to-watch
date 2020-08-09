@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
 import Logo from "../logo/logo.jsx";
 import Footer from "../footer/footer.jsx";
 
-import {Operation as UserOperation} from "../../redux/reducers/user/user.js";
+import {Operation as UserOperation} from "../../store/reducers/user/user.js";
 
 import {AppRoute} from "../../consts.js";
-import {getAuthorizationError} from "../../redux/reducers/user/selectors.js";
+import {getAuthorizationError} from "../../store/reducers/user/selectors.js";
 
 class SignIn extends PureComponent {
   constructor(props) {

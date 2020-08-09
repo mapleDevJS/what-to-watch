@@ -2,10 +2,10 @@ import React from "react";
 import renderer from "react-test-renderer";
 import SvgContainer from "./svg-container.jsx";
 
-it(`Should "SvgContainer" render correctly`, () => {
+it(`Should SvgContainer render correctly`, () => {
   const tree = renderer
     .create(
-        <SvgContainer />, {
+        <SvgContainer/>, {
           createNodeMock: () => {
             return {};
           }

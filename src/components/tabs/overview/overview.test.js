@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Overview from "./overview.jsx";
 
-import {film} from "../../../mocks/films.js";
+import {film} from "../../../test-data/films.js";
 
 it(`Should Overview tab render correctly`, () => {
   const tree = renderer
