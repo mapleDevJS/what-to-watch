@@ -1,8 +1,12 @@
 import React, {PureComponent} from "react";
 import {Link} from "react-router-dom";
 
+import {connect} from "react-redux";
+
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
+
+import {Operation as DataOperation} from "../../store/reducers/data/data.js";
 
 import VideoPlayer from "../video-player/video-player.jsx";
 
@@ -24,6 +28,7 @@ class FilmCard extends PureComponent {
       >
         <Link
           to={`${AppRoute.FILMS}/${film.id}`}
+          onClick={()=>this.props.loadComments(film.id)}
         >
           <div className="small-movie-card__image">
             <VideoPlayer
@@ -50,7 +55,14 @@ class FilmCard extends PureComponent {
 FilmCard.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  setPlayingFilm: PropTypes.func.isRequired
+  setPlayingFilm: PropTypes.func.isRequired,
+  loadComments: PropTypes.func.isRequired,
 };
 
-export default FilmCard;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadComments: (id) => dispatch(DataOperation.loadComments(id))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(FilmCard);

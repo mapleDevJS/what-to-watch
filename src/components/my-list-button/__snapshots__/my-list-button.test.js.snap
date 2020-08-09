@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should button "renderer" render correctly 1`] = `
+exports[`Should button ShowMore render correctly 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}

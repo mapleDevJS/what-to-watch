@@ -4,38 +4,21 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
 import configureStore from "redux-mock-store";
-import NameSpace from "../../../redux/reducers/name-space.js";
 
 import Reviews from "./reviews.jsx";
 
-// import {film} from "../../../mocks/films.js";
-import {promoFilm, films} from "../../../mocks/films.js";
+import {testStore} from "../../../test-data/store.js";
+import {comments} from "../../../test-data/comments.js";
 
 const mockStore = configureStore([]);
 
-const store = mockStore({
-  [NameSpace.DATA]: {
-    isAppLoading: true,
-    favoriteFilms: [],
-    films,
-    promoFilm
-  },
-  [NameSpace.FILMS]: {
-    shownFilms: 8,
-    activeFilter: `All genres`,
-  },
-  [NameSpace.USER]: {
-    authorizationStatus: `No auth`,
-    authorizationError: false,
-    user: {}
-  },
-});
+const store = mockStore(testStore);
 
 it(`Should tab reviews render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Reviews />
+          <Reviews comments = {comments}/>
         </Provider>
         , {
           createNodeMock: () => {

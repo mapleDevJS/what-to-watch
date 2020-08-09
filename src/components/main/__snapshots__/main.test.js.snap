@@ -101,6 +101,11 @@ Array [
   >
     <div
       className="movie-card__bg"
+      style={
+        Object {
+          "backgroundImage": "linear-gradient(-180deg, #180202 0%, #000 100%)",
+        }
+      }
     >
       <img
         alt="Gangs of new york"
@@ -144,7 +149,6 @@ Array [
         className="user-block"
       >
         <a
-          className="user-block__link"
           href="/login"
           onClick={[Function]}
           style={
@@ -155,7 +159,7 @@ Array [
             }
           }
         >
-          Sign in
+          Sign In
         </a>
       </div>
     </header>
@@ -202,7 +206,7 @@ Array [
           >
             <a
               className="btn btn--play movie-card__button"
-              href="/player"
+              href="/player/1"
               onClick={[Function]}
               type="button"
             >
@@ -221,6 +225,7 @@ Array [
             </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -273,7 +278,67 @@ Array [
             className="catalog__genres-link"
             href="#"
           >
+            Crime
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+          >
+            Adventure
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+          >
+            Action
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+          >
+            Comedy
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+          >
             Drama
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+          >
+            Fantasy
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+          >
+            Thriller
           </a>
         </li>
       </ul>
@@ -286,7 +351,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <a
-            href="/film"
+            href="/films/1"
             onClick={[Function]}
           >
             <div
@@ -304,7 +369,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/film"
+              href="/films/1"
               onClick={[Function]}
             >
               Gangs of new york
@@ -317,7 +382,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <a
-            href="/film"
+            href="/films/2"
             onClick={[Function]}
           >
             <div
@@ -335,7 +400,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/film"
+              href="/films/2"
               onClick={[Function]}
             >
               Moonrise Kingdom
@@ -348,7 +413,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <a
-            href="/film"
+            href="/films/3"
             onClick={[Function]}
           >
             <div
@@ -366,7 +431,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/film"
+              href="/films/3"
               onClick={[Function]}
             >
               Pulp Fiction
@@ -379,7 +444,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <a
-            href="/film"
+            href="/films/4"
             onClick={[Function]}
           >
             <div
@@ -397,7 +462,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/film"
+              href="/films/4"
               onClick={[Function]}
             >
               Bronson
@@ -410,7 +475,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <a
-            href="/film"
+            href="/films/5"
             onClick={[Function]}
           >
             <div
@@ -428,7 +493,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/film"
+              href="/films/5"
               onClick={[Function]}
             >
               Midnight Special
@@ -441,7 +506,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <a
-            href="/film"
+            href="/films/6"
             onClick={[Function]}
           >
             <div
@@ -459,7 +524,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/film"
+              href="/films/6"
               onClick={[Function]}
             >
               Matrix
@@ -472,7 +537,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <a
-            href="/film"
+            href="/films/7"
             onClick={[Function]}
           >
             <div
@@ -490,7 +555,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/film"
+              href="/films/7"
               onClick={[Function]}
             >
               Once Upon a Time in America
@@ -503,7 +568,7 @@ Array [
           onMouseLeave={[Function]}
         >
           <a
-            href="/film"
+            href="/films/8"
             onClick={[Function]}
           >
             <div
@@ -521,7 +586,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/film"
+              href="/films/8"
               onClick={[Function]}
             >
               Johnny English

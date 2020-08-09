@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 
 import PropTypes from "prop-types";
 
-import {AuthorizationStatus} from "../../redux/reducers/user/user.js";
-import {getAuthorizationStatus} from "../../redux/reducers/user/selectors.js";
+import {AuthorizationStatus} from "../../store/reducers/user/user.js";
+import {getAuthorizationStatus} from "../../store/reducers/user/selectors.js";
 
 const PrivateRoute = (props) => {
   const {render, path, exact, authorizationStatus, redirectPath} = props;
@@ -16,9 +16,9 @@ const PrivateRoute = (props) => {
       exact={exact}
       render={(routeProps) => {
         return (
-          (authorizationStatus === AuthorizationStatus.AUTH) ?
-            render(routeProps) :
-            <Redirect to={redirectPath} />
+          authorizationStatus === AuthorizationStatus.AUTH
+            ? render(routeProps)
+            : <Redirect to={redirectPath}/>
         );
       }}
     />
@@ -37,5 +37,4 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
 });
 
-// export {PrivateRoute};
 export default connect(mapStateToProps)(PrivateRoute);

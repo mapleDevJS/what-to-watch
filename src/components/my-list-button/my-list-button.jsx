@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
-import {Operation as DataOperation} from "../../redux/reducers/data/data.js";
+import {Operation as DataOperation} from "../../store/reducers/data/data.js";
 
 const MyListButton = (props) => {
   const {onMyListClick, film} = props;

@@ -5,8 +5,8 @@ export const ALL_GENRES = `All genres`;
 export const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
-  FILMS: `/films`,
   MY_LIST: `/mylist`,
+  FILMS: `/films`,
   REVIEW: `/review`,
   PLAYER: `/player`,
 };
@@ -23,4 +23,9 @@ export const Tab = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
   REVIEWS: `Reviews`
+};
+
+export const CommentLength = {
+  MIN: 50,
+  MAX: 400
 };

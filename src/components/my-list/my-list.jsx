@@ -11,8 +11,8 @@ import UserBlock from "../user-block/user-block.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import Footer from "../footer/footer.jsx";
 
-import {Operation as DataOperation} from "../../redux/reducers/data/data.js";
-import {getAppLoadingStatus} from "../../redux/reducers/data/selectors.js";
+import {Operation as DataOperation} from "../../store/reducers/data/data.js";
+import {getAppLoadingStatus} from "../../store/reducers/data/selectors.js";
 
 import {AppRoute} from "../../consts.js";
 
@@ -76,7 +76,6 @@ MyList.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAppLoading: getAppLoadingStatus(state),
-  // films: getFavoriteFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

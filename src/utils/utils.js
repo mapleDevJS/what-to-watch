@@ -1,9 +1,5 @@
 import {Rating} from "../consts.js";
 
-export const getRandomElement = (array) => {
-  return array[Math.floor(Math.random() * array.length)];
-};
-
 export const generateUniqueId = () => {
   return Math.random().toString(36).substr(2, 9);
 };
@@ -13,7 +9,11 @@ export const getFilmById = (films, id) => {
   return films.find((film) => film.id === id);
 };
 
-export const getSimilarFilms = (films, activeFilm) => films.filter((film) => film.genre === activeFilm.genre && film.id !== activeFilm.id);
+export const getSimilarFilms = (films, activeFilm) => {
+  return films.filter(
+      (film) => film.genre === activeFilm.genre && film.id !== activeFilm.id
+  );
+};
 
 export const getLevel = (rating) => {
   switch (true) {
@@ -53,4 +53,13 @@ export const sliceComments = (comments) => {
   const firstColComments = comments.slice(0, sliceIndex);
   const secondColComments = comments.slice(sliceIndex, comments.length);
   return [firstColComments, secondColComments];
+};
+
+export const formatDurationToTime = (duration) => {
+  const time = parseInt(duration, 10);
+  const hours = Math.floor(time / 3600).toString().padStart(2, `0`);
+  const minutes = Math.floor((time - (hours * 3600)) / 60).toString().padStart(2, `0`);
+  const seconds = time - (hours * 3600) - (minutes * 60).toString().padStart(2, `0`);
+
+  return `${hours}:${minutes}:${seconds}`;
 };

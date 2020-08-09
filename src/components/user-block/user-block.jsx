@@ -5,12 +5,10 @@ import {connect} from "react-redux";
 
 import PropTypes from "prop-types";
 
-import {AuthorizationStatus} from "../../redux/reducers/user/user.js";
-import {getAuthorizationStatus, getUserData} from "../../redux/reducers/user/selectors";
+import {AuthorizationStatus} from "../../store/reducers/user/user.js";
+import {getAuthorizationStatus, getUserData} from "../../store/reducers/user/selectors";
 
-import {AppRoute} from "../../consts.js";
-
-const URL = `https://4.react.pages.academy`;
+import {AppRoute, BASE_URL} from "../../consts.js";
 
 const UserBlock = (props) => {
 
@@ -22,7 +20,7 @@ const UserBlock = (props) => {
         authorizationStatus === AuthorizationStatus.AUTH ?
           <Link to={AppRoute.MY_LIST}>
             <div className="user-block__avatar">
-              <img src={`${URL}${user.avatar_url}`} alt="User avatar" width="63" height="63"/>
+              <img src={`${BASE_URL}${user.avatar_url}`} alt="User avatar" width="63" height="63"/>
             </div>
           </Link> :
           <Link

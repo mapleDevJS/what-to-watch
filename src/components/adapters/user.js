@@ -5,7 +5,7 @@ export default class User {
     this.id = user.id;
     this.email = user.email;
     this.name = user.name;
-    this.avatarSrc = `${BASE_URL}${user.avatar_url}`;
+    this.avatarSrc = `${BASE_URL}/${user.avatar_url}`;
   }
 
   static parse(user) {

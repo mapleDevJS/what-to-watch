@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
 import FilmCard from "../film-card/film-card.jsx";
-import withVideo from "../hocs/with-video/with-video";
+import withVideo from "../../hocs/with-video/with-video";
 
 import {generateUniqueId} from "../../utils/utils.js";
-import {getShownFilms} from "../../redux/reducers/films/selectors.js";
+import {getShownFilms} from "../../store/reducers/films/selectors.js";
 
 const FilmsList = (props) => {
   const {films, shownFilms} = props;

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should UserBlock render correctly 1`] = `
+<div
+  className="user-block"
+>
+  <a
+    href="/login"
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "inherit",
+        "cursor": "pointer",
+        "textDecoration": "none",
+      }
+    }
+  >
+    Sign In
+  </a>
+</div>
+`;

@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Loader render correctly 1`] = `
+<div
+  className="loader"
+  style={
+    Object {
+      "left": "50vw",
+      "position": "absolute",
+      "top": "50vh",
+      "transform": "translateX(-50%)",
+    }
+  }
+>
+  <svg
+    height="64px"
+    viewBox="0 0 128 128"
+    width="64px"
+    xmlSpace="preserve"
+  >
+    <rect
+      fill="#FFFFFF"
+      height="100%"
+      width="100%"
+      x="0"
+      y="0"
+    />
+    <g>
+      <circle
+        cx="16"
+        cy="64"
+        fill="#000000"
+        fillOpacity="1"
+        r="16"
+      />
+      <circle
+        cx="16"
+        cy="64"
+        fill="#000000"
+        fillOpacity="1"
+        r="14.344"
+        transform="rotate(45 64 64)"
+      />
+      <circle
+        cx="16"
+        cy="64"
+        fill="#000000"
+        fillOpacity="1"
+        r="12.531"
+        transform="rotate(90 64 64)"
+      />
+      <circle
+        cx="16"
+        cy="64"
+        fill="#000000"
+        fillOpacity="1"
+        r="10.75"
+        transform="rotate(135 64 64)"
+      />
+      <circle
+        cx="16"
+        cy="64"
+        fill="#000000"
+        fillOpacity="1"
+        r="10.063"
+        transform="rotate(180 64 64)"
+      />
+      <circle
+        cx="16"
+        cy="64"
+        fill="#000000"
+        fillOpacity="1"
+        r="8.063"
+        transform="rotate(225 64 64)"
+      />
+      <circle
+        cx="16"
+        cy="64"
+        fill="#000000"
+        fillOpacity="1"
+        r="6.438"
+        transform="rotate(270 64 64)"
+      />
+      <circle
+        cx="16"
+        cy="64"
+        fill="#000000"
+        fillOpacity="1"
+        r="5.375"
+        transform="rotate(315 64 64)"
+      />
+      <animateTransform
+        attributeName="transform"
+        calcMode="discrete"
+        dur="720ms"
+        repeatCount="indefinite"
+        type="rotate"
+        values="0 64 64;315 64 64;270 64 64;225 64 64;180 64 64;135 64 64;90 64 64;45 64 64"
+      />
+    </g>
+  </svg>
+</div>
+`;

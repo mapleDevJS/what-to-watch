@@ -1,11 +1,7 @@
 import React from "react";
 
-// import {connect} from "react-redux";
-
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../../utils/proptypes";
-
-// import {getFilms} from "../../../redux/reducers/data/selectors.js";
 
 import {getLevel} from "../../../utils/utils.js";
 
@@ -44,15 +40,6 @@ const Overview = (props) => {
 
 Overview.propTypes = {
   film: PropTypes.shape(filmPropTypes).isRequired,
-//   films: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
-  // onTabClickHandler: PropTypes.func.isRequired,
 };
-
-// const mapStateToProps = (state) => {
-
-//   return {
-//     films: getFilms(state)
-//   };
-// };
 
 export default Overview;

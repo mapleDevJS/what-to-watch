@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import {connect} from "react-redux";
 
-import {getFilters} from "../../redux/reducers/data/selectors";
+import {getFilters} from "../../store/reducers/data/selectors";
 
-import {Creator} from "../../redux/reducers/films/actions.js";
-import {getActiveFilter} from "../../redux/reducers/films/selectors";
+import {Creator} from "../../store/reducers/films/actions.js";
+import {getActiveFilter} from "../../store/reducers/films/selectors";
 
 const MAX_FILTERS = 10;
 

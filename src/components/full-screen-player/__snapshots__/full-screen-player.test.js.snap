@@ -41,7 +41,7 @@ exports[`Render FullScreenPlayer 1`] = `
       <div
         className="player__time-value"
       >
-        
+        00:00:0
       </div>
     </div>
     <div

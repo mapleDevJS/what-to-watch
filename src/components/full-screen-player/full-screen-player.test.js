@@ -5,7 +5,7 @@ import renderer from "react-test-renderer";
 import FullScreenPlayer from "./full-screen-player.jsx";
 import history from "../../history.js";
 
-import {film} from "../../mocks/films.js";
+import {film} from "../../test-data/films.js";
 
 it(`Render FullScreenPlayer`, () => {
   const tree = renderer
@@ -16,7 +16,6 @@ it(`Render FullScreenPlayer`, () => {
             progress={0}
             duration={0}
             isPlaying={false}
-            time={``}
             playbackToggle={() => {}}
             onFullScreenClick={() => {}}
             onExitClick={() => {}}>

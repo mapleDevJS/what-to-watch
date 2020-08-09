@@ -5,8 +5,8 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {commentPropTypes} from "../../utils/proptypes";
 
-import {Operation as DataOperation} from "../../redux/reducers/data/data.js";
-import {getComments} from "../../redux/reducers/data/selectors.js";
+import {Operation as DataOperation} from "../../store/reducers/data/data.js";
+import {getComments} from "../../store/reducers/data/selectors.js";
 
 import {formatReviewDate} from "../../utils/utils.js";
 
@@ -63,7 +63,6 @@ Review.propTypes = {
 const mapStateToProps = (state) => {
 
   return {
-    // isAppLoading: getAppLoadingStatus(state),
     comments: getComments(state)
   };
 };

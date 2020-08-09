@@ -1,19 +1,16 @@
-import React, {PureComponent} from "react";
+import React, {Component} from "react";
 import {Link} from "react-router-dom";
-
-import {connect} from "react-redux";
 
 import PropTypes from "prop-types";
 import {filmPropTypes, commentPropTypes} from "../../utils/proptypes";
 
-// import {getAppLoadingStatus} from "../../redux/reducers/data/selectors.js";
+import {connect} from "react-redux";
 
-import {Operation as DataOperation} from "../../redux/reducers/data/data.js";
-import {getFilms, getComments} from "../../redux/reducers/data/selectors.js";
+import {Operation as DataOperation} from "../../store/reducers/data/data.js";
+import {getFilms, getComments} from "../../store/reducers/data/selectors.js";
+import {AuthorizationStatus} from "../../store/reducers/user/user";
+import {getAuthorizationStatus} from "../../store/reducers/user/selectors";
 
-import withActiveTab from "../hocs/with-active-tab/with-active-tab.js";
-
-// import Loader from "../loader/loader.jsx";
 import SvgContainer from "../svg-container/svg-container.jsx";
 import Logo from "../logo/logo.jsx";
 import UserBlock from "../user-block/user-block.jsx";
@@ -24,28 +21,26 @@ import Footer from "../footer/footer.jsx";
 
 import {AppRoute} from "../../consts";
 import {getSimilarFilms} from "../../utils/utils.js";
+import withActiveTab from "../../hocs/with-active-tab/with-active-tab";
 
 const TabsWrapped = withActiveTab(Tabs);
 
-class FilmPage extends PureComponent {
+class FilmPage extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.loadComments(this.props.film.id);
-  }
-
   render() {
-    const {film, films, comments} = this.props;
+    const {film, comments, films, isUserAuthorized} = this.props;
 
     const {
+      id,
       color,
       name,
       genre,
       released,
       poster,
-      backgroundImg,
+      backgroundImg
     } = film;
 
     return (
@@ -83,7 +78,7 @@ class FilmPage extends PureComponent {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <Link to={`${AppRoute.FILMS}/${film.id}${AppRoute.PLAYER}`}
+                  <Link to={`${AppRoute.PLAYER}/${id}`}
                     className="btn btn--play movie-card__button"
                     type="button"
                   >
@@ -95,12 +90,16 @@ class FilmPage extends PureComponent {
 
                   <MyListButton film = {film}/>
 
-                  <Link
-                    to = {AppRoute.REVIEW}
-                    className="btn movie-card__button"
-                  >
-                    Add review
-                  </Link>
+                  {
+                    isUserAuthorized ?
+                      <Link
+                        to={`${AppRoute.FILMS}/${id}${AppRoute.REVIEW}`}
+                        className="btn movie-card__button"
+                      >
+                        Add review
+                      </Link> :
+                      <></>
+                  }
                 </div>
               </div>
             </div>
@@ -140,24 +139,25 @@ class FilmPage extends PureComponent {
 }
 
 FilmPage.propTypes = {
-  // isAppLoading: PropTypes.bool.isRequired,
+  isUserAuthorized: PropTypes.bool.isRequired,
   film: PropTypes.shape(filmPropTypes).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(filmPropTypes)).isRequired,
-  loadComments: PropTypes.func.isRequired,
   comments: PropTypes.arrayOf(PropTypes.shape(commentPropTypes)).isRequired,
+  loadComments: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
-
   return {
-    // isAppLoading: getAppLoadingStatus(state),
+    isUserAuthorized: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
     films: getFilms(state),
     comments: getComments(state)
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  loadComments: (id) => dispatch(DataOperation.loadComments(id))
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadComments: (id) => dispatch(DataOperation.loadComments(id))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilmPage);
