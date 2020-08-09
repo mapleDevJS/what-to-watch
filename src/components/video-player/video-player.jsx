@@ -3,6 +3,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {filmPropTypes} from "../../utils/proptypes.js";
 
+const ERROR_MESSAGE = `The video source is unavailable`;
 
 class VideoPlayer extends PureComponent {
   constructor(props) {
@@ -31,7 +32,9 @@ class VideoPlayer extends PureComponent {
     const video = this._videoRef.current;
 
     if (this.props.isPlaying) {
-      this._timeoutPlayHandler = setTimeout(() => video.play().catch(() => {}), 1000);
+      this._timeoutPlayHandler = setTimeout(() => video.play().catch(() => {
+        throw new Error(ERROR_MESSAGE);
+      }), 1000);
     } else {
       if (this._timeoutPlayHandler) {
         this._timeoutClear();
