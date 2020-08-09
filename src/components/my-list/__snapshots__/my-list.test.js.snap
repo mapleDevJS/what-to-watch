@@ -66,15 +66,7 @@ exports[`Should MyList render correctly 1`] = `
     <div
       className="catalog__movies-list"
     >
-      <h1
-        style={
-          Object {
-            "marginLeft": "250px",
-          }
-        }
-      >
-        Add movies to favorites to watch later
-      </h1>
+      
     </div>
   </section>
   <footer

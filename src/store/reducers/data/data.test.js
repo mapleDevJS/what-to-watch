@@ -5,8 +5,8 @@ import {createAPI} from "../../../api.js";
 
 import {film, films, favoriteFilm, nonFavoriteFilm} from "../../../test-data/films.js";
 import {comments} from "../../../test-data/comments.js";
-import Film from "../../../components/adapters/film.js";
-import Comment from "../../../components/adapters/comment.js";
+import Film from "../../../adapters/film.js";
+import Comment from "../../../adapters/comment.js";
 
 const api = createAPI(() => {});
 

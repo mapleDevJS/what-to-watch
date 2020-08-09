@@ -13,13 +13,17 @@ const MAX_FILTERS = 10;
 const Filters = (props) => {
   const {activeFilter, onFilterChange, filters} = props;
 
+  const onFilterChangeHandler = (evt) => {
+    evt.preventDefault();
+    if (evt.target.className === `catalog__genres-link`) {
+      onFilterChange(evt.target.textContent);
+    }
+  };
+
   return (
     <ul
       className="catalog__genres-list"
-      onClick = {(evt) => {
-        evt.preventDefault();
-        onFilterChange(evt.target.textContent);
-      }}
+      onClick = {onFilterChangeHandler}
     >
       {
         filters.slice(0, MAX_FILTERS).map((filter, idx) => (
@@ -35,6 +39,7 @@ const Filters = (props) => {
     </ul>
   );
 };
+
 
 Filters.propTypes = {
   activeFilter: PropTypes.string.isRequired,
