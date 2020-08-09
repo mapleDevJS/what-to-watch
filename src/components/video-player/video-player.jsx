@@ -24,20 +24,25 @@ class VideoPlayer extends PureComponent {
     video.onplay = null;
     video.muted = null;
     video.src = ``;
+    this._timeoutClear();
   }
 
   componentDidUpdate() {
     const video = this._videoRef.current;
 
     if (this.props.isPlaying) {
-      this._timeoutPlayHandler = setTimeout(() => video.play(), 1000);
+      this._timeoutPlayHandler = setTimeout(() => video.play().catch(() => {}), 1000);
     } else {
       if (this._timeoutPlayHandler) {
-        clearTimeout(this._timeoutPlayHandler);
-        this._timeoutPlayHandler = null;
+        this._timeoutClear();
       }
       video.load();
     }
+  }
+
+  _timeoutClear() {
+    clearTimeout(this._timeoutPlayHandler);
+    this._timeoutPlayHandler = null;
   }
 
   render() {
@@ -51,6 +56,7 @@ class VideoPlayer extends PureComponent {
           ref = {this._videoRef}
           poster = {poster}
           muted = {isMuted}
+          type = "video/webm"
         />
       </>
     );

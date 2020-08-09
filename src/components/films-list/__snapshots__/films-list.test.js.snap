@@ -18,6 +18,7 @@ Array [
           className="player__video"
           muted={true}
           poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
+          type="video/webm"
         />
       </div>
     </a>
@@ -49,6 +50,7 @@ Array [
           className="player__video"
           muted={true}
           poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg"
+          type="video/webm"
         />
       </div>
     </a>
@@ -80,6 +82,7 @@ Array [
           className="player__video"
           muted={true}
           poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
+          type="video/webm"
         />
       </div>
     </a>
@@ -111,6 +114,7 @@ Array [
           className="player__video"
           muted={true}
           poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/bronson.jpg"
+          type="video/webm"
         />
       </div>
     </a>
@@ -142,6 +146,7 @@ Array [
           className="player__video"
           muted={true}
           poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/midnight-special.jpg"
+          type="video/webm"
         />
       </div>
     </a>
@@ -173,6 +178,7 @@ Array [
           className="player__video"
           muted={true}
           poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/matrix.jpg"
+          type="video/webm"
         />
       </div>
     </a>
@@ -204,6 +210,7 @@ Array [
           className="player__video"
           muted={true}
           poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg"
+          type="video/webm"
         />
       </div>
     </a>
@@ -235,6 +242,7 @@ Array [
           className="player__video"
           muted={true}
           poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/johnny-english.jpg"
+          type="video/webm"
         />
       </div>
     </a>

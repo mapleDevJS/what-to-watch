@@ -1,7 +1,7 @@
 import {Action, Creator} from "./actions.js";
 
-import Film from "../../../components/adapters/film.js";
-import Comment from "../../../components/adapters/comment.js";
+import Film from "../../../adapters/film.js";
+import Comment from "../../../adapters/comment.js";
 
 import {AppRoute} from "../../../consts.js";
 

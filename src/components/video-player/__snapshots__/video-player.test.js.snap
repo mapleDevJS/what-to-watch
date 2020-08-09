@@ -5,5 +5,6 @@ exports[`VideoPlayer is rendered correctly 1`] = `
   className="player__video"
   muted={true}
   poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
+  type="video/webm"
 />
 `;

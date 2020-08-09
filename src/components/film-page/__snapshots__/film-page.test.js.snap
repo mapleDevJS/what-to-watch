@@ -376,6 +376,7 @@ Array [
                 className="player__video"
                 muted={true}
                 poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/pulp-fiction.jpg"
+                type="video/webm"
               />
             </div>
           </a>
@@ -407,6 +408,7 @@ Array [
                 className="player__video"
                 muted={true}
                 poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/Once_Upon_a_Time_in_America.jpg"
+                type="video/webm"
               />
             </div>
           </a>
@@ -438,6 +440,7 @@ Array [
                 className="player__video"
                 muted={true}
                 poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/legend.jpg"
+                type="video/webm"
               />
             </div>
           </a>
@@ -469,6 +472,7 @@ Array [
                 className="player__video"
                 muted={true}
                 poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/no-country-for-old-men.jpg"
+                type="video/webm"
               />
             </div>
           </a>

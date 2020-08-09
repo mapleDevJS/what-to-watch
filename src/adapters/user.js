@@ -1,4 +1,4 @@
-import {BASE_URL} from "../../consts.js";
+import {BASE_URL} from "../consts.js";
 
 export default class User {
   constructor(user) {
