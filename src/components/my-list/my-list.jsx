@@ -60,8 +60,8 @@ class MyList extends PureComponent {
 
             {
               films.length
-                ? <h1 style={{marginLeft: `250px`}}>Add movies to favorites to watch later</h1>
-                : ``
+                ? ``
+                : <h1 style={{marginLeft: `250px`}}>Add movies to favorites to watch later</h1>
             }
           </div>
         </section>
