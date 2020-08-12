@@ -1,11 +1,13 @@
-import React from "react";
+import * as React from "react";
 import {Router} from "react-router-dom";
 
-import renderer from "react-test-renderer";
-import FullScreenPlayer from "./full-screen-player.jsx";
-import history from "../../history.js";
+import * as renderer from "react-test-renderer";
+import FullScreenPlayer from "./full-screen-player";
+import history from "../../history";
 
-import {film} from "../../test-data/films.js";
+import {film} from "../../test-data/films";
+
+import {noop} from "../../utils/utils";
 
 it(`Render FullScreenPlayer`, () => {
   const tree = renderer
@@ -16,9 +18,9 @@ it(`Render FullScreenPlayer`, () => {
             progress={0}
             duration={0}
             isPlaying={false}
-            playbackToggle={() => {}}
-            onFullScreenClick={() => {}}
-            onExitClick={() => {}}>
+            playbackToggle={noop}
+            onFullScreenClick={noop}
+            onExitClick={noop}>
             <video/>
           </FullScreenPlayer>
         </Router>
