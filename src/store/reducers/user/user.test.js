@@ -1,18 +1,17 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../../api.js';
+import {createAPI} from '../../../api';
 
-import {reducer, AuthorizationStatus, Operation} from "./user.js";
-import {Action, Creator} from "./actions.js";
+import {reducer, AuthorizationStatus, Operation} from "./user";
+import {Action, Creator} from "./actions";
 
-import {user} from "../../../test-data/user.js";
-
+import {user} from "../../../test-data/user";
+import {noop} from "../../../utils/utils";
 
 const initialState = {
-  authorizationStatus: `No auth`,
-  authorizationError: undefined,
-  user: {}
+  user: {},
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationError: false,
 };
-
 
 describe(`User Reducer`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -61,7 +60,7 @@ describe(`User Reducer`, () => {
     expect(reducer({
       authorizationError: false,
     }, {
-      type: Action.SHOW_AUTHORIZATION_ERROR,
+      type: Action.SET_AUTHORIZATION_ERROR,
       payload: true,
     })).toEqual({
       authorizationError: true,
@@ -96,7 +95,7 @@ describe(`Action creators work correctly`, () => {
 
 describe(`Operations work correctly`, () => {
   it(`Operation should check authorization`, () => {
-    const api = createAPI(() => {});
+    const api = createAPI(noop);
 
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -106,7 +105,7 @@ describe(`Operations work correctly`, () => {
       .onGet(`/login`)
       .reply(200, [{fake: true}]);
 
-    return checkAuthorization(dispatch, () => {}, api)
+    return checkAuthorization(dispatch, () => noop, api)
           .then(() => {
             expect(dispatch).toHaveBeenCalledTimes(2);
             expect(dispatch).toHaveBeenCalledWith({

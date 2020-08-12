@@ -1,11 +1,11 @@
-import {Action, Creator} from "./actions.js";
+import {Action, Creator} from "./actions";
 
-import Film from "../../../adapters/film.js";
-import Comment from "../../../adapters/comment.js";
+import Film from "../../../adapters/film";
+import Comment from "../../../adapters/comment";
 
-import {AppRoute} from "../../../consts.js";
+import {AppRoute} from "../../../consts";
 
-import history from '../../../history.js';
+import history from '../../../history';
 
 const PATH = {
   FILMS: `films`,
