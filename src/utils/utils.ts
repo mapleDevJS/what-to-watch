@@ -1,21 +1,22 @@
 import {Rating} from "../consts";
+import {Film, Comment} from "../types";
 
 export const generateUniqueId = () => {
   return Math.random().toString(36).substr(2, 9);
 };
 
 
-export const getFilmById = (films, id) => {
+export const getFilmById = (films: Array<Film>, id: number) => {
   return films.find((film) => film.id === id);
 };
 
-export const getSimilarFilms = (films, activeFilm) => {
+export const getSimilarFilms = (films: Array<Film>, activeFilm: Film) => {
   return films.filter(
       (film) => film.genre === activeFilm.genre && film.id !== activeFilm.id
   );
 };
 
-export const getLevel = (rating) => {
+export const getLevel = (rating: number) => {
   switch (true) {
     case (rating < 3):
       return Rating.BAD;
@@ -29,7 +30,7 @@ export const getLevel = (rating) => {
   return Rating.AWESOME;
 };
 
-export const formatRuntime = (runtime) => {
+export const formatRuntime = (runtime: number) => {
   let hours = Math.floor(runtime / 60);
   let minutes = Math.floor(((runtime / 60) - hours) * 100);
 
@@ -41,14 +42,14 @@ export const formatRuntime = (runtime) => {
   return `${hours}h ${minutes}m`;
 };
 
-export const formatReviewDate = (dateString, isForUser) => {
+export const formatReviewDate = (dateString: string, isForUser: boolean) => {
   const date = new Date(dateString);
   const dateTimeFormat = new Intl.DateTimeFormat(`en`, {year: `numeric`, month: `${isForUser ? `long` : `2-digit`}`, day: `2-digit`});
   const [{value: month},, {value: day},, {value: year}] = dateTimeFormat.formatToParts(date);
   return isForUser ? `${month} ${day}, ${year}` : `${year}-${month}-${day}`;
 };
 
-export const sliceComments = (comments) => {
+export const sliceComments = (comments: Array<Comment>) => {
   const sliceIndex = Math.ceil(comments.length / 2);
   const firstColComments = comments.slice(0, sliceIndex);
   const secondColComments = comments.slice(sliceIndex, comments.length);
