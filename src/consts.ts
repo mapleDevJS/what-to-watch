@@ -1,4 +1,4 @@
-export const BASE_URL = `https://4.react.pages.academy`;
+export const BASE_URL = `https://5.react.pages.academy`;
 
 export const ALL_GENRES = `All genres`;
 
